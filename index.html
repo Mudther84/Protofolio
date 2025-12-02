@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <!--<style>
+      :root {
+        --dark: #0f0c17;
+        --darker: #0a0810;
+        --light: #ffffff;
+        --gray: #a3a3a3;
+        --primary: #4f46e5;
+        --blue: #3b82f6;
+        --purple: #8b5cf6;
+        --teal: #10b981;
+        --grid-line: rgba(255, 255, 255, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--light);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+        background-size: 24px 24px;
+        padding-top: 80px;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        opacity: 0;
+      }
+
+      /* Navbar */
+      .navbar {
+        background-color: var(--darker) !important;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      .navbar .navbar-brand,
+      .navbar .nav-link {
+        color: var(--light) !important;
+        font-weight: 600;
+      }
+      .navbar .nav-link:hover {
+        color: var(--teal) !important;
+      }
+
+      /* Hero */
+      .hero {
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+      }
+      .hero p {
+        color: var(--gray);
+        font-size: 1.5rem;
+        height: 40px;
+        margin-top: 15px;
+      }
+
+      /* Typing animation */
+      .typed-text {
+        border-right: 2px solid var(--teal);
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      /* Image Section */
+      #profile-image {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 4rem;
+      }
+      #profile-image img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--teal);
+        box-shadow: 0 0 15px rgba(16, 185, 128, 0.5);
+        transition: transform 0.3s;
+      }
+      #profile-image img:hover {
+        transform: scale(1.1);
+      }
+
+      /* Social Buttons */
+      .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+      .social-buttons a {
+        color: var(--light);
+        font-size: 1.2rem;
+        text-decoration: none;
+        border: 1px solid var(--teal);
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        transition: 0.3s;
+      }
+      .social-buttons a:hover {
+        background-color: var(--teal);
+        color: var(--dark);
+      }
+
+      /* Project Card Base */
+      .project-card.full {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .project-info {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .project-title.full {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .project-description.full {
+        margin-bottom: 1.5rem;
+        color: #b2b2b2;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .project-details {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .project-column {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .project-column h3 {
+        color: var(--blue);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      .project-column:nth-child(2) h3 {
+        color: var(--purple);
+      }
+      .project-column:nth-child(3) h3 {
+        color: var(--teal);
+      }
+
+      .project-list {
+        list-style: none;
+      }
+      .project-list li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+      .project-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--light);
+      }
+
+      /* ENLARGED architecture diagrams */
+      .architecture-diagram,
+      .backend-diagram {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        padding: 1.5rem;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 420px;
+      }
+
+      .backend-diagram {
+        color: var(--gray);
+        font-style: italic;
+        font-size: 1.1rem;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .diagram-title {
+        position: absolute;
+        top: 1rem;
+        left: 1.5rem;
+        font-size: 0.9rem;
+        color: #b2b2b2;
+      }
+
+      .diagram-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .architecture-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .flow-node {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .flow-node:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      }
+
+      .flow-node:nth-child(1),
+      .flow-node:nth-child(4) {
+        background: linear-gradient(
+          90deg,
+          rgba(9, 132, 227, 0.2),
+          rgba(9, 132, 227, 0.1)
+        );
+        border-color: rgba(9, 132, 227, 0.3);
+        color: #0984e3;
+      }
+      .flow-node:nth-child(2),
+      .flow-node:nth-child(5) {
+        background: linear-gradient(
+          90deg,
+          rgba(108, 92, 231, 0.2),
+          rgba(108, 92, 231, 0.1)
+        );
+        border-color: rgba(108, 92, 231, 0.3);
+        color: #6c5ce7;
+      }
+      .flow-node:nth-child(3),
+      .flow-node:nth-child(6) {
+        background: linear-gradient(
+          90deg,
+          rgba(0, 206, 209, 0.2),
+          rgba(0, 206, 209, 0.1)
+        );
+        border-color: rgba(0, 206, 209, 0.3);
+        color: #00cec9;
+      }
+
+      .flow-connection {
+        width: 2px;
+        height: 1.25rem;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .project-buttons {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: auto;
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+        transition: 0.3s;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-demo {
+        background: var(--teal);
+        box-shadow: 0 0 8px rgba(16, 185, 128, 0.5);
+      }
+      .btn-code {
+        background: var(--purple);
+        box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px currentColor;
+      }
+
+      /* Contact & Footer */
+      .contact-section {
+        padding: 4rem 1rem;
+        background-color: rgba(255, 255, 255, 0.02);
+        text-align: center;
+      }
+      .contact-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+      .contact-description {
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        color: #b2b2b2;
+      }
+      .location {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        color: #b2b2b2;
+      }
+      .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .form-label {
+        font-size: 0.9rem;
+        color: #b2b2b2;
+      }
+      .form-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: var(--light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+      .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+      }
+      .form-textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: linear-gradient(90deg, var(--blue), var(--purple));
+        border: none;
+        border-radius: 6px;
+        color: var(--light);
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+      }
+      footer {
+        padding: 2rem 1rem;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+      .resume-btn {
+        display: inline-block;
+        margin: 1rem 0;
+        padding: 0.75rem 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: var(--light);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+      .resume-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .social-link {
+        color: var(--light);
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+      .social-link:hover {
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 900px) {
+        .project-header {
+          flex-direction: column;
+        }
+        .architecture-diagram,
+        .backend-diagram {
+          min-height: 350px;
+          flex: auto;
+          width: 100%;
+        }
+        .project-details {
+          flex-direction: column;
+        }
+      }
+    </style>-->
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">My Portfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#education">Education</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/skills.html">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certificates">Certificates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#resume">Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HOME -->
+    <section id="home" class="hero" data-aos="fade-up">
+      <div>
+        <h1 data-aos="zoom-in">Hi, I'm a <span class="typed-text"></span></h1>
+      </div>
+    </section>
+
+    <!-- IMAGE SECTION -->
+    <section id="profile-image" data-aos="fade-up">
+      <img src="/images/img.jpg" alt="Profile Image" />
+    </section>
+
+    <!-- SOCIAL BUTTONS -->
+    <div class="social-buttons" data-aos="fade-up">
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="mailto:example@gmail.com">Email</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Upwork</a>
+      <a href="#">Resume</a>
+    </div>
+
+    <!-- FULL STACK PROJECTS – 6 Projects -->
+    <section class="projects-section">
+      <h2 class="projects-title">Full Stack Projects</h2>
+
+      <!-- Project 1 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">Enterprise E-commerce Platform</h3>
+            <p class="project-description full">
+              A high-performance e-commerce solution handling 100K+ daily
+              transactions with real-time inventory and ML-powered
+              recommendations.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Frontend Architecture</h3>
+                <ul class="project-list">
+                  <li>Next.js Server Components</li>
+                  <li>Real-time Cart & Inventory</li>
+                  <li>Stripe Payment Integration</li>
+                  <li>PWA with Offline Support</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend Systems</h3>
+                <ul class="project-list">
+                  <li>Node.js Microservices</li>
+                  <li>Redis Caching Layer</li>
+                  <li>Kafka Event Streaming</li>
+                  <li>Elasticsearch Product Search</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Key Achievements</h3>
+                <ul class="project-list">
+                  <li>99.99% Uptime</li>
+                  <li>300ms API Response</li>
+                  <li>45% Cost Reduction</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">System Architecture</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div class="flow-node">Next.js Frontend</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Product Service</div>
+                <div class="flow-node">Order Service</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Redis Cache</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">PostgreSQL</div>
+                <div class="flow-node">MongoDB</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Elasticsearch</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">Real-time Analytics Platform</h3>
+            <p class="project-description full">
+              A scalable analytics platform processing 1M+ events per minute
+              with real-time dashboards and ML-powered insights.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Frontend Features</h3>
+                <ul class="project-list">
+                  <li>Real-time Data Visualization</li>
+                  <li>Interactive Dashboards</li>
+                  <li>Custom Chart Components</li>
+                  <li>Data Export Tools</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend Pipeline</h3>
+                <ul class="project-list">
+                  <li>Apache Kafka Streams</li>
+                  <li>ClickHouse Analytics DB</li>
+                  <li>Python Data Processing</li>
+                  <li>Redis Time Series</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Performance Metrics</h3>
+                <ul class="project-list">
+                  <li>1M+ Events/Minute Processing</li>
+                  <li>Sub-second Query Response</li>
+                  <li>99.99% Data Accuracy</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">Data Flow Architecture</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div style="display: flex; gap: 0.5rem; width: 100%">
+                  <div class="flow-node">Web Events</div>
+                  <div class="flow-node">Mobile Events</div>
+                  <div class="flow-node">API Events</div>
+                </div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Kafka Event Streaming</div>
+                <div class="flow-connection"></div>
+                <div style="display: flex; gap: 0.5rem; width: 100%">
+                  <div class="flow-node">Stream Processing</div>
+                  <div class="flow-node">Batch Processing</div>
+                </div>
+                <div class="flow-connection"></div>
+                <div style="display: flex; gap: 0.5rem; width: 100%">
+                  <div class="flow-node">ClickHouse</div>
+                  <div class="flow-node">Redis Time Series</div>
+                </div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">GraphQL API Layer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">SaaS Task Management App</h3>
+            <p class="project-description full">
+              Collaborative task management tool with role-based access,
+              real-time sync, and audit logs.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Tech Stack</h3>
+                <ul class="project-list">
+                  <li>React + TypeScript</li>
+                  <li>WebSockets</li>
+                  <li>JWT Auth</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend</h3>
+                <ul class="project-list">
+                  <li>Spring Boot</li>
+                  <li>PostgreSQL</li>
+                  <li>RabbitMQ</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Results</h3>
+                <ul class="project-list">
+                  <li>50K+ MAU</li>
+                  <li>99.5% Uptime</li>
+                  <li>500ms avg latency</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">Architecture</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div class="flow-node">React SPA</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Auth Service</div>
+                <div class="flow-node">Task Service</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">PostgreSQL</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">RabbitMQ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">Cloud Storage Platform</h3>
+            <p class="project-description full">
+              Secure file storage with encryption, versioning, and sharing
+              controls.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Frontend</h3>
+                <ul class="project-list">
+                  <li>Next.js</li>
+                  <li>File Drag & Drop</li>
+                  <li>Folder Explorer UI</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend</h3>
+                <ul class="project-list">
+                  <li>Node.js</li>
+                  <li>AWS S3</li>
+                  <li>JWT + OAuth</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Security</h3>
+                <ul class="project-list">
+                  <li>End-to-End Encryption</li>
+                  <li>Zero-Knowledge Proof</li>
+                  <li>GDPR Compliant</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">Flow</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div class="flow-node">Next.js UI</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">API Gateway</div>
+                <div class="flow-node">File Service</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">AWS S3</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Auth0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">AI-Powered Job Matching</h3>
+            <p class="project-description full">
+              ML-driven job board that matches candidates using NLP and skill
+              embeddings.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Frontend</h3>
+                <ul class="project-list">
+                  <li>React</li>
+                  <li>D3.js Visualizations</li>
+                  <li>Personalized Feed</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend & ML</h3>
+                <ul class="project-list">
+                  <li>Python FastAPI</li>
+                  <li>scikit-learn / BERT</li>
+                  <li>Neo4j Graph DB</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Impact</h3>
+                <ul class="project-list">
+                  <li>40% Higher Match Rate</li>
+                  <li>200K+ Users</li>
+                  <li>Real-time Recommendations</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">ML Pipeline</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div class="flow-node">React Dashboard</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">FastAPI Backend</div>
+                <div class="flow-node">ML Model Server</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Neo4j</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">PostgreSQL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card full">
+        <div class="project-header">
+          <div class="project-info">
+            <h3 class="project-title full">Healthcare Telemedicine Platform</h3>
+            <p class="project-description full">
+              HIPAA-compliant video consultation, EHR integration, and
+              appointment scheduling.
+            </p>
+            <div class="project-details">
+              <div class="project-column">
+                <h3>Frontend</h3>
+                <ul class="project-list">
+                  <li>React Native (Mobile)</li>
+                  <li>WebRTC Video</li>
+                  <li>Calendar Sync</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Backend</h3>
+                <ul class="project-list">
+                  <li>Spring Boot</li>
+                  <li>FHIR API</li>
+                  <li>AWS KMS Encryption</li>
+                </ul>
+              </div>
+              <div class="project-column">
+                <h3>Compliance</h3>
+                <ul class="project-list">
+                  <li>HIPAA Certified</li>
+                  <li>Audit Trails</li>
+                  <li>Role-Based Access</li>
+                </ul>
+              </div>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+          <div class="architecture-diagram">
+            <div class="diagram-title">System</div>
+            <div class="diagram-container">
+              <div class="architecture-flow">
+                <div class="flow-node">Mobile + Web</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">Auth Service</div>
+                <div class="flow-node">Appointment Service</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">FHIR EHR Gateway</div>
+                <div class="flow-connection"></div>
+                <div class="flow-node">AWS + KMS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+        <h2>About</h2>
+        <p class="text-center">
+          I am a full stack developer with 8+ years of experience building
+          scalable applications and leading development teams. Previously at
+          Stripe and Vercel.
+        </p>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container" data-aos="zoom-in">
+        <h2>Education</h2>
+        <div
+          class="project-row"
+          style="
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 300px;
+            "
+          >
+            <div class="project-description">
+              <h4>Bachelor's Degree in Computer Science</h4>
+              <p>University Name • 2020</p>
+            </div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 300px;
+            "
+          >
+            <div class="project-description">
+              <h4>Java & Spring Boot Certifications</h4>
+              <p>Various Online Courses</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container" data-aos="fade-right">
+        <h2>Experience</h2>
+        <div
+          class="project-row"
+          style="
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 300px;
+            "
+          >
+            <div class="project-description">
+              <h4>Senior Full Stack Developer – Stripe</h4>
+              <p>
+                Built payment infrastructure and developer tools using
+                TypeScript, React, and Node.js.
+              </p>
+            </div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 300px;
+            "
+          >
+            <div class="project-description">
+              <h4>Tech Lead – Vercel</h4>
+              <p>
+                Led frontend architecture for enterprise deployment platform
+                using Next.js and edge functions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKEND PROJECTS – 9 Projects (Vertical with Description Beside Diagram) -->
+    <section id="projects">
+      <div class="container">
+        <h2 data-aos="fade-up">Backend Projects</h2>
+
+        <!-- Project 1 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">API Gateway</h3>
+              <p class="project-description full">
+                A robust API gateway built with Spring Boot, featuring OAuth2
+                authentication, JWT validation, custom rate limiting, and
+                request logging. Integrated with service discovery and circuit
+                breakers for high availability.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Security OAuth2</li>
+                    <li>Redis Rate Limiting</li>
+                    <li>Spring Cloud Gateway</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>JWT Validation</li>
+                    <li>Request Logging</li>
+                    <li>Circuit Breakers</li>
+                    <li>Path-based Routing</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M12 2L2 7v10c0 5.55 4.45 10 10 10s10-4.45 10-10V7l-10-5z"
+                />
+                <path d="M12 7v5" />
+                <circle cx="12" cy="17" r="1" />
+              </svg>
+              API Gateway Architecture
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Auth Microservice</h3>
+              <p class="project-description full">
+                Stateless authentication service supporting login, multi-factor
+                authentication, refresh tokens, password reset, and session
+                management using Redis. Fully compliant with OAuth 2.1 and
+                OpenID Connect standards.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>JWT + JJWT</li>
+                    <li>Redis Session Store</li>
+                    <li>BCrypt</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Features</h3>
+                  <ul class="project-list">
+                    <li>MFA (TOTP)</li>
+                    <li>Refresh Token Rotation</li>
+                    <li>OAuth 2.1 Flows</li>
+                    <li>Session Revocation</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              Auth Flow Diagram
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Order Processing Engine</h3>
+              <p class="project-description full">
+                Handles high-volume e-commerce orders with idempotency keys,
+                Kafka-based event sourcing, and eventual consistency. Supports
+                partial fulfillment, cancellations, and refund workflows with
+                full audit trails.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Backend</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Kafka</li>
+                    <li>PostgreSQL</li>
+                    <li>Idempotency Keys</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Patterns</h3>
+                  <ul class="project-list">
+                    <li>Event Sourcing</li>
+                    <li>Saga Pattern</li>
+                    <li>CQRS</li>
+                    <li>Audit Logging</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                />
+                <path
+                  d="M3 8v8a2 2 0 0 0 1 1.73l7 4M21 8v8a2 2 0 0 1-1 1.73l-7 4"
+                />
+                <polyline points="3.27 6.96 12 12 20.73 6.96" />
+              </svg>
+              Order State Machine
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Elasticsearch Indexer</h3>
+              <p class="project-description full">
+                Real-time indexing pipeline that syncs PostgreSQL and MongoDB
+                changes to Elasticsearch using change data capture (CDC).
+                Includes retry logic, dead-letter queues, and schema mapping
+                validation.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech</h3>
+                  <ul class="project-list">
+                    <li>Python</li>
+                    <li>Debezium</li>
+                    <li>Elasticsearch</li>
+                    <li>RabbitMQ</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Reliability</h3>
+                  <ul class="project-list">
+                    <li>DLQ Handling</li>
+                    <li>Schema Validation</li>
+                    <li>Batch & Stream Modes</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M21 15v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              CDC Pipeline
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Notification Engine</h3>
+              <p class="project-description full">
+                Unified notification system delivering emails, SMS, and push
+                notifications via provider-agnostic templates. Uses RabbitMQ for
+                async delivery and supports user preference management and
+                delivery analytics.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>RabbitMQ</li>
+                    <li>Twilio / SendGrid</li>
+                    <li>Handlebars Templates</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Features</h3>
+                  <ul class="project-list">
+                    <li>Preference Center</li>
+                    <li>Delivery Retry</li>
+                    <li>Open/Click Tracking</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M21 14v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5" />
+                <path d="M12 3v10" />
+                <path d="m9 10 3 3 3-3" />
+              </svg>
+              Notification Flow
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects 6–9 (Repeat same pattern – 4 shown for brevity) -->
+        <!-- Project 6 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Stripe Payment Integration</h3>
+              <p class="project-description full">
+                End-to-end payment processing with Stripe webhooks, subscription
+                billing, dunning management, and PCI-compliant tokenization.
+                Includes reconciliation jobs and financial reporting endpoints.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Features</h3>
+                  <ul class="project-list">
+                    <li>Webhooks</li>
+                    <li>Subscription Billing</li>
+                    <li>PCI Compliance</li>
+                    <li>Financial Reporting</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Stripe SDK</li>
+                    <li>PostgreSQL</li>
+                    <li>AWS KMS</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M16 4H8a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"
+                />
+                <path d="M8 12h8" />
+                <path d="M8 16h8" />
+                <path d="M12 8h0" />
+              </svg>
+              Payment Flow
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Batch Data Pipeline</h3>
+              <p class="project-description full">
+                Airflow-driven ETL pipeline moving data from PostgreSQL to
+                BigQuery daily. Includes data validation, anomaly detection, and
+                Slack alerts on failure. Optimized for cost and performance
+                using partitioning and clustering.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Components</h3>
+                  <ul class="project-list">
+                    <li>Apache Airflow</li>
+                    <li>Cloud Functions</li>
+                    <li>BigQuery</li>
+                    <li>Slack Alerts</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Optimizations</h3>
+                  <ul class="project-list">
+                    <li>Partitioning</li>
+                    <li>Clustering</li>
+                    <li>Incremental Loads</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v18H6.5a2.5 2.5 0 0 1 0-5H20"
+                />
+                <path d="M10 8h6" />
+                <path d="M10 12h4" />
+              </svg>
+              ETL Architecture
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Feature Flag Service</h3>
+              <p class="project-description full">
+                Real-time feature toggle system with user targeting, percentage
+                rollouts, and A/B test integration. Backed by Redis for
+                low-latency evaluation and includes a React admin dashboard for
+                non-technical users.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Core</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Redis</li>
+                    <li>WebSockets</li>
+                    <li>React Admin</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Capabilities</h3>
+                  <ul class="project-list">
+                    <li>User Targeting</li>
+                    <li>A/B Testing</li>
+                    <li>Real-time Updates</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Feature Toggle Flow
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card full" data-aos="fade-up">
+          <div class="project-header">
+            <div class="project-info">
+              <h3 class="project-title full">Audit Logging System</h3>
+              <p class="project-description full">
+                GDPR-compliant audit logger that captures user actions, system
+                events, and data changes. Logs are encrypted, archived to S3
+                with lifecycle policies, and searchable via a secure internal
+                API.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Security</h3>
+                  <ul class="project-list">
+                    <li>AES-256 Encryption</li>
+                    <li>GDPR Compliance</li>
+                    <li>Immutable Logs</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Storage</h3>
+                  <ul class="project-list">
+                    <li>AWS S3</li>
+                    <li>Lifecycle Policies</li>
+                    <li>Elasticsearch Index</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-demo">Demo</a>
+                <a href="#" class="btn btn-code">Code</a>
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+              Audit Log Pipeline
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container" data-aos="fade-left">
+        <h2>Skills</h2>
+        <div
+          class="project-row"
+          style="
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description">
+              <h4>Java, Spring Boot, Hibernate</h4>
+            </div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description">
+              <h4>REST APIs, Microservices</h4>
+            </div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description"><h4>MySQL, PostgreSQL</h4></div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description"><h4>Git, Docker, AWS</h4></div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description">
+              <h4>TypeScript, React, Next.js</h4>
+            </div>
+          </div>
+          <div
+            class="project-card no-image"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 1.25rem;
+              flex: 1;
+              min-width: 200px;
+            "
+          >
+            <div class="project-description">
+              <h4>Node.js, Kafka, Redis</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="container" data-aos="fade-up">
+        <h2>Certificates</h2>
+        <div
+          class="project-row"
+          style="
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+            padding: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
+          <div
+            class="project-card"
+            style="
+              flex: 0 0 300px;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            "
+          >
+            <div class="project-title">Java Programming Certificate</div>
+            <div class="project-description">
+              <p>Issued by: Oracle Academy • 2023</p>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">View</a>
+            </div>
+          </div>
+          <div
+            class="project-card"
+            style="
+              flex: 0 0 300px;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            "
+          >
+            <div class="project-title">Spring Boot Developer Certificate</div>
+            <div class="project-description">
+              <p>Issued by: Udemy • 2024</p>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">View</a>
+            </div>
+          </div>
+          <div
+            class="project-card"
+            style="
+              flex: 0 0 300px;
+              display: flex;
+              flex-direction: column;
+              gap: 1rem;
+            "
+          >
+            <div class="project-title">REST API Professional Certificate</div>
+            <div class="project-description">
+              <p>Issued by: Coursera • 2024</p>
+            </div>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <div class="container text-center" data-aos="fade-up">
+        <h2>Resume</h2>
+        <a href="#" class="btn btn-demo mt-3">Download Resume</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Email: example@gmail.com</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2 class="contact-title">Let's Build Something Amazing</h2>
+      <p class="contact-description">
+        Looking for a full-stack developer who can architect and implement
+        complete solutions? Let's discuss your project.
+      </p>
+      <div class="location">
+        <span class="location-icon">📍</span>
+        San Francisco, CA
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            id="message"
+            class="form-input form-textarea"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <a href="#" class="resume-btn">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          style="margin-right: 0.5rem"
+        >
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+          <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+        </svg>
+        View Resume
+      </a>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/davidmiller" class="social-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
+            />
+          </svg>
+        </a>
+        <a href="https://github.com/davidmiller" class="social-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+            />
+          </svg>
+        </a>
+        <a href="mailto:example@gmail.com" class="social-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111 1.02-.236 1.02-.557v-2.083c-3.471-.075-6.45-2.388-6.45-5.356 0-2.967 2.979-5.356 6.45-5.356 1.632 0 3.074.58 4.02 1.556.946.977 1.296 2.288 1.02 3.566-.276 1.278-1.306 2.465-2.603 2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91-1.015 0-1.766-.856-1.766-1.91 0-.46.15-1.045.347-1.263 1.297-.323 2.327-1.51 2.603-2.788.276-1.278-1.306-2.465-2.603-2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91-1.015 0-1.766-.856-1.766-1.91 0-.46.15-1.045.347-1.263 1.297-.323 2.327-1.51 2.603-2.788.276-1.278-.074-2.589-1.02-3.566-1.02-.976-2.462-1.556-4.02-1.556-3.471 0-6.45 2.389-6.45 5.356 0 2.968 2.979 5.356 6.45 5.356 1.632 0 3.074-.58 4.02-1.556.946-.977 1.296-2.288 1.02-3.566-.276-1.278-1.306-2.465-2.603-2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91z"
+            />
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      // Typing animation
+      const typedText = document.querySelector(".typed-text");
+      const textArray = [
+        "Full Stack Developer",
+        "Backend Engineer",
+        "AI Enthusiast",
+      ];
+      const typingDelay = 100;
+      const erasingDelay = 50;
+      const newTextDelay = 1500;
+      let textArrayIndex = 0;
+      let charIndex = 0;
+
+      function type() {
+        if (charIndex < textArray[textArrayIndex].length) {
+          typedText.textContent += textArray[textArrayIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(type, typingDelay);
+        } else {
+          setTimeout(erase, newTextDelay);
+        }
+      }
+
+      function erase() {
+        if (charIndex > 0) {
+          typedText.textContent = textArray[textArrayIndex].substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
+          setTimeout(erase, erasingDelay);
+        } else {
+          textArrayIndex++;
+          if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+          setTimeout(type, typingDelay + 500);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (textArray.length) setTimeout(type, newTextDelay + 500);
+        AOS.init({ duration: 1200, once: true });
+      });
+    </script>
+  </body>
+</html>
