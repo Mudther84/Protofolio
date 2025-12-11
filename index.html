@@ -1050,14 +1050,25 @@
       </div>
     </section>
 
-    <!-- BACKEND PROJECTS – 9 Projects (Vertical with Description Beside Diagram) -->
+    <!-- 
+  FULL-STACK PROJECTS SECTION
+  Displays 9 advanced backend/full-stack projects in a vertical layout.
+  Each project card includes:
+    - Title & description
+    - Tech stack & key features in two columns
+    - Action buttons (Demo / Code)
+    - A custom SVG diagram with a caption (right-aligned)
+  Uses AOS (Animate On Scroll) for fade-up entrance animations.
+-->
     <section id="projects">
       <div class="container">
+        <!-- Main section heading with scroll animation -->
         <h2 data-aos="fade-up">full-stack Projects</h2>
 
-        <!-- Project 1 -->
+        <!-- ============ PROJECT 1: API Gateway ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
+            <!-- Left: Project details -->
             <div class="project-info">
               <h3 class="project-title full">API Gateway</h3>
               <p class="project-description full">
@@ -1066,6 +1077,7 @@
                 request logging. Integrated with service discovery and circuit
                 breakers for high availability.
               </p>
+              <!-- Two-column layout: Tech Stack + Key Features -->
               <div class="project-details">
                 <div class="project-column">
                   <h3>Tech Stack</h3>
@@ -1086,11 +1098,13 @@
                   </ul>
                 </div>
               </div>
+              <!-- Action buttons (currently placeholders) -->
               <div class="project-buttons">
                 <a href="#" class="btn btn-demo">Demo</a>
                 <a href="#" class="btn btn-code">Code</a>
               </div>
             </div>
+            <!-- Right: Architecture diagram using inline SVG -->
             <div class="backend-diagram">
               <svg
                 width="48"
@@ -1111,7 +1125,7 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- ============ PROJECT 2: Auth Microservice ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1164,7 +1178,7 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- ============ PROJECT 3: Order Processing Engine ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1213,7 +1227,7 @@
                   d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
                 />
                 <path
-                  d="M3 8v8a2 2 0 0 0 1 1.73l7 4M21 8v8a2 2 0 0 1-1 1.73l-7 4"
+                  d="M3 8v8a2 2 0 0 0 1 1.73l7 4M21 8v8a2 2 0 1-1 1.73l-7 4"
                 />
                 <polyline points="3.27 6.96 12 12 20.73 6.96" />
               </svg>
@@ -1222,7 +1236,7 @@
           </div>
         </div>
 
-        <!-- Project 4 -->
+        <!-- ============ PROJECT 4: Elasticsearch Indexer ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1275,7 +1289,7 @@
           </div>
         </div>
 
-        <!-- Project 5 -->
+        <!-- ============ PROJECT 5: Notification Engine ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1328,8 +1342,7 @@
           </div>
         </div>
 
-        <!-- Projects 6–9 (Repeat same pattern – 4 shown for brevity) -->
-        <!-- Project 6 -->
+        <!-- ============ PROJECT 6: Stripe Payment Integration ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1385,7 +1398,7 @@
           </div>
         </div>
 
-        <!-- Project 7 -->
+        <!-- ============ PROJECT 7: Batch Data Pipeline ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1440,7 +1453,7 @@
           </div>
         </div>
 
-        <!-- Project 8 -->
+        <!-- ============ PROJECT 8: Feature Flag Service ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1493,7 +1506,7 @@
           </div>
         </div>
 
-        <!-- Project 9 -->
+        <!-- ============ PROJECT 9: Audit Logging System ============ -->
         <div class="project-card full" data-aos="fade-up">
           <div class="project-header">
             <div class="project-info">
@@ -1551,11 +1564,18 @@
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
+    <!-- 
+  SKILLS SECTION
+  Displays core technical competencies in a responsive grid of "cards".
+  Uses inline styles for layout (flex-wrap, gaps, background) instead of external CSS.
+  Each skill group is a self-contained card with a heading.
+  AOS animation applied to the entire container for a smooth left-fade entrance.
+-->
+    <!--<section id="skills">
       <div class="container" data-aos="fade-left">
         <h2>Skills</h2>
-        <div
+        <!-- Main skills container with background and padding -->
+    <!--<div
           class="project-row"
           style="
             gap: 2rem;
@@ -1568,7 +1588,8 @@
             flex-wrap: wrap;
           "
         >
-          <div
+          <!-- Each skill group is a flex item -->
+    <!--<div
             class="project-card no-image"
             style="
               display: flex;
@@ -1650,7 +1671,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <!-- RESUME -->
     <section id="resume">
