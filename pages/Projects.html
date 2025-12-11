@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">My Portfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/About.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/Education.html">Education</a>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" href="#experience">Experience</a>
+            </li>-->
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="/pages/Projects.html"
+                style="color: #4f46e5"
+                >Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/skills.html">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certificates">Certificates</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://drive.google.com/file/d/1TQbYr16QkUtx4ZrgcoILHpi42uXxbtGC/view?usp=sharing"
+                >Resume</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pages/contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--full stack projects-->
+
+    <!-- Project 1 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/Dental.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+          <h6>Dental Clinic Appointment Booking System</h6>
+          <p>
+            A responsive dental clinic website built with HTML/CSS/JS and a PHP
+            + MySQL backend. It allows patients to book appointments online with
+            full form validation and secure data storage, featuring a clean
+            Arabic UI using Bootstrap.
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a
+              href="https://dental-clinic-website-main-main2.vercel.app/"
+              class="btn btn-demo"
+              >Live Demo</a
+            >
+            <a
+              href="https://github.com/Mudther84/DentalClinic-Website-main"
+              class="btn btn-code"
+              >view Code</a
+            >
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/Hoppie.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+
+          <h5>Hobbie – User Registration System</h5>
+          <p>
+            A full-stack web app for managing user registration and
+            authentication. Built with React.js on the front-end and Spring Boot
+            + MySQL on the back-end, focusing on secure data handling and
+            efficient API-driven architecture.
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a href="#" class="btn btn-demo">Demo</a>
+            <a href="#" class="btn btn-code">Code</a>
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/Ecommerce.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+
+          <h6>HiTeckKart</h6>
+          <p>
+            Full-stack e-commerce app with React (Vite) and Spring Boot using
+            MySQL. Features REST APIs for products, a responsive React UI with
+            Axios and Bootstrap, and an MVC backend. Simple demo ready for
+            expansion (cart, checkout, auth).
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a href="#" class="btn btn-demo">Demo</a>
+            <a href="#" class="btn btn-code">Code</a>
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/Spring Boot Dental.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+
+          <h5>Dental Clinic Web Application</h5>
+          <p>
+            A full-stack web app for managing patients, dentists, appointments,
+            and user roles. Built with Java Spring Boot on the backend with
+            JWT-based security, and React on the frontend with a custom CSS UI
+            and smooth client-side routing via react-router-dom.
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a href="#" class="btn btn-demo">Demo</a>
+            <a href="#" class="btn btn-code">Code</a>
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/h5Employee Management System (CRUDS)h5.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+
+          <h5>Employee Management System (CRUDS)</h5>
+          <p>
+            A full-stack CRUD application for managing employee data, built with
+            React.js, Spring Boot, and MySQL. It allows users to add, view,
+            update, and delete employee records through well-structured RESTful
+            APIs.
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a href="#" class="btn btn-demo">Demo</a>
+            <a href="#" class="btn btn-code">Code</a>
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project-card full">
+      <div class="project-header">
+        <div class="project-info">
+          <!-- Replaced h3 with img -->
+          <img
+            src="/projects images/Student Management System.png"
+            alt="API Gateway"
+            class="project-title-image"
+            width="40%"
+          />
+
+          <h5>Student Management System</h5>
+          <p>
+            The project features a Java backend built with Spring Boot, handling
+            business logic, data storage, and server-side operations, paired
+            with a frontend developed using JavaScript, HTML, CSS, and
+            Bootstrap, providing a responsive and user-friendly interface. It
+            demonstrates proficiency in full-stack development, API integration
+            via RESTful services, and responsive UI design, highlighting skills
+            in building structured, maintainable, and scalable web applications.
+          </p>
+          <!-- ... rest unchanged ... -->
+          <div class="project-buttons">
+            <a href="#" class="btn btn-demo">Demo</a>
+            <a href="#" class="btn btn-code">Code</a>
+          </div>
+        </div>
+        <!-- ... diagram unchanged ... -->
+      </div>
+    </div>
+
+    <!-- backend projects -->
+
+    <!-- BACKEND PROJECTS SECTION -->
+    <section id="backend-projects" class="backend-projects-section">
+      <div class="container">
+        <h2>Backend Projects</h2>
+
+        <!-- Project 1 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Banking RESTful API</h5>
+              <p class="project-description full">
+                Technologies: Java 8, Spring Boot, Spring Data JPA, Spring
+                Security, REST APIs, H2 In-Memory Database, Lombok, Swagger,
+                Maven. Description: Designed and implemented a secure, stateless
+                RESTful API to simulate core banking operations including
+                customer and account management, deposits, withdrawals, and
+                internal fund transfers. Built with a clean layered architecture
+                using Spring Boot and secured with Spring Security. Integrated
+                Swagger for interactive API documentation and used H2 for rapid
+                development and testing. The application follows REST
+                conventions and is fully testable with sample requests provided
+                for onboarding new users and accounts.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Data JPA</li>
+                    <li>Spring Security</li>
+                    <li>H2 Database</li>
+                    <li>Lombok</li>
+                    <li>Swagger (Springfox)</li>
+                    <li>Maven</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>CRUD for Customers & Accounts</li>
+                    <li>Deposit & Withdrawal Endpoints</li>
+                    <li>Internal Fund Transfers</li>
+                    <li>Interactive API Docs (Swagger UI)</li>
+                    <li>In-Memory Data Persistence</li>
+                    <li>Secure REST Endpoints</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/BankApp"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Backend"
+                width="48"
+                height="48"
+              />
+              Spring Boot Banking API
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <!-- Project 2 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Quiz Management System</h5>
+              <p class="project-description full">
+                Technologies: Java 17, Spring Boot, Spring Data JPA, Spring
+                Security, REST APIs, PostgreSQL, Lombok, Swagger, Maven.
+                Description: Built a scalable quiz platform that allows
+                administrators to manage quizzes, questions, and options, while
+                users can take quizzes and view their scores. Implemented
+                role-based access control (admin vs. user) using Spring
+                Security, persisted data in PostgreSQL, and exposed clean
+                RESTful endpoints. Integrated Swagger for API documentation and
+                used Lombok to minimize boilerplate code. The application
+                follows modular design principles and supports future extensions
+                like timed quizzes or result analytics.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Data JPA</li>
+                    <li>Spring Security</li>
+                    <li>PostgreSQL</li>
+                    <li>Lombok</li>
+                    <li>Swagger (OpenAPI)</li>
+                    <li>Maven</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>Admin Quiz & Question CRUD</li>
+                    <li>User Quiz Submission</li>
+                    <li>Automatic Score Calculation</li>
+                    <li>Role-Based Authorization</li>
+                    <li>Interactive API Docs (Swagger)</li>
+                    <li>Relational Data Modeling</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/Quiz-Spring-Boot-Application"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Backend"
+                width="48"
+                height="48"
+              />
+              Spring Boot Quiz API
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <!-- Project 3 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Library Management System</h5>
+              <p class="project-description full">
+                Technologies: Java 8, Object-Oriented Analysis & Design (OOAD),
+                Console-Based UI, Apache Derby (Java DB), NetBeans. Description:
+                Developed a full-featured, console-driven Library Management
+                System as part of a university OOAD course. Implemented core
+                library workflows including book search (by title, author,
+                subject), placing holds, check-in/check-out, renewals, fine
+                management, and user role administration. Designed with strict
+                adherence to OOP principles—achieving high cohesion and low
+                coupling—and decoupled entities to minimize GUI dependency.
+                Includes a refined class diagram (StarUML) and a normalized
+                database schema. A dedicated
+                <code>HoldRequestOperations</code> class was introduced during
+                refactoring to eliminate bidirectional dependencies between
+                domain objects.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Java SE 8</li>
+                    <li>Object-Oriented Design</li>
+                    <li>Apache Derby (Java DB)</li>
+                    <li>NetBeans IDE</li>
+                    <li>StarUML (Modeling)</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>
+                      Multi-Role Access (Admin, Librarian, Clerk, Borrower)
+                    </li>
+                    <li>Book Search & Hold Requests</li>
+                    <li>Check-in / Check-out / Renewals</li>
+                    <li>Fine Payment Tracking</li>
+                    <li>User & Catalog Management</li>
+                    <li>Decoupled Domain Architecture</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/Library-Management-System-JAVA"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java Console Application"
+                width="48"
+                height="48"
+              />
+              Java OOAD Library System
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Real-Time GUI Chat Application</h5>
+              <p class="project-description full">
+                Technologies: Java SE, Swing, Java Networking (Sockets),
+                Multithreading, OOP. Description: Developed a desktop-based
+                real-time chat application using Java Swing for the user
+                interface and socket programming for client-server
+                communication. Implemented a multi-threaded server to handle
+                concurrent client connections, enabling users to join, send
+                messages, and view chat history in real time. Designed with a
+                clean separation between UI and networking logic, following
+                object-oriented principles for maintainability and
+                extensibility. Ideal for local network communication and
+                foundational understanding of networked applications.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Java SE</li>
+                    <li>Swing (GUI)</li>
+                    <li>Socket Programming</li>
+                    <li>Multithreading</li>
+                    <li>Client-Server Architecture</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>Real-Time Messaging</li>
+                    <li>Multi-Client Support</li>
+                    <li>Thread-Safe Server</li>
+                    <li>Message Broadcasting</li>
+                    <li>Desktop GUI (Swing)</li>
+                    <li>Local Network Communication</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/GUI-Chat-Application"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java Swing Chat App"
+                width="48"
+                height="48"
+              />
+              Java Socket Chat
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Full-Stack E-Commerce Platform</h5>
+              <p class="project-description full">
+                Technologies: Spring Boot (Java 17), React.js, RESTful APIs,
+                PostgreSQL, Spring Security, JWT, Axios, Tailwind CSS, Docker.
+                Description: Built a responsive, full-stack e-commerce
+                application featuring product browsing, user authentication,
+                shopping cart, and order management. The backend exposes a
+                secure REST API using Spring Boot with JWT-based authentication
+                and role-based access control. The React frontend delivers a
+                dynamic, mobile-first UI with real-time cart updates and
+                seamless API integration via Axios. Designed with separation of
+                concerns, containerized with Docker, and ready for cloud
+                deployment. Ideal as a foundation for scalable online retail
+                platforms.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>React.js</li>
+                    <li>PostgreSQL</li>
+                    <li>JWT Authentication</li>
+                    <li>RESTful API</li>
+                    <li>Tailwind CSS</li>
+                    <li>Docker</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>User Registration & Login</li>
+                    <li>Product Catalog with Search</li>
+                    <li>Shopping Cart (Client-Side + Sync)</li>
+                    <li>Role-Based Access (User/Admin)</li>
+                    <li>Order History</li>
+                    <li>Responsive UI</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/SpringBoot-Reactjs-Ecommerce"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot + React E-Commerce"
+                width="48"
+                height="48"
+              />
+              Full-Stack E-Commerce
+            </div>
+          </div>
+        </div>
+        <!-- Project 6 -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Spring Boot Blog API</h5>
+              <p class="project-description full">
+                Technologies: Java 17, Spring Boot, Spring Data JPA, Spring
+                Security, JWT, RESTful API, PostgreSQL, Lombok, Swagger
+                (OpenAPI), Maven. Description: Developed a secure,
+                production-ready blogging backend that enables users to
+                register, authenticate, and manage blog posts with full CRUD
+                functionality. Implemented JWT-based authentication and
+                role-based authorization (admin vs. user) using Spring Security.
+                Data is persisted in PostgreSQL with clean JPA entities, and the
+                API is fully documented via Swagger UI. Built with a layered
+                architecture (Controller, Service, Repository) and follows REST
+                best practices—ideal as a foundation for modern content
+                platforms or headless CMS integrations.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Security + JWT</li>
+                    <li>PostgreSQL</li>
+                    <li>Spring Data JPA</li>
+                    <li>Lombok</li>
+                    <li>Swagger UI (OpenAPI)</li>
+                    <li>Maven</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>User Registration & Login</li>
+                    <li>JWT Token Authentication</li>
+                    <li>Create, Read, Update, Delete Posts</li>
+                    <li>Role-Based Access Control</li>
+                    <li>Interactive API Documentation</li>
+                    <li>Stateless REST Architecture</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/spring-boot-blog-app"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Blog API"
+                width="48"
+                height="48"
+              />
+              Spring Boot Blog Backend
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
