@@ -856,9 +856,12 @@
       </div>
     </footer>
 
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
     <script>
-      // Fade-in effect for section headings on load
       document.addEventListener("DOMContentLoaded", function () {
+        // Fade-in headings on load
         const headings = document.querySelectorAll("h2");
         headings.forEach((h) => {
           h.style.opacity = "1";
@@ -866,7 +869,7 @@
           h.style.transition = "opacity 0.8s ease, transform 0.8s ease";
         });
 
-        // Scroll reveal animation
+        // Scroll reveal for categories and skill items
         const observerOptions = {
           root: null,
           rootMargin: "0px",
@@ -882,12 +885,23 @@
           });
         }, observerOptions);
 
-        // Observe all animatable elements
         document
           .querySelectorAll(".skills-category, .skill-item")
           .forEach((el) => {
             observer.observe(el);
           });
+
+        // ✨ GSAP Floating Animation ✨
+        gsap.utils.toArray(".skill-item").forEach((item) => {
+          gsap.to(item, {
+            y: -8,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 2,
+          });
+        });
       });
     </script>
   </body>

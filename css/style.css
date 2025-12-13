@@ -466,3 +466,165 @@
       .navbar .nav-link.active {
   color: var(--teal) !important;
 }
+/* === SKILLS SECTION STYLES === */
+.skills-section {
+  margin-bottom: 4rem;
+}
+
+.skills-grid {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 280px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.skill-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.skill-list {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+.skill-list li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.skill-list li::before {
+  content: "•";
+  position: absolute;
+  left: -1rem;
+  color: currentColor;
+}
+
+/* === PROJECT DETAIL SECTION STYLES === */
+.project-detail-section {
+  margin-bottom: 4rem;
+}
+
+.project-detail-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.project-info-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.project-info-column h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.project-info-column p {
+  margin-bottom: 1.5rem;
+  color: #b2b2b2;
+  line-height: 1.6;
+}
+
+.feature-group {
+  margin-bottom: 1.5rem;
+}
+
+.feature-group h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.feature-group ul {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+.feature-group ul li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.feature-group ul li::before {
+  content: "•";
+  position: absolute;
+  left: -1rem;
+  color: currentColor;
+}
+
+.architecture-diagram {
+  flex: 1;
+  min-width: 350px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.architecture-diagram h4 {
+  color: var(--gray);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.flow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.flow-node {
+  width: 100%;
+  max-width: 280px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.flow-node:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.flow-connection {
+  width: 2px;
+  height: 1.25rem;
+  background: rgba(255, 255, 255, 0.3);
+}

@@ -436,22 +436,28 @@
         text-align: center;
         background-color: rgba(255, 255, 255, 0.02);
       }
+
+      /* ✅ Updated Resume Button */
       .resume-btn {
         display: inline-block;
         margin: 1rem 0;
         padding: 0.75rem 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+        border: 2px solid #4f46e5;
         border-radius: 6px;
-        color: var(--light);
+        color: #4f46e5;
         text-decoration: none;
         font-size: 0.9rem;
+        font-weight: 600;
         transition: all 0.3s ease;
       }
       .resume-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: #4f46e5;
+        color: white;
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
       }
+
       .social-links {
         display: flex;
         justify-content: center;
@@ -631,7 +637,7 @@
         <div class="education-grid">
           <div class="education-card reveal">
             <img
-              src="https://via.placeholder.com/300x200?text=Khartoum+International+School"
+              src="/me/kartoum_international_school-removebg-preview.png"
               alt="Modern School"
               class="education-logo"
             />
@@ -641,7 +647,7 @@
           </div>
           <div class="education-card reveal">
             <img
-              src="https://via.placeholder.com/300x200?text=Qabas+High+School"
+              src="/me/Qabas-removebg-preview.png"
               alt="High School"
               class="education-logo"
             />
@@ -651,7 +657,7 @@
           </div>
           <div class="education-card reveal">
             <img
-              src="https://via.placeholder.com/300x200?text=National+Ribat+University"
+              src="/me/20250912_113534_aa9f0bf2_log12.png"
               alt="University"
               class="education-logo"
             />
@@ -672,7 +678,7 @@
           </div>
           <div class="education-card reveal">
             <img
-              src="https://via.placeholder.com/300x200?text=ErraSoft+Academy"
+              src="/me/ErraSoft-removebg-preview.png"
               alt="ErraSoft Academy"
               class="education-logo"
             />
@@ -695,138 +701,46 @@
       </div>
     </section>
 
-    <!-- Certifications Section -->
-    <!--<section id="certifications" class="certifications-section">
+    <!-- Certifications Section (Uncomment to enable) -->
+    <!--
+    <section id="certifications" class="certifications-section">
       <div class="container">
         <h2 class="reveal">Certifications</h2>
         <div class="certifications-grid">
-          
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/006699/FFFFFF?text=Stanford"
-              alt="Stanford University"
-              class="certification-logo"
-            />
+            <img src="https://via.placeholder.com/200x100/006699/FFFFFF?text=Stanford" alt="Stanford" class="certification-logo" />
             <div class="certification-title">Algorithms Specialization</div>
             <div class="certification-provider">Stanford University</div>
           </div>
-
-         
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/003366/FFFFFF?text=UC+San+Diego"
-              alt="UC San Diego"
-              class="certification-logo"
-            />
+            <img src="https://via.placeholder.com/200x100/003366/FFFFFF?text=UC+San+Diego" alt="UC San Diego" class="certification-logo" />
             <div class="certification-title">Data Structures & Algorithms</div>
             <div class="certification-provider">UC San Diego</div>
           </div>
-
-          
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/0052CC/FFFFFF?text=IBM"
-              alt="IBM"
-              class="certification-logo"
-            />
+            <img src="https://via.placeholder.com/200x100/0052CC/FFFFFF?text=IBM" alt="IBM" class="certification-logo" />
             <div class="certification-title">AI Engineering Professional</div>
             <div class="certification-provider">IBM</div>
           </div>
-
-         
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/0F9D58/FFFFFF?text=deeplearning.ai"
-              alt="deeplearning.ai"
-              class="certification-logo"
-            />
+            <img src="https://via.placeholder.com/200x100/0F9D58/FFFFFF?text=deeplearning.ai" alt="deeplearning.ai" class="certification-logo" />
             <div class="certification-title">Deep Learning Specialization</div>
             <div class="certification-provider">deeplearning.ai</div>
           </div>
-
-          
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/FF0000/FFFFFF?text=Oracle"
-              alt="Oracle"
-              class="certification-logo"
-            />
+            <img src="https://via.placeholder.com/200x100/FF0000/FFFFFF?text=Oracle" alt="Oracle" class="certification-logo" />
             <div class="certification-title">Java SE 17 Developer</div>
             <div class="certification-provider">Oracle University</div>
           </div>
-
-          
           <div class="certification-card reveal">
-            <img
-              src="https://via.placeholder.com/200x100/6A5ACD/FFFFFF?text=EraaSoft"
-              alt="EraaSoft Academy"
-              class="certification-logo"
-            />
-            <div class="certification-title">
-              Full-Stack Development Diploma
-            </div>
+            <img src="https://via.placeholder.com/200x100/6A5ACD/FFFFFF?text=EraaSoft" alt="EraaSoft" class="certification-logo" />
+            <div class="certification-title">Full-Stack Development Diploma</div>
             <div class="certification-provider">EraaSoft Academy</div>
           </div>
         </div>
       </div>
-    </section>-->
-
-    <!-- Projects Section -->
-    <!--<section id="projects" class="container">
-      <h2 class="reveal">Projects</h2>
-      <div class="project-card full reveal">
-        <div class="project-header">
-          <div class="project-info">
-            <h3 class="project-title full">Library Management System</h3>
-            <p class="project-description full">
-              A comprehensive system for managing books and users in libraries,
-              enabling book registration, search, borrowing, and returns.
-            </p>
-            <div class="project-details">
-              <div class="project-column">
-                <h3>Technologies Used</h3>
-                <ul class="project-list">
-                  <li>Python</li>
-                  <li>Django</li>
-                  <li>SQLite</li>
-                </ul>
-              </div>
-              <div class="project-column">
-                <h3>Key Features</h3>
-                <ul class="project-list">
-                  <li>Book & author management</li>
-                  <li>Borrower tracking</li>
-                  <li>Book status monitoring</li>
-                </ul>
-              </div>
-              <div class="project-column">
-                <h3>Challenges</h3>
-                <ul class="project-list">
-                  <li>Efficient database design</li>
-                  <li>Data integrity assurance</li>
-                  <li>Intuitive user interface</li>
-                </ul>
-              </div>
-            </div>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Live Demo</a>
-              <a href="#" class="btn btn-code">View Code</a>
-            </div>
-          </div>
-          <div class="architecture-diagram">
-            <div class="diagram-container">
-              <div class="architecture-flow">
-                <div class="flow-node">Frontend UI</div>
-                <div class="flow-connection"></div>
-                <div class="flow-node">Web Server</div>
-                <div class="flow-connection"></div>
-                <div class="flow-node">Database</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>-->
+    </section>
+    -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
@@ -885,71 +799,91 @@
       </div>
     </footer>
 
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
     <script>
-      // Smooth scrolling
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+              behavior: "smooth",
+            });
           });
         });
-      });
 
-      // ScrollReveal with Intersection Observer
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              revealObserver.unobserve(entry.target);
-            }
+        // ScrollReveal with Intersection Observer
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px",
+          }
+        );
+
+        document.querySelectorAll(".reveal").forEach((el) => {
+          revealObserver.observe(el);
+        });
+
+        // ✨ GSAP Floating Animation for ALL Education & Certification Cards ✨
+        const floatTargets = gsap.utils.toArray(
+          ".education-card, .certification-card"
+        );
+        floatTargets.forEach((card, i) => {
+          gsap.to(card, {
+            y: -8,
+            duration: 2.2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 1.5,
           });
-        },
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -100px 0px",
-        }
-      );
+        });
 
-      document.querySelectorAll(".reveal").forEach((el) => {
-        revealObserver.observe(el);
+        // Typing animation (optional cleanup — currently non-functional due to typo)
+        const typedText = document.querySelector(".typed-text");
+        if (typedText) {
+          const texts = [
+            "Software Engineer & Web Developer",
+            "Passionate about tech & innovation",
+            "Love solving complex problems",
+          ];
+          let index = 0;
+          let charIndex = 0;
+
+          function type() {
+            if (charIndex < texts[index].length) {
+              typedText.textContent += texts[index][charIndex];
+              charIndex++;
+              setTimeout(type, 100);
+            } else {
+              setTimeout(erase, 2000);
+            }
+          }
+
+          function erase() {
+            if (charIndex > 0) {
+              typedText.textContent = texts[index].substring(0, charIndex - 1);
+              charIndex--;
+              setTimeout(erase, 50);
+            } else {
+              index = (index + 1) % texts.length;
+              setTimeout(type, 500);
+            }
+          }
+
+          type();
+        }
       });
-
-      // Typing animation
-      const typedText = document.querySelector(".typed-text");
-      if (typedText) {
-        const texts = [
-          "Software Engineer & Web Developer",
-          "Passionate about tech & innovation",
-          "Love solving complex problems",
-        ];
-        let index = 0;
-        let charIndex = 0;
-
-        function type() {
-          if (charIndex < texts[index].length) {
-            typedText.textContent += texts[index][charIndex];
-            charIndex++;
-            setTimeout(type, 100);
-          } else {
-            setTimeout(erase, 2000);
-          }
-        }
-
-        function erase() {
-          if (charIndex > 0) {
-            typedText.textContent = texts[index].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(erase, 50);
-          } else {
-            index = (index + 1) % texts.length;
-            setTimeout(type, 500);
-          }
-        }
-
-        type();
-      }
     </script>
   </body>
 </html>

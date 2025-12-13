@@ -49,7 +49,7 @@
         opacity: 0;
         transform: translateY(20px);
         color: var(--light);
-        text-shadow: 0 0 15px rgba(79, 70, 229, 0.4); /* لمعة بنفسجية */
+        text-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
       }
 
       /* Navbar */
@@ -83,9 +83,7 @@
         color: var(--teal) !important;
       }
       .navbar .nav-link.active {
-        color: var(
-          --teal
-        ) !important; /* اللون النشط بنفس لون التنقل عند التحويم */
+        color: var(--teal) !important;
       }
       .navbar .nav-link.active::after {
         content: "";
@@ -201,7 +199,7 @@
         font-size: 1.8rem;
         margin-bottom: 1rem;
         font-weight: 700;
-        color: var(--primary); /* عنوان المشروع بلون primary */
+        color: var(--primary);
       }
 
       .project-description.full {
@@ -249,7 +247,7 @@
         content: "•";
         position: absolute;
         left: 0;
-        color: var(--teal); /* نقطة التعداد بلون teal */
+        color: var(--teal);
       }
 
       /* ENLARGED architecture diagrams */
@@ -547,7 +545,7 @@
       .skills-category h3 {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
-        color: var(--primary); /* عناوين الفئات بلون primary */
+        color: var(--primary);
         font-weight: 600;
       }
       .skills-grid {
@@ -626,7 +624,6 @@
         line-height: 1.8;
         color: #b2b2b2;
       }
-      /* تلوين الكلمات المفتاحية */
       .about-text p .tech-keyword {
         color: var(--teal);
         font-weight: 600;
@@ -646,7 +643,7 @@
         color: #b2b2b2;
       }
       .info-item strong {
-        color: var(--blue); /* عناوين المعلومات الشخصية بلون blue */
+        color: var(--blue);
       }
       .info-item::before {
         content: "›";
@@ -669,7 +666,7 @@
         opacity: 0;
         transform: translateY(20px);
         transition: opacity 0.8s ease, transform 0.8s ease;
-        color: var(--primary); /* عنوان الاهتمامات بلون primary */
+        color: var(--primary);
         font-weight: 700;
       }
       .interests-title.visible {
@@ -680,11 +677,7 @@
         content: "";
         flex: 1;
         height: 2px;
-        background: linear-gradient(
-          90deg,
-          var(--blue),
-          var(--purple)
-        ); /* خط متدرج */
+        background: linear-gradient(90deg, var(--blue), var(--purple));
       }
       .interests-grid {
         display: grid;
@@ -726,7 +719,6 @@
         font-weight: 500;
         color: var(--light);
       }
-      /* تلوين أسماء الاهتمامات حسب الفئة */
       .interest-card:nth-child(1) .interest-name {
         color: #ffa500;
       }
@@ -757,14 +749,12 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="container">
-        <a href="#" class="navbar-brand">Mudhther Yaseen</a>
         <div class="nav-links">
           <a href="/index.html" class="nav-link">Home</a>
           <a href="#about" class="nav-link active" style="color: #10b981"
             >About</a
           >
           <a href="/pages/Education.html" class="nav-link">Education</a>
-
           <a href="/pages/Projects.html" class="nav-link">Projects</a>
           <a href="/pages/skills.html" class="nav-link">Skills</a>
           <a href="#resume" class="nav-link">Resume</a>
@@ -804,6 +794,81 @@
               <div class="info-item">
                 <strong>Email:</strong> moudaseryassin@gmail.com
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <h2>My Technical Skills</h2>
+
+        <div class="skills-category">
+          <h3>Programming Languages & Databases</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+                class="skill-icon"
+              />
+              <span class="skill-name">Python</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java"
+                class="skill-icon"
+              />
+              <span class="skill-name">Java</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+                class="skill-icon"
+              />
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item" style="--index: 3">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                alt="PHP"
+                class="skill-icon"
+              />
+              <span class="skill-name">PHP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-category">
+          <h3>Frameworks & Libraries</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot"
+                class="skill-icon"
+              />
+              <span class="skill-name">Spring Boot</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+                class="skill-icon"
+              />
+              <span class="skill-name">React</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                alt="TensorFlow"
+                class="skill-icon"
+              />
+              <span class="skill-name">TensorFlow</span>
             </div>
           </div>
         </div>
@@ -860,12 +925,30 @@
           reserved.
         </p>
         <div class="social-links">
-          <a href="#" class="social-link">📧</a>
-          <a href="#" class="social-link">🔗</a>
-          <a href="#" class="social-link">📱</a>
+          <a
+            href="https://github.com/mudhther"
+            class="social-link"
+            aria-label="GitHub"
+            >🐙</a
+          >
+          <a
+            href="mailto:moudaseryassin@gmail.com"
+            class="social-link"
+            aria-label="Email"
+            >✉️</a
+          >
+          <a
+            href="https://linkedin.com/in/mudhther"
+            class="social-link"
+            aria-label="LinkedIn"
+            >🔗</a
+          >
         </div>
       </div>
     </footer>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -877,7 +960,7 @@
           h.style.transition = "opacity 0.8s ease, transform 0.8s ease";
         });
 
-        // Scroll reveal for all sections
+        // Scroll reveal observer
         const observerOptions = {
           root: null,
           rootMargin: "0px",
@@ -893,7 +976,7 @@
           });
         }, observerOptions);
 
-        // Observe all animatable elements
+        // Observe animatable elements
         const elementsToAnimate = [
           ".about-content",
           ".interests-title",
@@ -906,6 +989,19 @@
         elementsToAnimate.forEach((selector) => {
           document.querySelectorAll(selector).forEach((el) => {
             observer.observe(el);
+          });
+        });
+
+        // ✨ GSAP Floating Animation for ALL Cards ✨
+        const floatTargets = gsap.utils.toArray(".skill-item, .interest-card");
+        floatTargets.forEach((card, i) => {
+          gsap.to(card, {
+            y: -8,
+            duration: 2 + i * 0.1,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 1.5,
           });
         });
       });
