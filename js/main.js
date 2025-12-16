@@ -11,7 +11,7 @@ document.querySelector('.contact-form').addEventListener('submit', async functio
     submitBtn.disabled = true;
 
     try {
-      const response = await fetch('api/send.php', {
+      const response = await fetch('/api/send.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
