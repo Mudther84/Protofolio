@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Architecture Diagrams</title>
+    <style>
+      :root {
+        --dark: #0f0c17;
+        --darker: #0a0810;
+        --light: #ffffff;
+        --gray: #a3a3a3;
+        --primary: #4f46e5;
+        --blue: #3b82f6;
+        --purple: #8b5cf6;
+        --teal: #10b981;
+        --grid-line: rgba(255, 255, 255, 0.05);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--light);
+        font-family: "Segoe UI", system-ui, sans-serif;
+        background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+        background-size: 24px 24px;
+        padding-top: 20px;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      section {
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: var(--light);
+      }
+
+      /* Architecture Diagram Containers */
+      .architecture-diagram,
+      .backend-diagram {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        padding: 1.5rem;
+        min-height: 380px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .backend-diagram {
+        color: var(--gray);
+        font-style: italic;
+        font-size: 1.1rem;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .diagram-title {
+        font-size: 0.95rem;
+        color: #b2b2b2;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+      }
+
+      .architecture-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .flow-node {
+        width: 100%;
+        padding: 0.85rem 1.2rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        cursor: default;
+      }
+
+      .flow-node:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Color-coded nodes */
+      .flow-node:nth-child(1),
+      .flow-node:nth-child(4) {
+        background: linear-gradient(
+          90deg,
+          rgba(9, 132, 227, 0.2),
+          rgba(9, 132, 227, 0.1)
+        );
+        border-color: rgba(9, 132, 227, 0.3);
+        color: #0984e3;
+      }
+      .flow-node:nth-child(2),
+      .flow-node:nth-child(5) {
+        background: linear-gradient(
+          90deg,
+          rgba(108, 92, 231, 0.2),
+          rgba(108, 92, 231, 0.1)
+        );
+        border-color: rgba(108, 92, 231, 0.3);
+        color: #6c5ce7;
+      }
+      .flow-node:nth-child(3),
+      .flow-node:nth-child(6) {
+        background: linear-gradient(
+          90deg,
+          rgba(0, 206, 209, 0.2),
+          rgba(0, 206, 209, 0.1)
+        );
+        border-color: rgba(0, 206, 209, 0.3);
+        color: #00cec9;
+      }
+
+      .flow-connection {
+        width: 2px;
+        height: 1.25rem;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      @media (max-width: 900px) {
+        .architecture-diagram,
+        .backend-diagram {
+          min-height: 320px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section>
+        <h2>System Architecture Diagrams</h2>
+
+        <!-- Diagram 1: Spring Boot CRUD Flow -->
+        <div class="architecture-diagram">
+          <div class="diagram-title">
+            Spring Boot + Hibernate + MySQL (CRUD API)
+          </div>
+          <div class="architecture-flow">
+            <div class="flow-node">Client (Postman / Frontend)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Controller (@RestController)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Service Layer (Business Logic)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Repository (Spring Data JPA)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">MySQL Database</div>
+          </div>
+        </div>
+
+        <!-- Diagram 2: Backend Tech Stack Pyramid (Image Placeholder) -->
+        <div class="backend-diagram">
+          <div class="diagram-title">The Backend Tech Stack (Pyramid)</div>
+          <p>
+            💡 This diagram contains layered icons and is best viewed as an
+            image.
+          </p>
+          <p>
+            Consider embedding your uploaded "WhatsApp Image 2025-12-19 at
+            16.29.02..." here.
+          </p>
+          <!-- Example if you host the image:
+        <img src="tech-stack-pyramid.jpg" alt="Backend Tech Stack" style="max-width: 100%; border-radius: 8px; margin-top: 1rem;" />
+        --></div>
+
+        <!-- Diagram 3: Spring MVC Application Flow -->
+        <div class="architecture-diagram">
+          <div class="diagram-title">
+            Spring MVC Application Flow (Java Guides)
+          </div>
+          <div class="architecture-flow">
+            <div class="flow-node">HTTP Client (Browser)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">DispatcherServlet (Front Controller)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Controller → Service → Repository</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Hibernate ORM</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">MySQL / PostgreSQL</div>
+          </div>
+        </div>
+
+        <!-- Diagram 4: Microservices Architecture -->
+        <div class="architecture-diagram">
+          <div class="diagram-title">Spring Cloud Microservices</div>
+          <div class="architecture-flow">
+            <div class="flow-node">Internet → API Gateway (Zuul)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Student Service • School Service</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Eureka (Service Discovery)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Config Server (Centralized Config)</div>
+            <div class="flow-connection"></div>
+            <div class="flow-node">Zipkin (Distributed Tracing)</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
