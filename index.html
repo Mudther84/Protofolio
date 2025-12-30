@@ -4,20 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
-
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
     <!-- AOS Animation CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
-    <!--<style>
+    <style>
+      /* ========== VARIABLES ========== */
       :root {
         --dark: #0f0c17;
         --darker: #0a0810;
@@ -29,13 +27,12 @@
         --teal: #10b981;
         --grid-line: rgba(255, 255, 255, 0.05);
       }
-
+      /* ========== BASE STYLES ========== */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         background-color: var(--dark);
         color: var(--light);
@@ -45,39 +42,58 @@
         background-size: 24px 24px;
         padding-top: 80px;
       }
-
       .container {
         max-width: 1400px;
         margin: 0 auto;
       }
-
       section {
         margin-bottom: 4rem;
       }
-
       h2 {
         font-size: 1.8rem;
         margin-bottom: 2rem;
         text-align: center;
+        color: var(--light);
+        text-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
         opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
       }
-
-      /* Navbar */
+      h2.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ========== NAVBAR ========== */
       .navbar {
-        background-color: var(--darker) !important;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        background-color: var(--darker);
+        padding: 1rem 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
       }
-      .navbar .navbar-brand,
-      .navbar .nav-link {
-        color: var(--light) !important;
+      .nav-link {
+        color: var(--light);
         font-weight: 600;
+        margin: 0 1rem;
+        text-decoration: none;
+        position: relative;
       }
-      .navbar .nav-link:hover {
-        color: var(--teal) !important;
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--teal);
       }
-
-      /* Hero */
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 2px;
+        background-color: var(--teal);
+      }
+      /* ========== HERO ========== */
       .hero {
         height: 90vh;
         display: flex;
@@ -96,16 +112,13 @@
         height: 40px;
         margin-top: 15px;
       }
-
-      /* Typing animation */
       .typed-text {
         border-right: 2px solid var(--teal);
         white-space: nowrap;
         overflow: hidden;
         display: inline-block;
       }
-
-      /* Image Section */
+      /* ========== PROFILE IMAGE ========== */
       #profile-image {
         display: flex;
         justify-content: center;
@@ -123,8 +136,7 @@
       #profile-image img:hover {
         transform: scale(1.1);
       }
-
-      /* Social Buttons */
+      /* ========== SOCIAL BUTTONS ========== */
       .social-buttons {
         display: flex;
         justify-content: center;
@@ -145,8 +157,228 @@
         background-color: var(--teal);
         color: var(--dark);
       }
-
-      /* Project Card Base */
+      /* ========== ABOUT ========== */
+      .about-section {
+        padding: 4rem 1rem;
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+      .about-content {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 0.8s ease;
+      }
+      .about-content.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .about-photo img {
+        width: 250px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(16, 185, 128, 0.3);
+      }
+      .about-text p {
+        line-height: 1.8;
+        color: #b2b2b2;
+      }
+      .tech-keyword {
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .personal-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+      .info-item {
+        color: #b2b2b2;
+      }
+      .info-item strong {
+        color: var(--blue);
+      }
+      /* ========== EDUCATION ========== */
+      .education-section {
+        padding: 4rem 1rem;
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+      .education-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .education-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .education-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .education-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+      .education-logo {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+      .education-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--light);
+      }
+      .education-period {
+        font-size: 1.1rem;
+        color: var(--teal);
+        font-weight: 600;
+      }
+      .education-school {
+        font-size: 0.9rem;
+        color: var(--gray);
+      }
+      .education-coursework h4 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: var(--light);
+      }
+      .education-coursework ul {
+        list-style: none;
+        padding-left: 1rem;
+      }
+      .education-coursework li {
+        margin-bottom: 0.25rem;
+        padding-left: 1rem;
+        position: relative;
+      }
+      .education-coursework li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--light);
+      }
+      /* ========== SKILLS ========== */
+      .skills-section {
+        padding: 4rem 1rem;
+        background-color: rgba(255, 255, 255, 0.02);
+      }
+      .skills-category {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .skills-category.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .skills-category h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--light);
+        font-weight: 600;
+      }
+      .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+      }
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .skill-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(var(--index) * 0.05s);
+      }
+      .skill-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .skill-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+      .skill-name {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--light);
+      }
+      /* ========== INTERESTS ========== */
+      .interests-section {
+        padding: 4rem 1rem;
+      }
+      .interests-title {
+        font-size: 1.8rem;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        color: var(--primary);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.8s ease;
+      }
+      .interests-title.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .interests-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      .interest-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.3s ease;
+      }
+      .interest-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .interest-icon {
+        font-size: 1.8rem;
+      }
+      /* ========== PROJECT CARDS ========== */
       .project-card.full {
         background: rgba(255, 255, 255, 0.05);
         border-radius: 10px;
@@ -156,8 +388,14 @@
         flex-direction: column;
         gap: 2rem;
         border: 1px solid rgba(255, 255, 255, 0.05);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
       }
-
+      .project-card.full.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
       .project-header {
         display: flex;
         justify-content: space-between;
@@ -165,37 +403,27 @@
         gap: 2rem;
         flex-wrap: wrap;
       }
-
-      .project-info {
-        flex: 1;
-        min-width: 300px;
-      }
-
       .project-title.full {
         font-size: 1.8rem;
         margin-bottom: 1rem;
         font-weight: 700;
       }
-
       .project-description.full {
         margin-bottom: 1.5rem;
         color: #b2b2b2;
         line-height: 1.8;
         font-size: 1.1rem;
       }
-
       .project-details {
         display: flex;
         gap: 2rem;
         margin-bottom: 1.5rem;
         flex-wrap: wrap;
       }
-
       .project-column {
         flex: 1;
         min-width: 200px;
       }
-
       .project-column h3 {
         color: var(--blue);
         margin-bottom: 1rem;
@@ -208,7 +436,6 @@
       .project-column:nth-child(3) h3 {
         color: var(--teal);
       }
-
       .project-list {
         list-style: none;
       }
@@ -223,115 +450,11 @@
         left: 0;
         color: var(--light);
       }
-
-      /* ENLARGED architecture diagrams */
-      .architecture-diagram,
-      .backend-diagram {
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-        padding: 1.5rem;
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 420px;
-      }
-
-      .backend-diagram {
-        color: var(--gray);
-        font-style: italic;
-        font-size: 1.1rem;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .diagram-title {
-        position: absolute;
-        top: 1rem;
-        left: 1.5rem;
-        font-size: 0.9rem;
-        color: #b2b2b2;
-      }
-
-      .diagram-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .architecture-flow {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.25rem;
-        width: 100%;
-        max-width: 500px;
-      }
-
-      .flow-node {
-        width: 100%;
-        padding: 0.85rem 1.2rem;
-        border-radius: 8px;
-        text-align: center;
-        font-size: 0.95rem;
-        font-weight: 600;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-      }
-      .flow-node:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-      }
-
-      .flow-node:nth-child(1),
-      .flow-node:nth-child(4) {
-        background: linear-gradient(
-          90deg,
-          rgba(9, 132, 227, 0.2),
-          rgba(9, 132, 227, 0.1)
-        );
-        border-color: rgba(9, 132, 227, 0.3);
-        color: #0984e3;
-      }
-      .flow-node:nth-child(2),
-      .flow-node:nth-child(5) {
-        background: linear-gradient(
-          90deg,
-          rgba(108, 92, 231, 0.2),
-          rgba(108, 92, 231, 0.1)
-        );
-        border-color: rgba(108, 92, 231, 0.3);
-        color: #6c5ce7;
-      }
-      .flow-node:nth-child(3),
-      .flow-node:nth-child(6) {
-        background: linear-gradient(
-          90deg,
-          rgba(0, 206, 209, 0.2),
-          rgba(0, 206, 209, 0.1)
-        );
-        border-color: rgba(0, 206, 209, 0.3);
-        color: #00cec9;
-      }
-
-      .flow-connection {
-        width: 2px;
-        height: 1.25rem;
-        background: rgba(255, 255, 255, 0.3);
-      }
-
       .project-buttons {
         display: flex;
         gap: 0.75rem;
         margin-top: auto;
       }
-
       .btn {
         padding: 0.5rem 1rem;
         border-radius: 6px;
@@ -343,6 +466,7 @@
         color: white;
         border: none;
         cursor: pointer;
+        display: inline-block;
       }
       .btn-demo {
         background: var(--teal);
@@ -356,12 +480,84 @@
         transform: translateY(-2px);
         box-shadow: 0 0 20px currentColor;
       }
+      .project-title-image {
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        width: 100%;
+        max-width: 400px;
+      }
+      /* ========== BACKEND PROJECTS SECTION ========== */
+      /* تعديل: إزالة الفلتر من صور الـ backend-diagram */
+      .backend-diagram {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        padding: 1.5rem;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--gray);
+        font-style: italic;
+        font-size: 0.95rem;
+        text-align: center;
+        flex: 0 0 200px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .backend-diagram.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* إزالة الفلتر من صور الـ backend-diagram */
+      .backend-diagram img {
+        /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
+      }
 
-      /* Contact & Footer */
+      /* ========== CERTIFICATES SECTION ========== */
+      /* تعديل: إزالة الفلتر من صور الشهادات */
+      .certificates-diagram {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        padding: 1.5rem;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--gray);
+        font-style: italic;
+        font-size: 0.95rem;
+        text-align: center;
+        flex: 0 0 200px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .certificates-diagram.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* إزالة الفلتر من صور الشهادات */
+      .certificates-diagram img {
+        /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
+      }
+
+      /* ========== CONTACT ========== */
       .contact-section {
         padding: 4rem 1rem;
         background-color: rgba(255, 255, 255, 0.02);
         text-align: center;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .contact-section.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       .contact-title {
         font-size: 2.5rem;
@@ -432,26 +628,38 @@
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
       }
-      footer {
-        padding: 2rem 1rem;
-        text-align: center;
-        background-color: rgba(255, 255, 255, 0.02);
-      }
+      /* ========== RESUME BUTTON ========== */
       .resume-btn {
         display: inline-block;
         margin: 1rem 0;
         padding: 0.75rem 1.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+        border: 2px solid #4f46e5;
         border-radius: 6px;
-        color: var(--light);
+        color: #4f46e5;
         text-decoration: none;
         font-size: 0.9rem;
+        font-weight: 600;
         transition: all 0.3s ease;
       }
       .resume-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: #4f46e5;
+        color: white;
         transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+      }
+      /* ========== FOOTER ========== */
+      footer {
+        padding: 2rem 1rem;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.02);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      footer.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       .social-links {
         display: flex;
@@ -468,12 +676,11 @@
         color: var(--primary);
         transform: translateY(-2px);
       }
-
+      /* ========== RESPONSIVE ========== */
       @media (max-width: 900px) {
         .project-header {
           flex-direction: column;
         }
-        .architecture-diagram,
         .backend-diagram {
           min-height: 350px;
           flex: auto;
@@ -483,13 +690,15 @@
           flex-direction: column;
         }
       }
-    </style>-->
+    </style>
   </head>
   <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">My Portfolio</a>
+        <a class="navbar-brand fw-bold" href="#home">
+          <img src="/me/m.png" alt="" width="50px" />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -501,22 +710,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="/index.html">Home</a>
+              <a class="nav-link" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/About.html">About</a>
+              <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/Education.html">Education</a>
-            </li>
-            <!--<li class="nav-item">
-              <a class="nav-link" href="#experience">Experience</a>
-            </li>-->
-            <li class="nav-item">
-              <a class="nav-link" href="/pages/Projects.html">Projects</a>
+              <a class="nav-link" href="#education">Education</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/skills.html">Skills</a>
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#certificates">Certificates</a>
@@ -525,921 +731,1028 @@
               <a
                 class="nav-link"
                 href="https://drive.google.com/file/d/1MYpRjzyZtv3cyAle6kVB1JtvwQZctTmK/view?usp=sharing"
+                target="_blank"
                 >Resume</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pages/contact.html">Contact</a>
+              <a class="nav-link" href="#contact">Contact</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <!-- HOME -->
-    <section id="home" class="hero" data-aos="fade-up">
-      <div>
-        <h1 data-aos="zoom-in">Hi, I'm a <span class="typed-text"></span></h1>
-      </div>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <h1>Hi, I'm a <span class="typed-text"></span></h1>
     </section>
-
-    <!-- IMAGE SECTION -->
-    <section id="profile-image" data-aos="fade-up">
+    <!-- PROFILE IMAGE -->
+    <section id="profile-image">
       <img src="/images/img.jpg" alt="Profile Image" />
     </section>
-
     <!-- SOCIAL BUTTONS -->
-    <div class="social-buttons" data-aos="fade-up">
+    <div class="social-buttons">
       <a
-        href="https://www.linkedin.com/in/mudther-yassin-0260b2378?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUa8ZscOjSGiyZdabkB%2BwIQ%3D%3D"
+        href="https://www.linkedin.com/in/mudther-yassin-0260b2378"
         target="_blank"
         >LinkedIn</a
       >
       <a href="https://github.com/Mudther84" target="_blank">GitHub</a>
-      <a href="moudaseryassin@gmail.com">Email</a>
+      <a href="mailto:moudaseryassin@gmail.com">Email</a>
       <a
         href="https://drive.google.com/file/d/1MYpRjzyZtv3cyAle6kVB1JtvwQZctTmK/view?usp=sharing"
         >Resume</a
       >
     </div>
-
     <!-- ABOUT -->
-    <section id="about">
-      <div class="container" data-aos="fade-up">
-        <h2>About</h2>
-        <p class="text-center">
-          I am a full stack developer with 8+ years of experience building
-          scalable applications and leading development teams. Previously at
-          Stripe and Vercel.
-        </p>
+    <section id="about" class="about-section">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <div class="about-photo">
+            <img src="/images/img.jpg" alt="Mudhther Yaseen" />
+          </div>
+          <div class="about-text">
+            <p>
+              Focused and enthusiastic developer with a keen interest in
+              <span class="tech-keyword">software development</span> and
+              <span class="tech-keyword">artificial intelligence</span>. By
+              comprehensive exposure to the underlying concepts and applying
+              them vividly to various
+              <span class="tech-keyword">projects</span>, my love for these
+              domains came into being. I am a passionate individual who thrives
+              to build and apply <span class="tech-keyword">algorithms</span>
+              to solve real-world industry problems.
+            </p>
+            <div class="personal-info">
+              <div class="info-item">
+                <strong>Birthday:</strong> 31 July 2001
+              </div>
+              <div class="info-item"><strong>City:</strong> Khartoum</div>
+              <div class="info-item">
+                <strong>Phone:</strong> +249-903339985
+              </div>
+              <div class="info-item">
+                <strong>Email:</strong> moudaseryassin@gmail.com
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-
     <!-- EDUCATION -->
-    <!--<section id="education">
-      <div class="container" data-aos="zoom-in">
+    <section id="education" class="education-section">
+      <div class="container">
         <h2>Education</h2>
-        <div
-          class="project-row"
-          style="
-            gap: 2rem;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            padding: 2rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-          "
-        >
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 300px;
-            "
-          >
-            <div class="project-description">
-              <h4>Bachelor's Degree in Computer Science</h4>
-              <p>University Name • 2020</p>
+        <div class="education-grid">
+          <div class="education-card">
+            <img
+              src="/me/kartoum_international_school-removebg-preview.png"
+              alt="Khartoum International School"
+              class="education-logo"
+            />
+            <div class="education-title">Modern School</div>
+            <div class="education-period">June 2010 – March 2015</div>
+            <div class="education-school">Khartoum International School</div>
+          </div>
+          <div class="education-card">
+            <img
+              src="/me/Qabas-removebg-preview.png"
+              alt="Al-Qabas Secondary School"
+              class="education-logo"
+            />
+            <div class="education-title">High School</div>
+            <div class="education-period">June 2015 – March 2018</div>
+            <div class="education-school">Al-Qabas Secondary School</div>
+          </div>
+          <div class="education-card">
+            <img
+              src="/me/20250912_113534_aa9f0bf2_log12.png"
+              alt="National Ribat University"
+              class="education-logo"
+            />
+            <div class="education-title">BSc in Computer Science</div>
+            <div class="education-period">October 2019 – May 2025</div>
+            <div class="education-school">National Ribat University</div>
+            <div class="education-coursework">
+              <h4>Relevant Coursework</h4>
+              <ul>
+                <li>Distributed Database Systems</li>
+                <li>Cloud Computing</li>
+                <li>Foundations of Algorithms</li>
+                <li>Data Structures</li>
+                <li>Front-End Development</li>
+                <li>Back-End Development</li>
+              </ul>
             </div>
           </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 300px;
-            "
-          >
-            <div class="project-description">
-              <h4>Java & Spring Boot Certifications</h4>
-              <p>Various Online Courses</p>
+          <div class="education-card">
+            <img
+              src="/me/ErraSoft-removebg-preview.png"
+              alt="ErraSoft Academy"
+              class="education-logo"
+            />
+            <div class="education-title">ErraSoft Academy</div>
+            <div class="education-period">December 2023 – January 2025</div>
+            <div class="education-school">Front-End Engineering</div>
+            <div class="education-coursework">
+              <h4>Key Skills Acquired</h4>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Bootstrap</li>
+                <li>Responsive Web Design</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </section>-->
-
-    <!-- EXPERIENCE -->
-    <!--<section id="experience">
-      <div class="container" data-aos="fade-right">
-        <h2>Experience</h2>
-        <div
-          class="project-row"
-          style="
-            gap: 2rem;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            padding: 2rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-          "
-        >
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 300px;
-            "
-          >
-            <div class="project-description">
-              <h4>Senior Full Stack Developer – Stripe</h4>
-              <p>
-                Built payment infrastructure and developer tools using
-                TypeScript, React, and Node.js.
+    </section>
+    <!-- SKILLS -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <h2>My Technical Skills</h2>
+        <!-- Languages & Databases -->
+        <div class="skills-category">
+          <h3>Programming Languages & Databases</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+                class="skill-icon"
+              /><span class="skill-name">Python</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java"
+                class="skill-icon"
+              /><span class="skill-name">Java</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+                class="skill-icon"
+              /><span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item" style="--index: 3">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                alt="PHP"
+                class="skill-icon"
+              /><span class="skill-name">PHP</span>
+            </div>
+            <div class="skill-item" style="--index: 4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML5"
+                class="skill-icon"
+              /><span class="skill-name">HTML5</span>
+            </div>
+            <div class="skill-item" style="--index: 5">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS3"
+                class="skill-icon"
+              /><span class="skill-name">CSS3</span>
+            </div>
+            <div class="skill-item" style="--index: 6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                alt="MySQL"
+                class="skill-icon"
+              /><span class="skill-name">MySQL</span>
+            </div>
+            <div class="skill-item" style="--index: 7">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                alt="PostgreSQL"
+                class="skill-icon"
+              /><span class="skill-name">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        <!-- Frameworks & Libraries -->
+        <div class="skills-category">
+          <h3>Frameworks & Libraries</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot"
+                class="skill-icon"
+              /><span class="skill-name">Spring Boot</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                alt="Django"
+                class="skill-icon"
+              /><span class="skill-name">Django</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                alt="Node.js"
+                class="skill-icon"
+              /><span class="skill-name">Node.js</span>
+            </div>
+            <div class="skill-item" style="--index: 3">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+                class="skill-icon"
+              /><span class="skill-name">React</span>
+            </div>
+            <div class="skill-item" style="--index: 4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
+                alt="Redux"
+                class="skill-icon"
+              /><span class="skill-name">Redux</span>
+            </div>
+            <div class="skill-item" style="--index: 5">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
+                alt="Bootstrap"
+                class="skill-icon"
+              /><span class="skill-name">Bootstrap</span>
+            </div>
+            <div class="skill-item" style="--index: 6">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                alt="TensorFlow"
+                class="skill-icon"
+              /><span class="skill-name">TensorFlow</span>
+            </div>
+            <div class="skill-item" style="--index: 7">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                alt="PyTorch"
+                class="skill-icon"
+              /><span class="skill-name">PyTorch</span>
+            </div>
+            <div class="skill-item" style="--index: 8">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
+                alt="OpenCV"
+                class="skill-icon"
+              /><span class="skill-name">OpenCV</span>
+            </div>
+          </div>
+        </div>
+        <!-- Tools & Cloud -->
+        <div class="skills-category">
+          <h3>Tools & Cloud Platforms</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                alt="Git"
+                class="skill-icon"
+              /><span class="skill-name">Git</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                alt="Docker"
+                class="skill-icon"
+              /><span class="skill-name">Docker</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
+                alt="AWS"
+                class="skill-icon"
+              /><span class="skill-name">Amazon Web Services</span>
+            </div>
+            <div class="skill-item" style="--index: 3">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+                alt="Google Cloud"
+                class="skill-icon"
+              /><span class="skill-name">Google Cloud</span>
+            </div>
+            <div class="skill-item" style="--index: 4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg"
+                alt="Heroku"
+                class="skill-icon"
+              /><span class="skill-name">Heroku</span>
+            </div>
+            <div class="skill-item" style="--index: 5">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
+                alt="Jupyter"
+                class="skill-icon"
+              /><span class="skill-name">Jupyter</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- INTERESTS -->
+    <section id="interests" class="interests-section">
+      <div class="container">
+        <div class="interests-title">INTERESTS</div>
+        <div class="interests-grid">
+          <div class="interest-card" style="--index: 0">
+            <div class="interest-icon">🌐</div>
+            <div class="interest-name">Software Development</div>
+          </div>
+          <div class="interest-card" style="--index: 1">
+            <div class="interest-icon">📊</div>
+            <div class="interest-name">Machine Learning</div>
+          </div>
+          <div class="interest-card" style="--index: 2">
+            <div class="interest-icon">📸</div>
+            <div class="interest-name">Computer Vision</div>
+          </div>
+          <div class="interest-card" style="--index: 3">
+            <div class="interest-icon">🔤</div>
+            <div class="interest-name">Natural Language Processing</div>
+          </div>
+          <div class="interest-card" style="--index: 4">
+            <div class="interest-icon">&lt;&gt;</div>
+            <div class="interest-name">Software Engineering</div>
+          </div>
+          <div class="interest-card" style="--index: 5">
+            <div class="interest-icon">📈</div>
+            <div class="interest-name">Visualization</div>
+          </div>
+          <div class="interest-card" style="--index: 6">
+            <div class="interest-icon">📄</div>
+            <div class="interest-name">Algorithms</div>
+          </div>
+          <div class="interest-card" style="--index: 7">
+            <div class="interest-icon">🖼️</div>
+            <div class="interest-name">Image Processing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FULL STACK PROJECTS -->
+    <div class="container mt-5">
+      <!-- Project 1 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/Dental.png"
+              alt="Dental Clinic"
+              class="project-title-image"
+              width="40%"
+            />
+            <h6>Dental Clinic Appointment Booking System</h6>
+            <p>
+              A responsive dental clinic website built with HTML/CSS/JS and a
+              PHP + MySQL backend. It allows patients to book appointments
+              online with full form validation and secure data storage,
+              featuring a clean Arabic UI using Bootstrap.
+            </p>
+            <div class="project-buttons">
+              <a
+                href="https://dental-clinic-website-main-main2.vercel.app/"
+                class="btn btn-demo"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/Mudther84/DentalClinic-Website-main"
+                class="btn btn-code"
+                >View Code</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/Hoppie.png"
+              alt="Hobbie"
+              class="project-title-image"
+              width="40%"
+            />
+            <h5>Hobbie – User Registration System</h5>
+            <p>
+              A full-stack web app for managing user registration and
+              authentication. Built with React.js on the front-end and Spring
+              Boot + MySQL on the back-end, focusing on secure data handling and
+              efficient API-driven architecture.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/Ecommerce.png"
+              alt="Ecommerce"
+              class="project-title-image"
+              width="40%"
+            />
+            <h6>HiTeckKart</h6>
+            <p>
+              Full-stack e-commerce app with React (Vite) and Spring Boot using
+              MySQL. Features REST APIs for products, a responsive React UI with
+              Axios and Bootstrap, and an MVC backend. Simple demo ready for
+              expansion (cart, checkout, auth).
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 4 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="250">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/Spring Boot Dental.png"
+              alt="Dental App"
+              class="project-title-image"
+              width="40%"
+            />
+            <h5>Dental Clinic Web Application</h5>
+            <p>
+              A full-stack web app for managing patients, dentists,
+              appointments, and user roles. Built with Java Spring Boot on the
+              backend with JWT-based security, and React on the frontend with a
+              custom CSS UI and smooth client-side routing via react-router-dom.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 5 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/h5Employee Management System (CRUDS)h5.png"
+              alt="Employee System"
+              class="project-title-image"
+              width="40%"
+            />
+            <h5>Employee Management System (CRUDS)</h5>
+            <p>
+              A full-stack CRUD application for managing employee data, built
+              with React.js, Spring Boot, and MySQL. It allows users to add,
+              view, update, and delete employee records through well-structured
+              RESTful APIs.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Project 6 -->
+      <div class="project-card full" data-aos="fade-up" data-aos-delay="350">
+        <div class="project-header">
+          <div class="project-info">
+            <img
+              src="/projects images/Student Management System.png"
+              alt="Student System"
+              class="project-title-image"
+              width="40%"
+            />
+            <h5>Student Management System</h5>
+            <p>
+              The project features a Java backend built with Spring Boot,
+              handling business logic, data storage, and server-side operations,
+              paired with a frontend developed using JavaScript, HTML, CSS, and
+              Bootstrap, providing a responsive and user-friendly interface. It
+              demonstrates proficiency in full-stack development, API
+              integration via RESTful services, and responsive UI design.
+            </p>
+            <div class="project-buttons">
+              <a href="#" class="btn btn-demo">Demo</a>
+              <a href="#" class="btn btn-code">Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BACKEND PROJECTS SECTION -->
+    <section id="backend-projects" class="backend-projects-section">
+      <div class="container">
+        <h2 data-aos="fade-up">Backend Projects</h2>
+        <!-- Project 1 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Banking RESTful API</h5>
+              <p class="project-description full">
+                Technologies: Java 8, Spring Boot, Spring Data JPA, Spring
+                Security, REST APIs, H2 In-Memory Database, Lombok, Swagger,
+                Maven. Description: Designed and implemented a secure, stateless
+                RESTful API to simulate core banking operations including
+                customer and account management, deposits, withdrawals, and
+                internal fund transfers. Built with a clean layered architecture
+                using Spring Boot and secured with Spring Security. Integrated
+                Swagger for interactive API documentation and used H2 for rapid
+                development and testing.
               </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Data JPA</li>
+                    <li>Spring Security</li>
+                    <li>H2 Database</li>
+                    <li>Lombok</li>
+                    <li>Swagger (Springfox)</li>
+                    <li>Maven</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>CRUD for Customers & Accounts</li>
+                    <li>Deposit & Withdrawal Endpoints</li>
+                    <li>Internal Fund Transfers</li>
+                    <li>Interactive API Docs (Swagger UI)</li>
+                    <li>In-Memory Data Persistence</li>
+                    <li>Secure REST Endpoints</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/BankApp"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Backend"
+                width="48"
+                height="48"
+              />
+              Spring Boot Banking API
             </div>
           </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 300px;
-            "
-          >
-            <div class="project-description">
-              <h4>Tech Lead – Vercel</h4>
-              <p>
-                Led frontend architecture for enterprise deployment platform
-                using Next.js and edge functions.
+        </div>
+        <!-- Project 2 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="150">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Quiz Management System</h5>
+              <p class="project-description full">
+                Technologies: Java 17, Spring Boot, Spring Data JPA, Spring
+                Security, REST APIs, PostgreSQL, Lombok, Swagger, Maven.
+                Description: Built a scalable quiz platform that allows
+                administrators to manage quizzes, questions, and options, while
+                users can take quizzes and view their scores. Implemented
+                role-based access control using Spring Security.
               </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Data JPA</li>
+                    <li>Spring Security</li>
+                    <li>PostgreSQL</li>
+                    <li>Lombok</li>
+                    <li>Swagger (OpenAPI)</li>
+                    <li>Maven</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>Admin Quiz & Question CRUD</li>
+                    <li>User Quiz Submission</li>
+                    <li>Automatic Score Calculation</li>
+                    <li>Role-Based Authorization</li>
+                    <li>Interactive API Docs (Swagger)</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/Quiz-Spring-Boot-Application"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Backend"
+                width="48"
+                height="48"
+              />
+              Spring Boot Quiz API
             </div>
           </div>
         </div>
-      </div>
-    </section>-->
-
-    <!--
-  FULL-STACK PROJECTS SECTION
-  Displays 9 advanced backend/full-stack projects in a vertical layout.
-  Each project card includes:
-    - Title & description
-    - Tech stack & key features in two columns
-    - Action buttons (Demo / Code)
-    - A custom SVG diagram with a caption (right-aligned)
-  Uses AOS (Animate On Scroll) for fade-up entrance animations.
--->
-    <!--
-  SKILLS SECTION
-  Displays core technical competencies in a responsive grid of "cards".
-  Uses inline styles for layout (flex-wrap, gaps, background) instead of external CSS.
-  Each skill group is a self-contained card with a heading.
-  AOS animation applied to the entire container for a smooth left-fade entrance.
--->
-    <!--<section id="skills">
-      <div class="container" data-aos="fade-left">
-        <h2>Skills</h2>
-        <!-- Main skills container with background and padding -->
-    <!--<div
-          class="project-row"
-          style="
-            gap: 2rem;
-            margin-bottom: 3rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 12px;
-            padding: 2rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-          "
-        >
-          <!-- Each skill group is a flex item -->
-    <!--<div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description">
-              <h4>Java, Spring Boot, Hibernate</h4>
+        <!-- Project 3 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Library Management System</h5>
+              <p class="project-description full">
+                Technologies: Java 8, OOAD, Console UI, Apache Derby, NetBeans.
+                Description: A university project implementing core library
+                workflows (search, holds, checkout, fines) with strict OOP
+                principles. Decoupled design with refined class diagram and
+                database schema.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Java SE 8</li>
+                    <li>OOAD</li>
+                    <li>Apache Derby</li>
+                    <li>NetBeans</li>
+                    <li>StarUML</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>Multi-Role Access</li>
+                    <li>Book Search & Holds</li>
+                    <li>Check-in/Check-out/Renewals</li>
+                    <li>Fine Tracking</li>
+                    <li>Decoupled Architecture</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/Library-Management-System-JAVA"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
             </div>
-          </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description">
-              <h4>REST APIs, Microservices</h4>
-            </div>
-          </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description"><h4>MySQL, PostgreSQL</h4></div>
-          </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description"><h4>Git, Docker, AWS</h4></div>
-          </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description">
-              <h4>TypeScript, React, Next.js</h4>
-            </div>
-          </div>
-          <div
-            class="project-card no-image"
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 1.25rem;
-              flex: 1;
-              min-width: 200px;
-            "
-          >
-            <div class="project-description">
-              <h4>Node.js, Kafka, Redis</h4>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java Console Application"
+                width="48"
+                height="48"
+              />
+              Java OOAD Library System
             </div>
           </div>
         </div>
-      </div>
-    </section>-->
-
-    <!-- FRONTEND PROJECT DETAIL – REACT.JS -->
-    <section id="frontend-project" class="project-detail-section">
-      <div class="container" data-aos="fade-up">
-        <div class="project-detail-container">
-          <div class="project-info-column">
-            <h2>Modern E-Commerce Frontend (React)</h2>
-            <p>
-              A responsive, performant storefront built with React, TypeScript,
-              and Tailwind CSS, featuring real-time cart sync, product search,
-              and seamless checkout.
-            </p>
-
-            <!-- Frontend Features -->
-            <div class="feature-group">
-              <h4 style="color: var(--blue)">Core Technologies</h4>
-              <ul>
-                <li>React 18 + TypeScript</li>
-                <li>React Router v6</li>
-                <li>Tailwind CSS + Custom Theming</li>
-                <li>Axios for API Integration</li>
-              </ul>
+        <!-- Project 4 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="250">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Real-Time GUI Chat Application</h5>
+              <p class="project-description full">
+                Technologies: Java SE, Swing, Sockets, Multithreading, OOP.
+                Description: Desktop chat app with client-server architecture
+                using Java sockets and Swing UI. Multi-threaded server supports
+                real-time messaging and broadcasting.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Java SE</li>
+                    <li>Swing</li>
+                    <li>Socket Programming</li>
+                    <li>Multithreading</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>Real-Time Messaging</li>
+                    <li>Multi-Client Support</li>
+                    <li>Thread-Safe Server</li>
+                    <li>Message Broadcasting</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/GUI-Chat-Application"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
             </div>
-
-            <!-- UI/UX Highlights -->
-            <div class="feature-group">
-              <h4 style="color: var(--purple)">User Experience</h4>
-              <ul>
-                <li>Real-time Shopping Cart (localStorage + API sync)</li>
-                <li>Dark/Light Mode Toggle</li>
-                <li>Mobile-First Responsive Design</li>
-                <li>Lazy Loading & Code Splitting</li>
-              </ul>
-            </div>
-
-            <!-- Performance -->
-            <div class="feature-group">
-              <h4 style="color: var(--teal)">Performance Metrics</h4>
-              <ul>
-                <li>Lighthouse Score: 92+</li>
-                <li>Initial Load < 1.2s</li>
-                <li>Zero Layout Shifts</li>
-              </ul>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                alt="Java Swing Chat App"
+                width="48"
+                height="48"
+              />
+              Java Socket Chat
             </div>
           </div>
-
-          <!-- Architecture Diagram -->
-          <div class="architecture-diagram">
-            <h4>Frontend Architecture</h4>
-            <div class="flow-container">
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(9, 132, 227, 0.2),
-                    rgba(9, 132, 227, 0.1)
-                  );
-                  border-color: rgba(9, 132, 227, 0.3);
-                  color: #0984e3;
-                "
-              >
-                React Components
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(108, 92, 231, 0.2),
-                    rgba(108, 92, 231, 0.1)
-                  );
-                  border-color: rgba(108, 92, 231, 0.3);
-                  color: #6c5ce7;
-                "
-              >
-                React Router
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                API Service Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                style="
-                  display: flex;
-                  gap: 0.5rem;
-                  width: 100%;
-                  justify-content: center;
-                "
-              >
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(9, 132, 227, 0.2),
-                      rgba(9, 132, 227, 0.1)
-                    );
-                    border-color: rgba(9, 132, 227, 0.3);
-                    color: #0984e3;
-                  "
-                >
-                  Product Context
+        </div>
+        <!-- Project 5 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Full-Stack E-Commerce Platform</h5>
+              <p class="project-description full">
+                Technologies: Spring Boot (Java 17), React.js, PostgreSQL,
+                Spring Security, JWT, Tailwind CSS, Docker. Description:
+                Responsive e-commerce app with product catalog, authentication,
+                cart, and order history. Secure REST API with JWT and role-based
+                access. Containerized and cloud-ready.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>React.js</li>
+                    <li>PostgreSQL</li>
+                    <li>JWT</li>
+                    <li>Tailwind CSS</li>
+                    <li>Docker</li>
+                  </ul>
                 </div>
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(108, 92, 231, 0.2),
-                      rgba(108, 92, 231, 0.1)
-                    );
-                    border-color: rgba(108, 92, 231, 0.3);
-                    color: #6c5ce7;
-                  "
-                >
-                  Cart Context
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>User Auth & Roles</li>
+                    <li>Product Catalog</li>
+                    <li>Shopping Cart</li>
+                    <li>Order History</li>
+                    <li>Responsive UI</li>
+                  </ul>
                 </div>
               </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                Tailwind UI + Custom Hooks
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/SpringBoot-Reactjs-Ecommerce"
+                  class="btn btn-code"
+                  >Code</a
+                >
               </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot + React E-Commerce"
+                width="48"
+                height="48"
+              />
+              Full-Stack E-Commerce
+            </div>
+          </div>
+        </div>
+        <!-- Project 6 -->
+        <div class="project-card full" data-aos="fade-up" data-aos-delay="350">
+          <div class="project-header">
+            <div class="project-info">
+              <h5 class="project-title full">Spring Boot Blog API</h5>
+              <p class="project-description full">
+                Technologies: Java 17, Spring Boot, Spring Security, JWT,
+                PostgreSQL, Lombok, Swagger, Maven. Description: Secure blogging
+                backend with full CRUD for posts, JWT auth, role-based access,
+                and OpenAPI docs. Built with layered architecture and REST best
+                practices.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Tech Stack</h3>
+                  <ul class="project-list">
+                    <li>Spring Boot</li>
+                    <li>Spring Security + JWT</li>
+                    <li>PostgreSQL</li>
+                    <li>Lombok</li>
+                    <li>Swagger UI</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Features</h3>
+                  <ul class="project-list">
+                    <li>User Registration</li>
+                    <li>JWT Authentication</li>
+                    <li>Post CRUD</li>
+                    <li>Role-Based Access</li>
+                    <li>API Documentation</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://github.com/Mudther84/spring-boot-blog-app"
+                  class="btn btn-code"
+                  >Code</a
+                >
+              </div>
+            </div>
+            <div class="backend-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                alt="Spring Boot Blog API"
+                width="48"
+                height="48"
+              />
+              Spring Boot Blog Backend
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- BACKEND PROJECT DETAIL – SPRING BOOT -->
-    <section id="backend-project" class="project-detail-section">
-      <div class="container" data-aos="fade-up">
-        <div class="project-detail-container">
-          <div class="project-info-column">
-            <h2>Banking Microservice (Spring Boot)</h2>
-            <p>
-              A secure, RESTful banking API for managing customers, accounts,
-              deposits, withdrawals, and internal transfers—built with Spring
-              Boot, JPA, and H2/PostgreSQL.
-            </p>
-
-            <!-- Backend Stack -->
-            <div class="feature-group">
-              <h4 style="color: var(--blue)">Tech Stack</h4>
-              <ul>
-                <li>Java 17 + Spring Boot 3</li>
-                <li>Spring Data JPA + Hibernate</li>
-                <li>Spring Security + JWT</li>
-                <li>H2 (dev) / PostgreSQL (prod)</li>
-              </ul>
+    <!-- CERTIFICATES SECTION -->
+    <section id="certificates" class="backend-projects-section">
+      <div class="container">
+        <h2>Certifications</h2>
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>Oracle Certified Professional: Java SE 17 Developer</h5>
+              <p>Advanced Java proficiency from Oracle University.</p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>Oracle University</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Skills</h3>
+                  <ul>
+                    <li>OOP</li>
+                    <li>Streams</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-
-            <!-- Key Features -->
-            <div class="feature-group">
-              <h4 style="color: var(--purple)">Core Capabilities</h4>
-              <ul>
-                <li>CRUD for Customers & Accounts</li>
-                <li>Atomic Deposit/Withdrawal Operations</li>
-                <li>Internal Fund Transfers with Validation</li>
-                <li>Swagger OpenAPI Documentation</li>
-              </ul>
-            </div>
-
-            <!-- Reliability -->
-            <div class="feature-group">
-              <h4 style="color: var(--teal)">Quality & Security</h4>
-              <ul>
-                <li>Transaction Rollback on Failure</li>
-                <li>Input Validation & Error Handling</li>
-                <li>Stateless & Thread-Safe Design</li>
-                <li>100% RESTful Compliance</li>
-              </ul>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg"
+                width="48"
+                height="48"
+              />OCP Java SE 17
             </div>
           </div>
-
-          <!-- Architecture Diagram -->
-          <div class="architecture-diagram">
-            <h4>Backend Architecture</h4>
-            <div class="flow-container">
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(9, 132, 227, 0.2),
-                    rgba(9, 132, 227, 0.1)
-                  );
-                  border-color: rgba(9, 132, 227, 0.3);
-                  color: #0984e3;
-                "
-              >
-                REST Controllers
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(108, 92, 231, 0.2),
-                    rgba(108, 92, 231, 0.1)
-                  );
-                  border-color: rgba(108, 92, 231, 0.3);
-                  color: #6c5ce7;
-                "
-              >
-                Service Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                Repository Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                style="
-                  display: flex;
-                  gap: 0.5rem;
-                  width: 100%;
-                  justify-content: center;
-                "
-              >
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(9, 132, 227, 0.2),
-                      rgba(9, 132, 227, 0.1)
-                    );
-                    border-color: rgba(9, 132, 227, 0.3);
-                    color: #0984e3;
-                  "
-                >
-                  H2 Database
+        </div>
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>Back-end Java Diploma</h5>
+              <p>Intensive Spring Boot training from EraaSoft Academy.</p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>EraaSoft Academy</li>
+                  </ul>
                 </div>
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(108, 92, 231, 0.2),
-                      rgba(108, 92, 231, 0.1)
-                    );
-                    border-color: rgba(108, 92, 231, 0.3);
-                    color: #6c5ce7;
-                  "
-                >
-                  PostgreSQL
+                <div class="project-column">
+                  <h3>Core Tech</h3>
+                  <ul>
+                    <li>Spring Boot</li>
+                    <li>REST APIs</li>
+                  </ul>
                 </div>
               </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                Swagger UI + Lombok
+            </div>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                width="48"
+                height="48"
+              />Back-end Java Diploma
+            </div>
+          </div>
+        </div>
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>Front-end Diploma</h5>
+              <p>
+                Modern frontend development with React and responsive design.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>EraaSoft Academy</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Core Tech</h3>
+                  <ul>
+                    <li>React.js</li>
+                    <li>Bootstrap</li>
+                  </ul>
+                </div>
               </div>
+            </div>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                width="48"
+                height="48"
+              />Front-end Diploma
+            </div>
+          </div>
+        </div>
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>Core Java Programming Course</h5>
+              <p>Foundational Java from Rooman Technologies.</p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>Rooman Technologies</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Core Concepts</h3>
+                  <ul>
+                    <li>OOP</li>
+                    <li>Collections</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                width="48"
+                height="48"
+              />Core Java Certificate
+            </div>
+          </div>
+        </div>
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>Spring Certified Professional 2022</h5>
+              <p>
+                Official VMware certification for Spring Framework expertise.
+              </p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>VMware Learning</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Validated Expertise</h3>
+                  <ul>
+                    <li>Spring Core</li>
+                    <li>Web MVC</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
+                width="48"
+                height="48"
+              />SCP 2022
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- FRONTEND EXPERTISE -->
-    <section id="frontend-expertise" class="project-detail-section">
-      <div class="container" data-aos="fade-up">
-        <div class="project-detail-container">
-          <div class="project-info-column">
-            <h2>Frontend Development Stack</h2>
-            <p>
-              I build responsive, accessible, and high-performance user
-              interfaces using modern JavaScript frameworks and tooling. My
-              focus is on user experience, code maintainability, and seamless
-              integration with RESTful or GraphQL backends.
-            </p>
-
-            <div class="feature-group">
-              <h4 style="color: var(--blue)">Core Technologies</h4>
-              <ul>
-                <li>React.js & Next.js (SSR, SSG, App Router)</li>
-                <li>State Management: Redux Toolkit, Context API, Zustand</li>
-                <li>TypeScript for type-safe, scalable codebases</li>
-                <li>Modern Hooks & Custom Hook Patterns</li>
-              </ul>
-            </div>
-
-            <div class="feature-group">
-              <h4 style="color: var(--purple)">UI & Tooling</h4>
-              <ul>
-                <li>Styling: Tailwind CSS, Styled Components, CSS Modules</li>
-                <li>Responsive & Mobile-First Design</li>
-                <li>Performance: Code Splitting, Lazy Loading, Memoization</li>
-                <li>Testing: Jest, React Testing Library, Cypress</li>
-              </ul>
-            </div>
-
-            <div class="feature-group">
-              <h4 style="color: var(--teal)">Integration & Workflow</h4>
-              <ul>
-                <li>REST & GraphQL API consumption (Axios, Apollo)</li>
-                <li>Form Handling: React Hook Form, Formik</li>
-                <li>Authentication Flows (JWT, OAuth, Protected Routes)</li>
-                <li>PWA, Offline Support, and Caching Strategies</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Architecture Diagram -->
-          <div class="architecture-diagram">
-            <h4>Frontend Architecture</h4>
-            <div class="flow-container">
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(9, 132, 227, 0.2),
-                    rgba(9, 132, 227, 0.1)
-                  );
-                  border-color: rgba(9, 132, 227, 0.3);
-                  color: #0984e3;
-                "
-              >
-                React Components
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(108, 92, 231, 0.2),
-                    rgba(108, 92, 231, 0.1)
-                  );
-                  border-color: rgba(108, 92, 231, 0.3);
-                  color: #6c5ce7;
-                "
-              >
-                State (Redux / Context)
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                API Service Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                style="
-                  display: flex;
-                  gap: 0.5rem;
-                  width: 100%;
-                  justify-content: center;
-                "
-              >
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(9, 132, 227, 0.2),
-                      rgba(9, 132, 227, 0.1)
-                    );
-                    border-color: rgba(9, 132, 227, 0.3);
-                    color: #0984e3;
-                  "
-                >
-                  Routing
-                </div>
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(108, 92, 231, 0.2),
-                      rgba(108, 92, 231, 0.1)
-                    );
-                    border-color: rgba(108, 92, 231, 0.3);
-                    color: #6c5ce7;
-                  "
-                >
-                  Auth Flow
-                </div>
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                UI Library + Hooks
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BACKEND EXPERTISE -->
-    <section id="backend-expertise" class="project-detail-section">
-      <div class="container" data-aos="fade-up">
-        <div class="project-detail-container">
-          <div class="project-info-column">
-            <h2>Backend Engineering Stack</h2>
-            <p>
-              I design and implement robust, secure, and scalable server-side
-              systems using Java and Spring Boot. My services follow clean
-              architecture principles, include comprehensive testing, and
-              integrate smoothly with databases, messaging queues, and cloud
-              infrastructure.
-            </p>
-
-            <div class="feature-group">
-              <h4 style="color: var(--blue)">Core Framework</h4>
-              <ul>
-                <li>Spring Boot 3 (Java 17+)</li>
-                <li>Spring MVC, Spring Data JPA, Spring Security</li>
-                <li>RESTful API Design (HATEOAS, OpenAPI/Swagger)</li>
-                <li>JWT & OAuth2 for Authentication & Authorization</li>
-              </ul>
-            </div>
-
-            <div class="feature-group">
-              <h4 style="color: var(--purple)">Data & Persistence</h4>
-              <ul>
-                <li>Relational: PostgreSQL, MySQL, H2 (In-Memory)</li>
-                <li>NoSQL: MongoDB, Redis (Caching, Sessions)</li>
-                <li>Database Migrations (Flyway, Liquibase)</li>
-                <li>Connection Pooling & Query Optimization</li>
-              </ul>
-            </div>
-
-            <div class="feature-group">
-              <h4 style="color: var(--teal)">DevOps & Quality</h4>
-              <ul>
-                <li>Testing: JUnit 5, Mockito, Testcontainers</li>
-                <li>Logging & Monitoring: SLF4J, Micrometer, Actuator</li>
-                <li>Docker & Containerization</li>
-                <li>Cloud Deployment (AWS, Render, Heroku)</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Architecture Diagram -->
-          <div class="architecture-diagram">
-            <h4>Backend Layers</h4>
-            <div class="flow-container">
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(9, 132, 227, 0.2),
-                    rgba(9, 132, 227, 0.1)
-                  );
-                  border-color: rgba(9, 132, 227, 0.3);
-                  color: #0984e3;
-                "
-              >
-                REST Controllers
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(108, 92, 231, 0.2),
-                    rgba(108, 92, 231, 0.1)
-                  );
-                  border-color: rgba(108, 92, 231, 0.3);
-                  color: #6c5ce7;
-                "
-              >
-                Service Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                Repository Layer
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                style="
-                  display: flex;
-                  gap: 0.5rem;
-                  width: 100%;
-                  justify-content: center;
-                "
-              >
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(9, 132, 227, 0.2),
-                      rgba(9, 132, 227, 0.1)
-                    );
-                    border-color: rgba(9, 132, 227, 0.3);
-                    color: #0984e3;
-                  "
-                >
-                  PostgreSQL
-                </div>
-                <div
-                  class="flow-node"
-                  style="
-                    background: linear-gradient(
-                      90deg,
-                      rgba(108, 92, 231, 0.2),
-                      rgba(108, 92, 231, 0.1)
-                    );
-                    border-color: rgba(108, 92, 231, 0.3);
-                    color: #6c5ce7;
-                  "
-                >
-                  Redis
-                </div>
-              </div>
-              <div class="flow-connection"></div>
-              <div
-                class="flow-node"
-                style="
-                  background: linear-gradient(
-                    90deg,
-                    rgba(0, 206, 209, 0.2),
-                    rgba(0, 206, 209, 0.1)
-                  );
-                  border-color: rgba(0, 206, 209, 0.3);
-                  color: #00cec9;
-                "
-              >
-                Swagger + Lombok + Actuator
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESUME -->
-    <section id="resume">
-      <div class="container text-center" data-aos="fade-up">
-        <h2>Resume</h2>
-        <a
-          href="https://drive.google.com/file/d/1MYpRjzyZtv3cyAle6kVB1JtvwQZctTmK/view?usp=sharing"
-          class="btn btn-demo mt-3"
-          >View Resume</a
-        >
-      </div>
-    </section>
-
     <!-- CONTACT -->
-    <section id="contact">
-      <div class="container" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Email: moudaseryassin@gmail.com/p></p>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
+    <section id="contact" class="contact-section">
       <h2 class="contact-title">Let's Build Something Amazing</h2>
       <p class="contact-description">
         Looking for a full-stack developer who can architect and implement
         complete solutions? Let's discuss your project.
       </p>
       <div class="location">
-        <span class="location-icon">📍</span>
-        Egypt Cairo
+        <span class="location-icon">📍</span> Cairo, Egypt
       </div>
       <form
         class="contact-form"
@@ -1447,16 +1760,16 @@
         method="POST"
       >
         <div class="form-group">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" id="name" class="form-input" required />
+          <label for="name" class="form-label">Name</label
+          ><input type="text" id="name" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" class="form-input" required />
+          <label for="email" class="form-label">Email</label
+          ><input type="email" id="email" class="form-input" required />
         </div>
         <div class="form-group">
-          <label for="message" class="form-label">Message</label>
-          <textarea
+          <label for="message" class="form-label">Message</label
+          ><textarea
             id="message"
             class="form-input form-textarea"
             required
@@ -1465,10 +1778,12 @@
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
     </section>
-
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-      <a href="#" class="resume-btn">
+      <a
+        href="https://drive.google.com/file/d/1MYpRjzyZtv3cyAle6kVB1JtvwQZctTmK/view"
+        class="resume-btn"
+      >
         <svg
           width="16"
           height="16"
@@ -1482,77 +1797,130 @@
         View Resume
       </a>
       <div class="social-links">
-        <a href="https://x.com/MoudaserYassin" class="social-link">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
-            />
-          </svg>
-        </a>
-        <a href="https://github.com/Mudther84" class="social-link">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-            />
-          </svg>
-        </a>
-        <a href="moudaseryassin@gmail.com" class="social-link">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111 1.02-.236 1.02-.557v-2.083c-3.471-.075-6.45-2.388-6.45-5.356 0-2.967 2.979-5.356 6.45-5.356 1.632 0 3.074.58 4.02 1.556.946.977 1.296 2.288 1.02 3.566-.276 1.278-1.306 2.465-2.603 2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91-1.015 0-1.766-.856-1.766-1.91 0-.46.15-1.045.347-1.263 1.297-.323 2.327-1.51 2.603-2.788.276-1.278-1.306-2.465-2.603-2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91-1.015 0-1.766-.856-1.766-1.91 0-.46.15-1.045.347-1.263 1.297-.323 2.327-1.51 2.603-2.788.276-1.278-.074-2.589-1.02-3.566-1.02-.976-2.462-1.556-4.02-1.556-3.471 0-6.45 2.389-6.45 5.356 0 2.968 2.979 5.356 6.45 5.356 1.632 0 3.074-.58 4.02-1.556.946-.977 1.296-2.288 1.02-3.566-.276-1.278-1.306-2.465-2.603-2.788.196.385.347.803.347 1.263 0 1.054-.752 1.91-1.766 1.91z"
-            />
-          </svg>
-        </a>
+        <a href="https://x.com/MoudaserYassin" class="social-link">𝕏</a>
+        <a href="https://github.com/Mudther84" class="social-link">GH</a>
+        <a href="mailto:moudaseryassin@gmail.com" class="social-link">✉️</a>
       </div>
     </footer>
-
-    <!-- Scripts -->
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-      // Typing animation
-      const typedText = document.querySelector(".typed-text");
-      const textArray = [
-        "Full Stack Developer",
-        "Backend Engineer",
-        "AI Enthusiast",
-      ];
-      const typingDelay = 100;
-      const erasingDelay = 50;
-      const newTextDelay = 1500;
-      let textArrayIndex = 0;
-      let charIndex = 0;
-
-      function type() {
-        if (charIndex < textArray[textArrayIndex].length) {
-          typedText.textContent += textArray[textArrayIndex].charAt(charIndex);
-          charIndex++;
-          setTimeout(type, typingDelay);
-        } else {
-          setTimeout(erase, newTextDelay);
-        }
-      }
-
-      function erase() {
-        if (charIndex > 0) {
-          typedText.textContent = textArray[textArrayIndex].substring(
-            0,
-            charIndex - 1
-          );
-          charIndex--;
-          setTimeout(erase, erasingDelay);
-        } else {
-          textArrayIndex++;
-          if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-          setTimeout(type, typingDelay + 500);
-        }
-      }
-
       document.addEventListener("DOMContentLoaded", function () {
-        if (textArray.length) setTimeout(type, newTextDelay + 500);
+        // Typing Animation
+        const typedText = document.querySelector(".typed-text");
+        if (typedText) {
+          const textArray = [
+            "Full Stack Developer",
+            "Backend Engineer",
+            "AI Enthusiast",
+          ];
+          let textArrayIndex = 0;
+          let charIndex = 0;
+          const typingDelay = 100;
+          const erasingDelay = 50;
+          const newTextDelay = 1500;
+          function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+              typedText.textContent +=
+                textArray[textArrayIndex].charAt(charIndex);
+              charIndex++;
+              setTimeout(type, typingDelay);
+            } else {
+              setTimeout(erase, newTextDelay);
+            }
+          }
+          function erase() {
+            if (charIndex > 0) {
+              typedText.textContent = textArray[textArrayIndex].substring(
+                0,
+                charIndex - 1
+              );
+              charIndex--;
+              setTimeout(erase, erasingDelay);
+            } else {
+              textArrayIndex = (textArrayIndex + 1) % textArray.length;
+              setTimeout(type, typingDelay + 500);
+            }
+          }
+          setTimeout(type, 500);
+        }
+        // AOS
         AOS.init({ duration: 1200, once: true });
+        // Scroll Reveal
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        document
+          .querySelectorAll(
+            "h2, .about-content, .education-card, .skills-category, .skill-item, .interest-card, .project-card.full, .backend-diagram, .certificates-diagram, .contact-section, footer"
+          )
+          .forEach((el) => observer.observe(el));
+        // GSAP Floating
+        gsap.utils
+          .toArray(
+            ".skill-item, .interest-card, .education-card, .project-card"
+          )
+          .forEach((el, i) => {
+            gsap.to(el, {
+              y: -8,
+              duration: 2 + (i % 3) * 0.3,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+              delay: Math.random() * 1.5,
+            });
+          });
+        // Smooth Scroll + Active Class
+        const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+        const sections = document.querySelectorAll("section[id], #projects");
+        // عند النقر
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: "smooth",
+              });
+              navLinks.forEach((link) => link.classList.remove("active"));
+              this.classList.add("active");
+            }
+          });
+        });
+        // عند التمرير
+        const setActiveLink = () => {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (
+              pageYOffset >= sectionTop - 100 &&
+              pageYOffset < sectionTop + sectionHeight - 100
+            ) {
+              current = section.getAttribute("id");
+            }
+          });
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        };
+        window.addEventListener("scroll", setActiveLink);
+        setActiveLink(); // تهيئة أولية
       });
     </script>
-    <script src="/js/main.js"></script>
   </body>
 </html>
