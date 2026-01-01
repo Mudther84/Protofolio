@@ -21,10 +21,10 @@
         --darker: #0a0810;
         --light: #ffffff;
         --gray: #a3a3a3;
-        --primary: #4f46e5;
-        --blue: #3b82f6;
+        --primary: #4f46e5; /* ✅ تم الاحتفاظ به */
+        /* --blue: #3b82f6; ← تم حذف هذا السطر */
         --purple: #8b5cf6;
-        --teal: #10b981;
+        --teal: #10b981; /* ✅ تم الاحتفاظ به */
         --grid-line: rgba(255, 255, 255, 0.05);
       }
       /* ========== BASE STYLES ========== */
@@ -65,7 +65,7 @@
       }
       /* ========== NAVBAR ========== */
       .navbar {
-        background-color: var(--darker);
+        background-color: rgba(10, 8, 16, 0.8);
         padding: 1rem 0;
         position: fixed;
         top: 0;
@@ -73,7 +73,7 @@
         z-index: 1000;
       }
       .nav-link {
-        color: var(--light);
+        color: var(--primary);
         font-weight: 600;
         margin: 0 1rem;
         text-decoration: none;
@@ -91,7 +91,7 @@
         transform: translateX(-50%);
         width: 20px;
         height: 2px;
-        background-color: var(--teal);
+        background-color: var(--primary);
       }
       /* ========== HERO ========== */
       .hero {
@@ -198,7 +198,7 @@
         color: #b2b2b2;
       }
       .info-item strong {
-        color: var(--blue);
+        color: var(--teal); /* ✅ كان var(--blue) — استبدلت بـ --teal */
       }
       /* ========== EDUCATION ========== */
       .education-section {
@@ -425,7 +425,7 @@
         min-width: 200px;
       }
       .project-column h3 {
-        color: var(--blue);
+        color: var(--primary); /* ✅ كان var(--blue) — استبدلت بـ --primary */
         margin-bottom: 1rem;
         font-size: 1.1rem;
         font-weight: 600;
@@ -487,7 +487,6 @@
         max-width: 400px;
       }
       /* ========== BACKEND PROJECTS SECTION ========== */
-      /* تعديل: إزالة الفلتر من صور الـ backend-diagram */
       .backend-diagram {
         background: rgba(0, 0, 0, 0.3);
         border-radius: 8px;
@@ -515,9 +514,7 @@
       .backend-diagram img {
         /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
       }
-
       /* ========== CERTIFICATES SECTION ========== */
-      /* تعديل: إزالة الفلتر من صور الشهادات */
       .certificates-diagram {
         background: rgba(0, 0, 0, 0.3);
         border-radius: 8px;
@@ -545,7 +542,6 @@
       .certificates-diagram img {
         /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
       }
-
       /* ========== CONTACT ========== */
       .contact-section {
         padding: 4rem 1rem;
@@ -606,7 +602,7 @@
       .form-input:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); /* ✅ استخدام --primary بدلاً من --blue */
       }
       .form-textarea {
         min-height: 120px;
@@ -615,7 +611,11 @@
       .submit-btn {
         width: 100%;
         padding: 0.75rem 1rem;
-        background: linear-gradient(90deg, var(--blue), var(--purple));
+        background: linear-gradient(
+          90deg,
+          var(--primary),
+          var(--purple)
+        ); /* ✅ استبدال --blue بـ --primary */
         border: none;
         border-radius: 6px;
         color: var(--light);
@@ -626,7 +626,7 @@
       }
       .submit-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
       }
       /* ========== RESUME BUTTON ========== */
       .resume-btn {
@@ -634,16 +634,16 @@
         margin: 1rem 0;
         padding: 0.75rem 1.5rem;
         background: transparent;
-        border: 2px solid #4f46e5;
+        border: 2px solid var(--primary);
         border-radius: 6px;
-        color: #4f46e5;
+        color: var(--primary);
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 600;
         transition: all 0.3s ease;
       }
       .resume-btn:hover {
-        background: #4f46e5;
+        background: var(--primary);
         color: white;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
@@ -1308,7 +1308,7 @@
             <div class="backend-diagram">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot Backend"
+                alt="Spring Boot Banking API"
                 width="48"
                 height="48"
               />
@@ -1364,7 +1364,7 @@
             <div class="backend-diagram">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot Backend"
+                alt="Spring Boot Quiz API"
                 width="48"
                 height="48"
               />
@@ -1417,7 +1417,7 @@
             <div class="backend-diagram">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                alt="Java Console Application"
+                alt="Java OOAD Library System"
                 width="48"
                 height="48"
               />
@@ -1756,21 +1756,34 @@
       </div>
       <form
         class="contact-form"
-        action="https://formsubmit.co/moudaseryassin@gmail.com"
+        action="https://formsubmit.co/cb858d3ead900886dcb19e8470cc6632"
         method="POST"
       >
         <div class="form-group">
-          <label for="name" class="form-label">Name</label
-          ><input type="text" id="name" class="form-input" required />
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input"
+            required
+          />
         </div>
         <div class="form-group">
-          <label for="email" class="form-label">Email</label
-          ><input type="email" id="email" class="form-input" required />
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            required
+          />
         </div>
         <div class="form-group">
-          <label for="message" class="form-label">Message</label
-          ><textarea
+          <label for="message" class="form-label">Message</label>
+          <textarea
             id="message"
+            name="message"
             class="form-input form-textarea"
             required
           ></textarea>
@@ -1898,7 +1911,6 @@
             }
           });
         });
-        // عند التمرير
         const setActiveLink = () => {
           let current = "";
           sections.forEach((section) => {
