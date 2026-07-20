@@ -21,10 +21,10 @@
         --darker: #0a0810;
         --light: #ffffff;
         --gray: #a3a3a3;
-        --primary: #4f46e5; /* ✅ تم الاحتفاظ به */
-        /* --blue: #3b82f6; ← تم حذف هذا السطر */
+        --primary: #4f46e5; /* ✅ Kept */
+        /* --blue: #3b82f6; ← Removed */
         --purple: #8b5cf6;
-        --teal: #10b981; /* ✅ تم الاحتفاظ به */
+        --teal: #10b981; /* ✅ Kept */
         --grid-line: rgba(255, 255, 255, 0.05);
       }
       /* ========== BASE STYLES ========== */
@@ -198,7 +198,7 @@
         color: #b2b2b2;
       }
       .info-item strong {
-        color: var(--teal); /* ✅ كان var(--blue) — استبدلت بـ --teal */
+        color: var(--teal); /* ✅ Was var(--blue) — replaced with --teal */
       }
       /* ========== EDUCATION ========== */
       .education-section {
@@ -425,7 +425,7 @@
         min-width: 200px;
       }
       .project-column h3 {
-        color: var(--primary); /* ✅ كان var(--blue) — استبدلت بـ --primary */
+        color: var(--primary); /* ✅ Was var(--blue) — replaced with --primary */
         margin-bottom: 1rem;
         font-size: 1.1rem;
         font-weight: 600;
@@ -510,9 +510,9 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* إزالة الفلتر من صور الـ backend-diagram */
+      /* Removed filter from backend-diagram images */
       .backend-diagram img {
-        /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
+        /* filter: brightness(0) invert(1); */ /* Commented out */
       }
       /* ========== CERTIFICATES SECTION ========== */
       .certificates-diagram {
@@ -538,9 +538,9 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* إزالة الفلتر من صور الشهادات */
+      /* Removed filter from certificate images */
       .certificates-diagram img {
-        /* filter: brightness(0) invert(1); */ /* تم تعليق هذا السطر */
+        /* filter: brightness(0) invert(1); */ /* Commented out */
       }
       /* ========== CONTACT ========== */
       .contact-section {
@@ -602,7 +602,7 @@
       .form-input:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); /* ✅ استخدام --primary بدلاً من --blue */
+        box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); /* ✅ Using --primary instead of --blue */
       }
       .form-textarea {
         min-height: 120px;
@@ -615,7 +615,7 @@
           90deg,
           var(--primary),
           var(--purple)
-        ); /* ✅ استبدال --blue بـ --primary */
+        ); /* ✅ Replaced --blue with --primary */
         border: none;
         border-radius: 6px;
         color: var(--light);
@@ -900,33 +900,40 @@
             </div>
             <div class="skill-item" style="--index: 3">
               <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
+                class="skill-icon"
+              /><span class="skill-name">TypeScript</span>
+            </div>
+            <div class="skill-item" style="--index: 4">
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
                 alt="PHP"
                 class="skill-icon"
               /><span class="skill-name">PHP</span>
             </div>
-            <div class="skill-item" style="--index: 4">
+            <div class="skill-item" style="--index: 5">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
                 alt="HTML5"
                 class="skill-icon"
               /><span class="skill-name">HTML5</span>
             </div>
-            <div class="skill-item" style="--index: 5">
+            <div class="skill-item" style="--index: 6">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
                 alt="CSS3"
                 class="skill-icon"
               /><span class="skill-name">CSS3</span>
             </div>
-            <div class="skill-item" style="--index: 6">
+            <div class="skill-item" style="--index: 7">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                 alt="MySQL"
                 class="skill-icon"
               /><span class="skill-name">MySQL</span>
             </div>
-            <div class="skill-item" style="--index: 7">
+            <div class="skill-item" style="--index: 8">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
                 alt="PostgreSQL"
@@ -969,33 +976,47 @@
             </div>
             <div class="skill-item" style="--index: 4">
               <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+                alt="Next.js"
+                class="skill-icon"
+              /><span class="skill-name">Next.js</span>
+            </div>
+            <div class="skill-item" style="--index: 5">
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
                 alt="Redux"
                 class="skill-icon"
               /><span class="skill-name">Redux</span>
             </div>
-            <div class="skill-item" style="--index: 5">
+            <div class="skill-item" style="--index: 6">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
                 alt="Bootstrap"
                 class="skill-icon"
               /><span class="skill-name">Bootstrap</span>
             </div>
-            <div class="skill-item" style="--index: 6">
+            <div class="skill-item" style="--index: 7">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind CSS"
+                class="skill-icon"
+              /><span class="skill-name">Tailwind CSS</span>
+            </div>
+            <div class="skill-item" style="--index: 8">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
                 alt="TensorFlow"
                 class="skill-icon"
               /><span class="skill-name">TensorFlow</span>
             </div>
-            <div class="skill-item" style="--index: 7">
+            <div class="skill-item" style="--index: 9">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
                 alt="PyTorch"
                 class="skill-icon"
               /><span class="skill-name">PyTorch</span>
             </div>
-            <div class="skill-item" style="--index: 8">
+            <div class="skill-item" style="--index: 10">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
                 alt="OpenCV"
@@ -1052,6 +1073,50 @@
             </div>
           </div>
         </div>
+        
+        <!-- NEW: Code Editors & IDEs -->
+        <div class="skills-category">
+          <h3>Code Editors & IDEs</h3>
+          <div class="skills-grid">
+            <div class="skill-item" style="--index: 0">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+                alt="VS Code"
+                class="skill-icon"
+              /><span class="skill-name">VS Code</span>
+            </div>
+            <div class="skill-item" style="--index: 1">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg"
+                alt="IntelliJ IDEA"
+                class="skill-icon"
+              /><span class="skill-name">IntelliJ IDEA</span>
+            </div>
+            <div class="skill-item" style="--index: 2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webstorm/webstorm-original.svg"
+                alt="JetBrains"
+                class="skill-icon"
+              /><span class="skill-name">JetBrains</span>
+            </div>
+            <div class="skill-item" style="--index: 3">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notepadplusplus/notepadplusplus-original.svg"
+                alt="Notepad++"
+                class="skill-icon"
+              /><span class="skill-name">Notepad++</span>
+            </div>
+            <div class="skill-item" style="--index: 4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg"
+                alt="Eclipse"
+                class="skill-icon"
+              /><span class="skill-name">Eclipse</span>
+            </div>
+          </div>
+        </div>
+        <!-- End of Code Editors & IDEs -->
+
       </div>
     </section>
     <!-- INTERESTS -->
@@ -1741,6 +1806,52 @@
             </div>
           </div>
         </div>
+
+        <!-- New Addition: CS50x Certificate -->
+        <div class="project-card full">
+          <div class="project-header">
+            <div class="project-info">
+              <h5>CS50x: Introduction to Computer Science</h5>
+              <p>Harvard University's introduction to computer science, covering programming fundamentals, algorithms, and data structures using languages like C, Python, and SQL.</p>
+              <div class="project-details">
+                <div class="project-column">
+                  <h3>Issuing Body</h3>
+                  <ul>
+                    <li>Harvard University (edX)</li>
+                  </ul>
+                </div>
+                <div class="project-column">
+                  <h3>Key Skills</h3>
+                  <ul>
+                    <li>C, Python, SQL</li>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>Algorithms and Data Structures</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="project-buttons">
+                <a
+                  href="https://drive.google.com/file/d/1uUGAgNHyazC0g8kD_lYK-D0tlS4MwdFP/view?usp=sharing"
+                  target="_blank"
+                  class="btn btn-demo"
+                >
+                  View Certificate
+                </a>
+              </div>
+            </div>
+            <div class="certificates-diagram">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+                width="48"
+                height="48"
+                alt="CS50x"
+              />
+              CS50x Certificate
+            </div>
+          </div>
+        </div>
+        <!-- End of CS50x Certificate Addition -->
+
       </div>
     </section>
     <!-- CONTACT -->
@@ -1895,7 +2006,7 @@
         // Smooth Scroll + Active Class
         const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
         const sections = document.querySelectorAll("section[id], #projects");
-        // عند النقر
+        // On click
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -1930,7 +2041,7 @@
           });
         };
         window.addEventListener("scroll", setActiveLink);
-        setActiveLink(); // تهيئة أولية
+        setActiveLink(); // Initial setup
       });
     </script>
   </body>
