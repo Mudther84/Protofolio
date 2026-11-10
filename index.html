@@ -1,2048 +1,2539 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
     <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- AOS Animation CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <style>
-      /* ========== VARIABLES ========== */
-      :root {
-        --dark: #0f0c17;
-        --darker: #0a0810;
-        --light: #ffffff;
-        --gray: #a3a3a3;
-        --primary: #4f46e5; /* ✅ Kept */
-        /* --blue: #3b82f6; ← Removed */
-        --purple: #8b5cf6;
-        --teal: #10b981; /* ✅ Kept */
-        --grid-line: rgba(255, 255, 255, 0.05);
-      }
-      /* ========== BASE STYLES ========== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background-color: var(--dark);
-        color: var(--light);
-        font-family: "Segoe UI", system-ui, sans-serif;
-        background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
-          linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-        background-size: 24px 24px;
-        padding-top: 80px;
-      }
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-      section {
-        margin-bottom: 4rem;
-      }
-      h2 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
-        text-align: center;
-        color: var(--light);
-        text-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      h2.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      /* ========== NAVBAR ========== */
-      .navbar {
-        background-color: rgba(10, 8, 16, 0.8);
-        padding: 1rem 0;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-      }
-      .nav-link {
-        color: var(--primary);
-        font-weight: 600;
-        margin: 0 1rem;
-        text-decoration: none;
-        position: relative;
-      }
-      .nav-link:hover,
-      .nav-link.active {
-        color: var(--teal);
-      }
-      .nav-link.active::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 2px;
-        background-color: var(--primary);
-      }
-      /* ========== HERO ========== */
-      .hero {
-        height: 90vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        flex-direction: column;
-      }
-      .hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-      }
-      .hero p {
-        color: var(--gray);
-        font-size: 1.5rem;
-        height: 40px;
-        margin-top: 15px;
-      }
-      .typed-text {
-        border-right: 2px solid var(--teal);
-        white-space: nowrap;
-        overflow: hidden;
-        display: inline-block;
-      }
-      /* ========== PROFILE IMAGE ========== */
-      #profile-image {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 4rem;
-      }
-      #profile-image img {
-        width: 180px;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 4px solid var(--teal);
-        box-shadow: 0 0 15px rgba(16, 185, 128, 0.5);
-        transition: transform 0.3s;
-      }
-      #profile-image img:hover {
-        transform: scale(1.1);
-      }
-      /* ========== SOCIAL BUTTONS ========== */
-      .social-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 3rem;
-        flex-wrap: wrap;
-      }
-      .social-buttons a {
-        color: var(--light);
-        font-size: 1.2rem;
-        text-decoration: none;
-        border: 1px solid var(--teal);
-        padding: 0.5rem 0.8rem;
-        border-radius: 6px;
-        transition: 0.3s;
-      }
-      .social-buttons a:hover {
-        background-color: var(--teal);
-        color: var(--dark);
-      }
-      /* ========== ABOUT ========== */
-      .about-section {
-        padding: 4rem 1rem;
-        background-color: rgba(255, 255, 255, 0.02);
-      }
-      .about-content {
-        display: flex;
-        gap: 4rem;
-        align-items: center;
-        flex-wrap: wrap;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: 0.8s ease;
-      }
-      .about-content.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .about-photo img {
-        width: 250px;
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(16, 185, 128, 0.3);
-      }
-      .about-text p {
-        line-height: 1.8;
-        color: #b2b2b2;
-      }
-      .tech-keyword {
-        color: var(--teal);
-        font-weight: 600;
-      }
-      .personal-info {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        margin-top: 1.5rem;
-      }
-      .info-item {
-        color: #b2b2b2;
-      }
-      .info-item strong {
-        color: var(--teal); /* ✅ Was var(--blue) — replaced with --teal */
-      }
-      /* ========== EDUCATION ========== */
-      .education-section {
-        padding: 4rem 1rem;
-        background-color: rgba(255, 255, 255, 0.02);
-      }
-      .education-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .education-card {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      .education-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .education-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-      }
-      .education-logo {
-        width: 100%;
-        height: 200px;
-        object-fit: contain;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-      }
-      .education-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--light);
-      }
-      .education-period {
-        font-size: 1.1rem;
-        color: var(--teal);
-        font-weight: 600;
-      }
-      .education-school {
-        font-size: 0.9rem;
-        color: var(--gray);
-      }
-      .education-coursework h4 {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        color: var(--light);
-      }
-      .education-coursework ul {
-        list-style: none;
-        padding-left: 1rem;
-      }
-      .education-coursework li {
-        margin-bottom: 0.25rem;
-        padding-left: 1rem;
-        position: relative;
-      }
-      .education-coursework li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--light);
-      }
-      /* ========== SKILLS ========== */
-      .skills-section {
-        padding: 4rem 1rem;
-        background-color: rgba(255, 255, 255, 0.02);
-      }
-      .skills-category {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      .skills-category.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .skills-category h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        color: var(--light);
-        font-weight: 600;
-      }
-      .skills-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-      }
-      .skill-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      .skill-item.visible {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: calc(var(--index) * 0.05s);
-      }
-      .skill-icon {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .skill-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        filter: brightness(0) invert(1);
-      }
-      .skill-name {
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--light);
-      }
-      /* ========== INTERESTS ========== */
-      .interests-section {
-        padding: 4rem 1rem;
-      }
-      .interests-title {
-        font-size: 1.8rem;
-        margin-bottom: 3rem;
-        font-weight: 700;
-        color: var(--primary);
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.8s ease;
-      }
-      .interests-title.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .interests-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-      }
-      .interest-card {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        padding: 1.5rem;
-        display: flex;
-        gap: 1rem;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.3s ease;
-      }
-      .interest-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .interest-icon {
-        font-size: 1.8rem;
-      }
-      /* ========== PROJECT CARDS ========== */
-      .project-card.full {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 2rem;
-        margin-bottom: 3rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      .project-card.full.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .project-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 2rem;
-        flex-wrap: wrap;
-      }
-      .project-title.full {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-      }
-      .project-description.full {
-        margin-bottom: 1.5rem;
-        color: #b2b2b2;
-        line-height: 1.8;
-        font-size: 1.1rem;
-      }
-      .project-details {
-        display: flex;
-        gap: 2rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
-      }
-      .project-column {
-        flex: 1;
-        min-width: 200px;
-      }
-      .project-column h3 {
-        color: var(--primary); /* ✅ Was var(--blue) — replaced with --primary */
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-      .project-column:nth-child(2) h3 {
-        color: var(--purple);
-      }
-      .project-column:nth-child(3) h3 {
-        color: var(--teal);
-      }
-      .project-list {
-        list-style: none;
-      }
-      .project-list li {
-        margin-bottom: 0.5rem;
-        padding-left: 1.5rem;
-        position: relative;
-      }
-      .project-list li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: var(--light);
-      }
-      .project-buttons {
-        display: flex;
-        gap: 0.75rem;
-        margin-top: auto;
-      }
-      .btn {
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-decoration: none;
-        text-align: center;
-        transition: 0.3s;
-        color: white;
-        border: none;
-        cursor: pointer;
-        display: inline-block;
-      }
-      .btn-demo {
-        background: var(--teal);
-        box-shadow: 0 0 8px rgba(16, 185, 128, 0.5);
-      }
-      .btn-code {
-        background: var(--purple);
-        box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
-      }
-      .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 20px currentColor;
-      }
-      .project-title-image {
-        border-radius: 8px;
-        margin-bottom: 1rem;
-        width: 100%;
-        max-width: 400px;
-      }
-      /* ========== BACKEND PROJECTS SECTION ========== */
-      .backend-diagram {
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-        padding: 1.5rem;
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        color: var(--gray);
-        font-style: italic;
-        font-size: 0.95rem;
-        text-align: center;
-        flex: 0 0 200px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-      .backend-diagram.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      /* Removed filter from backend-diagram images */
-      .backend-diagram img {
-        /* filter: brightness(0) invert(1); */ /* Commented out */
-      }
-      /* ========== CERTIFICATES SECTION ========== */
-      .certificates-diagram {
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-        padding: 1.5rem;
-        min-height: 150px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        color: var(--gray);
-        font-style: italic;
-        font-size: 0.95rem;
-        text-align: center;
-        flex: 0 0 200px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-      }
-      .certificates-diagram.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      /* Removed filter from certificate images */
-      .certificates-diagram img {
-        /* filter: brightness(0) invert(1); */ /* Commented out */
-      }
-      /* ========== CONTACT ========== */
-      .contact-section {
-        padding: 4rem 1rem;
-        background-color: rgba(255, 255, 255, 0.02);
-        text-align: center;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      .contact-section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .contact-title {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-      }
-      .contact-description {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        color: #b2b2b2;
-      }
-      .location {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-        color: #b2b2b2;
-      }
-      .contact-form {
-        max-width: 500px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .form-label {
-        font-size: 0.9rem;
-        color: #b2b2b2;
-      }
-      .form-input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-        color: var(--light);
-        font-size: 1rem;
-        transition: all 0.3s ease;
-      }
-      .form-input:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2); /* ✅ Using --primary instead of --blue */
-      }
-      .form-textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-      .submit-btn {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        background: linear-gradient(
-          90deg,
-          var(--primary),
-          var(--purple)
-        ); /* ✅ Replaced --blue with --primary */
-        border: none;
-        border-radius: 6px;
-        color: var(--light);
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-      .submit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
-      }
-      /* ========== RESUME BUTTON ========== */
-      .resume-btn {
-        display: inline-block;
-        margin: 1rem 0;
-        padding: 0.75rem 1.5rem;
-        background: transparent;
-        border: 2px solid var(--primary);
-        border-radius: 6px;
-        color: var(--primary);
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-      .resume-btn:hover {
-        background: var(--primary);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
-      }
-      /* ========== FOOTER ========== */
-      footer {
-        padding: 2rem 1rem;
-        text-align: center;
-        background-color: rgba(255, 255, 255, 0.02);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      footer.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
-      }
-      .social-link {
-        color: var(--light);
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-      }
-      .social-link:hover {
-        color: var(--primary);
-        transform: translateY(-2px);
-      }
-      /* ========== RESPONSIVE ========== */
-      @media (max-width: 900px) {
+        /* ========== VARIABLES ========== */
+        
+         :root {
+            --dark: #0f0c17;
+            --darker: #0a0810;
+            --light: #ffffff;
+            --gray: #a3a3a3;
+            --primary: #4f46e5;
+            /* ✅ Kept */
+            /* --blue: #3b82f6; ← Removed */
+            --purple: #8b5cf6;
+            --teal: #10b981;
+            /* ✅ Kept */
+            --grid-line: rgba(255, 255, 255, 0.05);
+        }
+        /* ========== BASE STYLES ========== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            font-family: "Segoe UI", system-ui, sans-serif;
+            background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 24px 24px;
+            padding-top: 80px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        section {
+            margin-bottom: 4rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--light);
+            text-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* ========== NAVBAR ========== */
+        
+        .navbar {
+            background-color: rgba(10, 8, 16, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            color: var(--primary);
+            font-weight: 600;
+            margin: 0 1rem;
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--teal);
+        }
+        
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        /* ========== HERO ========== */
+        
+        .hero {
+            min-height: 90vh;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            color: var(--gray);
+            font-size: 1.5rem;
+            height: 40px;
+            margin-top: 15px;
+        }
+        
+        .typed-text {
+            border-right: 2px solid var(--teal);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+        /* ========== CODE SHAPES (CSS 3D) ========== */
+        
+        .shapes-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .shapes-sub {
+            max-width: 680px;
+            margin: -1rem auto 2.5rem;
+            text-align: center;
+            color: #b2b2b2;
+            line-height: 1.8;
+        }
+        
+        .shapes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+        }
+        
+        .shape-card {
+            --c: 16, 185, 129;
+            /* overridden per card: teal / purple / primary */
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem 1rem 1.25rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .shape-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 18px rgba(var(--c), 0.25);
+            border-color: rgba(var(--c), 0.35);
+        }
+        
+        .shape-card.c-teal {
+            --c: 16, 185, 129;
+        }
+        
+        .shape-card.c-purple {
+            --c: 139, 92, 246;
+        }
+        
+        .shape-card.c-primary {
+            --c: 79, 70, 229;
+        }
+        
+        .shape-visual {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .shape-orbit {
+            position: absolute;
+            left: 50%;
+            top: 66%;
+            width: 74%;
+            height: 24%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(var(--c), 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .shape-glow {
+            position: absolute;
+            inset: 0;
+            filter: drop-shadow(0 0 12px rgba(var(--c), 0.65));
+        }
+        
+        .shape-stage {
+            position: absolute;
+            inset: 0;
+            perspective: 800px;
+            cursor: grab;
+            touch-action: pan-y;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .shape-stage:active {
+            cursor: grabbing;
+        }
+        
+        .shape-obj {
+            position: absolute;
+            left: 50%;
+            top: 46%;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+        }
+        
+        .shape-face {
+            position: absolute;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .shape-face svg {
+            display: block;
+            overflow: visible;
+        }
+        
+        .shape-chip {
+            position: absolute;
+            z-index: 2;
+            max-width: 92%;
+            padding: 0.35rem 0.7rem;
+            border-radius: 10px;
+            background: rgba(10, 8, 16, 0.78);
+            border: 1px solid rgba(var(--c), 0.55);
+            box-shadow: 0 0 10px rgba(var(--c), 0.25);
+            color: #e8fff6;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            white-space: nowrap;
+            pointer-events: none;
+            transform: rotate(var(--r, 0deg));
+            animation: shapeChipFloat 5s ease-in-out infinite alternate;
+            animation-delay: var(--d, 0s);
+        }
+        
+        .shape-chip b {
+            color: rgb(var(--c));
+            filter: brightness(1.6);
+        }
+        
+        @keyframes shapeChipFloat {
+            from {
+                margin-top: -5px;
+            }
+            to {
+                margin-top: 5px;
+            }
+        }
+        
+        .shape-name {
+            margin-top: 0.75rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .shape-meta {
+            margin-top: 0.25rem;
+            font-family: "Courier New", Consolas, monospace;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .shape-meta span {
+            color: rgb(var(--c));
+            filter: brightness(1.5);
+            font-weight: 700;
+        }
+        
+        .shapes-hint {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .shapes-hint span {
+            color: var(--teal);
+            font-weight: 600;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .shape-chip {
+                animation: none;
+            }
+        }
+        /* ========== PROFILE IMAGE ========== */
+        
+        #profile-image {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+        
+        #profile-image img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--teal);
+            box-shadow: 0 0 15px rgba(16, 185, 128, 0.5);
+            transition: transform 0.3s;
+        }
+        
+        #profile-image img:hover {
+            transform: scale(1.1);
+        }
+        /* ========== SOCIAL BUTTONS ========== */
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-buttons a {
+            color: var(--light);
+            font-size: 1.2rem;
+            text-decoration: none;
+            border: 1px solid var(--teal);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        
+        .social-buttons a:hover {
+            background-color: var(--teal);
+            color: var(--dark);
+        }
+        /* ========== ABOUT ========== */
+        
+        .about-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease;
+        }
+        
+        .about-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .about-photo img {
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(16, 185, 128, 0.3);
+        }
+        
+        .about-text p {
+            line-height: 1.8;
+            color: #b2b2b2;
+        }
+        
+        .tech-keyword {
+            color: var(--teal);
+            font-weight: 600;
+        }
+        
+        .personal-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .info-item {
+            color: #b2b2b2;
+        }
+        
+        .info-item strong {
+            color: var(--teal);
+            /* ✅ Was var(--blue) — replaced with --teal */
+        }
+        /* ========== EDUCATION ========== */
+        
+        .education-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .education-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .education-logo {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .education-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .education-period {
+            font-size: 1.1rem;
+            color: var(--teal);
+            font-weight: 600;
+        }
+        
+        .education-school {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .education-coursework h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+        
+        .education-coursework ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .education-coursework li {
+            margin-bottom: 0.25rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .education-coursework li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--light);
+        }
+        /* ========== SKILLS ========== */
+        
+        .skills-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        .skills-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .skills-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skills-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .skill-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: calc(var(--index) * 0.05s);
+        }
+        
+        .skill-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .skill-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+        
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light);
+        }
+        /* ========== INTERESTS ========== */
+        
+        .interests-section {
+            padding: 4rem 1rem;
+        }
+        
+        .interests-title {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.8s ease;
+        }
+        
+        .interests-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .interest-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.3s ease;
+        }
+        
+        .interest-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .interest-icon {
+            font-size: 1.8rem;
+        }
+        /* ========== PROJECT CARDS ========== */
+        
+        .project-card.full {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .project-card.full.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         .project-header {
-          flex-direction: column;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
-        .backend-diagram {
-          min-height: 350px;
-          flex: auto;
-          width: 100%;
+        
+        .project-title.full {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
+        
+        .project-description.full {
+            margin-bottom: 1.5rem;
+            color: #b2b2b2;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
         .project-details {
-          flex-direction: column;
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
-      }
+        
+        .project-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .project-column h3 {
+            color: var(--primary);
+            /* ✅ Was var(--blue) — replaced with --primary */
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .project-column:nth-child(2) h3 {
+            color: var(--purple);
+        }
+        
+        .project-column:nth-child(3) h3 {
+            color: var(--teal);
+        }
+        
+        .project-list {
+            list-style: none;
+        }
+        
+        .project-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .project-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--light);
+        }
+        
+        .project-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn-demo {
+            background: var(--teal);
+            box-shadow: 0 0 8px rgba(16, 185, 128, 0.5);
+        }
+        
+        .btn-code {
+            background: var(--purple);
+            box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px currentColor;
+        }
+        
+        .project-title-image {
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        /* ========== BACKEND PROJECTS SECTION ========== */
+        
+        .backend-diagram {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.95rem;
+            text-align: center;
+            flex: 0 0 200px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .backend-diagram.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Removed filter from backend-diagram images */
+        
+        .backend-diagram img {
+            /* filter: brightness(0) invert(1); */
+            /* Commented out */
+        }
+        /* ========== CERTIFICATES SECTION ========== */
+        
+        .certificates-diagram {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 0.95rem;
+            text-align: center;
+            flex: 0 0 200px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .certificates-diagram.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Removed filter from certificate images */
+        
+        .certificates-diagram img {
+            /* filter: brightness(0) invert(1); */
+            /* Commented out */
+        }
+        /* ========== CONTACT ========== */
+        
+        .contact-section {
+            padding: 4rem 1rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .contact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .contact-description {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #b2b2b2;
+        }
+        
+        .location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: #b2b2b2;
+        }
+        
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-label {
+            font-size: 0.9rem;
+            color: #b2b2b2;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+            /* ✅ Using --primary instead of --blue */
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: linear-gradient( 90deg, var(--primary), var(--purple));
+            /* ✅ Replaced --blue with --primary */
+            border: none;
+            border-radius: 6px;
+            color: var(--light);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+        }
+        /* ========== RESUME BUTTON ========== */
+        
+        .resume-btn {
+            display: inline-block;
+            margin: 1rem 0;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .resume-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+        }
+        /* ========== FOOTER ========== */
+        
+        footer {
+            padding: 2rem 1rem;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.02);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        /* ========== RESPONSIVE ========== */
+        
+        @media (max-width: 900px) {
+            .project-header {
+                flex-direction: column;
+            }
+            .backend-diagram {
+                min-height: 350px;
+                flex: auto;
+                width: 100%;
+            }
+            .project-details {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#home">
-          <img src="/me/m.png" alt="" width="50px" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <img src="/me/m.png" alt width="50px" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#education">Education</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">Skills</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#certificates">Certificates</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing"
-                target="_blank"
-                >Resume</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shapes">Shapes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certificates">Certificates</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing" target="_blank">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </nav>
     <!-- HERO -->
     <section id="home" class="hero">
-      <h1>Hi, I'm a <span class="typed-text"></span></h1>
+        <h1>Hi, I'm a <span class="typed-text"></span></h1>
+    </section>
+    <!-- CODE SHAPES (CSS 3D) -->
+    <section id="shapes" class="shapes-section">
+        <div class="container">
+            <h2>3D Geometric Shapes</h2>
+            <p class="shapes-sub">
+                Every shape is pure <span class="tech-keyword">CSS 3D</span> — its faces are written in <span class="tech-keyword">code</span> and
+                <span class="tech-keyword">ASCII</span> characters.
+            </p>
+            <div class="shapes-grid" id="shapes-grid"></div>
+            <div class="shapes-hint">
+                🖱️ <span>Drag</span> any shape to rotate it
+            </div>
+        </div>
     </section>
     <!-- PROFILE IMAGE -->
     <section id="profile-image">
-      <img src="/images/img.jpg" alt="Profile Image" />
+        <img src="/images/img.jpg" alt="Profile Image" />
     </section>
     <!-- SOCIAL BUTTONS -->
     <div class="social-buttons">
-      <a
-        href="https://www.linkedin.com/in/mudther-yassin-0260b2378"
-        target="_blank"
-        >LinkedIn</a
-      >
-      <a href="https://github.com/Mudther84" target="_blank">GitHub</a>
-      <a href="mailto:moudaseryassin@gmail.com">Email</a>
-      <a
-        href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing">Resume</a
-      >
+        <a href="https://www.linkedin.com/in/mudther-yassin-0260b2378" target="_blank">LinkedIn</a>
+        <a href="https://github.com/Mudther84" target="_blank">GitHub</a>
+        <a href="mailto:moudaseryassin@gmail.com">Email</a>
+        <a href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing">Resume</a>
     </div>
     <!-- ABOUT -->
     <section id="about" class="about-section">
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="about-photo">
-            <img src="/images/FB_IMG_1784132769671.jpg" alt="Mudhther Yaseen" />
-          </div>
-          <div class="about-text">
-            <p>
-              Focused and enthusiastic developer with a keen interest in
-              <span class="tech-keyword">software development</span> and
-              <span class="tech-keyword">artificial intelligence</span>. By
-              comprehensive exposure to the underlying concepts and applying
-              them vividly to various
-              <span class="tech-keyword">projects</span>, my love for these
-              domains came into being. I am a passionate individual who thrives
-              to build and apply <span class="tech-keyword">algorithms</span>
-              to solve real-world industry problems.
-            </p>
-            <div class="personal-info">
-              <div class="info-item">
-                <strong>Birthday:</strong> 31 July 2001
-              </div>
-              <div class="info-item"><strong>City:</strong> Khartoum</div>
-              <div class="info-item">
-                <strong>Phone:</strong> +249-903339985
-              </div>
-              <div class="info-item">
-                <a href="mailto:moudaseryassin@gmail.com" style="text-decoration: none;"><strong>Email:</strong> moudaseryassin@gmail.com</a>
-              </div>
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-photo">
+                    <img src="/WhatsApp Image 2026-11-10 at 2.27.42 AM.jpeg" alt="Mudhther Yaseen" />
+                </div>
+                <div class="about-text">
+                    <p>
+                        Focused and enthusiastic developer with a keen interest in
+                        <span class="tech-keyword">software
+                development</span> and
+                        <span class="tech-keyword">artificial
+                intelligence</span>. By comprehensive exposure to the underlying concepts and applying them vividly to various
+                        <span class="tech-keyword">projects</span>, my love for these domains came into being. I am a passionate individual who thrives to build and apply <span class="tech-keyword">algorithms</span> to solve real-world industry problems.
+                    </p>
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <strong>Birthday:</strong> 31 July 2001
+                        </div>
+                        <div class="info-item"><strong>City:</strong> Khartoum
+                        </div>
+                        <div class="info-item">
+                            <strong>Phone:</strong> +249-903339985
+                        </div>
+                        <div class="info-item">
+                            <a href="mailto:moudaseryassin@gmail.com" style="text-decoration: none;"><strong>Email:</strong>
+                  moudaseryassin@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
     <!-- EDUCATION -->
     <section id="education" class="education-section">
-      <div class="container">
-        <h2>Education</h2>
-        <div class="education-grid">
-          <div class="education-card">
-            <img
-              src="/me/kartoum_international_school-removebg-preview.png"
-              alt="Khartoum International School"
-              class="education-logo"
-            />
-            <div class="education-title">Modern School</div>
-            <div class="education-period">June 2010 – March 2015</div>
-            <div class="education-school">Khartoum International School</div>
-          </div>
-          <div class="education-card">
-            <img
-              src="/me/Qabas-removebg-preview.png"
-              alt="Al-Qabas Secondary School"
-              class="education-logo"
-            />
-            <div class="education-title">High School</div>
-            <div class="education-period">June 2015 – March 2018</div>
-            <div class="education-school">Al-Qabas Secondary School</div>
-          </div>
-          <div class="education-card">
-            <img
-              src="/me/20250912_113534_aa9f0bf2_log12.png"
-              alt="National Ribat University"
-              class="education-logo"
-            />
-            <div class="education-title">BSc in Computer Science</div>
-            <div class="education-period">October 2019 – May 2025</div>
-            <div class="education-school">National Ribat University</div>
-            <div class="education-coursework">
-              <h4>Relevant Coursework</h4>
-              <ul>
-                <li>Distributed Database Systems</li>
-                <li>Cloud Computing</li>
-                <li>Foundations of Algorithms</li>
-                <li>Data Structures</li>
-                <li>Front-End Development</li>
-                <li>Back-End Development</li>
-              </ul>
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <img src="/me/kartoum_international_school-removebg-preview.png" alt="Khartoum International School" class="education-logo" />
+                    <div class="education-title">Modern School</div>
+                    <div class="education-period">June 2010 – March 2015
+                    </div>
+                    <div class="education-school">Khartoum International School
+                    </div>
+                </div>
+                <div class="education-card">
+                    <img src="/me/Qabas-removebg-preview.png" alt="Al-Qabas Secondary School" class="education-logo" />
+                    <div class="education-title">High School</div>
+                    <div class="education-period">June 2015 – March 2018
+                    </div>
+                    <div class="education-school">Al-Qabas Secondary School
+                    </div>
+                </div>
+                <div class="education-card">
+                    <img src="/me/20250912_113534_aa9f0bf2_log12.png" alt="National Ribat University" class="education-logo" />
+                    <div class="education-title">BSc in Computer Science
+                    </div>
+                    <div class="education-period">October 2019 – May 2025
+                    </div>
+                    <div class="education-school">National Ribat University
+                    </div>
+                    <div class="education-coursework">
+                        <h4>Relevant Coursework</h4>
+                        <ul>
+                            <li>Distributed Database Systems</li>
+                            <li>Cloud Computing</li>
+                            <li>Foundations of Algorithms</li>
+                            <li>Data Structures</li>
+                            <li>Front-End Development</li>
+                            <li>Back-End Development</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <img src="/me/ErraSoft-removebg-preview.png" alt="ErraSoft Academy" class="education-logo" />
+                    <div class="education-title">ErraSoft Academy</div>
+                    <div class="education-period">December 2023 – January 2025
+                    </div>
+                    <div class="education-school">Front-End Engineering
+                    </div>
+                    <div class="education-coursework">
+                        <h4>Key Skills Acquired</h4>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>React</li>
+                            <li>Bootstrap</li>
+                            <li>Responsive Web Design</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="education-card">
-            <img
-              src="/me/ErraSoft-removebg-preview.png"
-              alt="ErraSoft Academy"
-              class="education-logo"
-            />
-            <div class="education-title">ErraSoft Academy</div>
-            <div class="education-period">December 2023 – January 2025</div>
-            <div class="education-school">Front-End Engineering</div>
-            <div class="education-coursework">
-              <h4>Key Skills Acquired</h4>
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Bootstrap</li>
-                <li>Responsive Web Design</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
     <!-- SKILLS -->
     <section id="skills" class="skills-section">
-      <div class="container">
-        <h2>My Technical Skills</h2>
-        <!-- Languages & Databases -->
-        <div class="skills-category">
-          <h3>Programming Languages & Databases</h3>
-          <div class="skills-grid">
-            <div class="skill-item" style="--index: 0">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                alt="Python"
-                class="skill-icon"
-              /><span class="skill-name">Python</span>
+        <div class="container">
+            <h2>My Technical Skills</h2>
+            <!-- Languages & Databases -->
+            <div class="skills-category">
+                <h3>Programming Languages & Databases</h3>
+                <div class="skills-grid">
+                    <div class="skill-item" style="--index: 0">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-icon" /><span class="skill-name">Python</span>
+                    </div>
+                    <div class="skill-item" style="--index: 1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="skill-icon" /><span class="skill-name">Java</span>
+                    </div>
+                    <div class="skill-item" style="--index: 2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-icon" /><span class="skill-name">JavaScript</span>
+                    </div>
+                    <div class="skill-item" style="--index: 3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="skill-icon" /><span class="skill-name">TypeScript</span>
+                    </div>
+                    <div class="skill-item" style="--index: 4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="skill-icon" /><span class="skill-name">PHP</span>
+                    </div>
+                    <div class="skill-item" style="--index: 5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-icon" /><span class="skill-name">HTML5</span>
+                    </div>
+                    <div class="skill-item" style="--index: 6">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-icon" /><span class="skill-name">CSS3</span>
+                    </div>
+                    <div class="skill-item" style="--index: 7">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-icon" /><span class="skill-name">MySQL</span>
+                    </div>
+                    <div class="skill-item" style="--index: 8">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="skill-icon" /><span class="skill-name">PostgreSQL</span>
+                    </div>
+                </div>
             </div>
-            <div class="skill-item" style="--index: 1">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                alt="Java"
-                class="skill-icon"
-              /><span class="skill-name">Java</span>
+            <!-- Frameworks & Libraries -->
+            <div class="skills-category">
+                <h3>Frameworks & Libraries</h3>
+                <div class="skills-grid">
+                    <div class="skill-item" style="--index: 0">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" class="skill-icon" /><span class="skill-name">Spring Boot</span>
+                    </div>
+                    <div class="skill-item" style="--index: 1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" class="skill-icon" /><span class="skill-name">Django</span>
+                    </div>
+                    <div class="skill-item" style="--index: 2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="skill-icon" /><span class="skill-name">Node.js</span>
+                    </div>
+                    <div class="skill-item" style="--index: 3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="skill-icon" /><span class="skill-name">React</span>
+                    </div>
+                    <div class="skill-item" style="--index: 4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" class="skill-icon" /><span class="skill-name">Next.js</span>
+                    </div>
+                    <div class="skill-item" style="--index: 5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" alt="Redux" class="skill-icon" /><span class="skill-name">Redux</span>
+                    </div>
+                    <div class="skill-item" style="--index: 6">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" class="skill-icon" /><span class="skill-name">Bootstrap</span>
+                    </div>
+                    <div class="skill-item" style="--index: 7">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="skill-icon" /><span class="skill-name">Tailwind CSS</span>
+                    </div>
+                    <div class="skill-item" style="--index: 8">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="skill-icon" /><span class="skill-name">TensorFlow</span>
+                    </div>
+                    <div class="skill-item" style="--index: 9">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="skill-icon" /><span class="skill-name">PyTorch</span>
+                    </div>
+                    <div class="skill-item" style="--index: 10">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" class="skill-icon" /><span class="skill-name">OpenCV</span>
+                    </div>
+                </div>
             </div>
-            <div class="skill-item" style="--index: 2">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                alt="JavaScript"
-                class="skill-icon"
-              /><span class="skill-name">JavaScript</span>
+            <!-- Tools & Cloud -->
+            <div class="skills-category">
+                <h3>Tools & Cloud Platforms</h3>
+                <div class="skills-grid">
+                    <div class="skill-item" style="--index: 0">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="skill-icon" /><span class="skill-name">Git</span>
+                    </div>
+                    <div class="skill-item" style="--index: 1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="skill-icon" /><span class="skill-name">Docker</span>
+                    </div>
+                    <div class="skill-item" style="--index: 2">
+                        <img src="https://d0.awsstatic.com/logos/powered-by-aws-white.png" alt="AWS" class="skill-icon" /><span class="skill-name">Amazon
+                Web Services</span>
+                    </div>
+                    <div class="skill-item" style="--index: 3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Google Cloud" class="skill-icon" /><span class="skill-name">Google Cloud</span>
+                    </div>
+                    <div class="skill-item" style="--index: 4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg" alt="Heroku" class="skill-icon" /><span class="skill-name">Heroku</span>
+                    </div>
+                    <div class="skill-item" style="--index: 5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter" class="skill-icon" /><span class="skill-name">Jupyter</span>
+                    </div>
+                </div>
             </div>
-            <div class="skill-item" style="--index: 3">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-                alt="TypeScript"
-                class="skill-icon"
-              /><span class="skill-name">TypeScript</span>
-            </div>
-            <div class="skill-item" style="--index: 4">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                alt="PHP"
-                class="skill-icon"
-              /><span class="skill-name">PHP</span>
-            </div>
-            <div class="skill-item" style="--index: 5">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                alt="HTML5"
-                class="skill-icon"
-              /><span class="skill-name">HTML5</span>
-            </div>
-            <div class="skill-item" style="--index: 6">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-                alt="CSS3"
-                class="skill-icon"
-              /><span class="skill-name">CSS3</span>
-            </div>
-            <div class="skill-item" style="--index: 7">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                alt="MySQL"
-                class="skill-icon"
-              /><span class="skill-name">MySQL</span>
-            </div>
-            <div class="skill-item" style="--index: 8">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-                alt="PostgreSQL"
-                class="skill-icon"
-              /><span class="skill-name">PostgreSQL</span>
-            </div>
-          </div>
-        </div>
-        <!-- Frameworks & Libraries -->
-        <div class="skills-category">
-          <h3>Frameworks & Libraries</h3>
-          <div class="skills-grid">
-            <div class="skill-item" style="--index: 0">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot"
-                class="skill-icon"
-              /><span class="skill-name">Spring Boot</span>
-            </div>
-            <div class="skill-item" style="--index: 1">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
-                alt="Django"
-                class="skill-icon"
-              /><span class="skill-name">Django</span>
-            </div>
-            <div class="skill-item" style="--index: 2">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                alt="Node.js"
-                class="skill-icon"
-              /><span class="skill-name">Node.js</span>
-            </div>
-            <div class="skill-item" style="--index: 3">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                alt="React"
-                class="skill-icon"
-              /><span class="skill-name">React</span>
-            </div>
-            <div class="skill-item" style="--index: 4">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
-                alt="Next.js"
-                class="skill-icon"
-              /><span class="skill-name">Next.js</span>
-            </div>
-            <div class="skill-item" style="--index: 5">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
-                alt="Redux"
-                class="skill-icon"
-              /><span class="skill-name">Redux</span>
-            </div>
-            <div class="skill-item" style="--index: 6">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
-                alt="Bootstrap"
-                class="skill-icon"
-              /><span class="skill-name">Bootstrap</span>
-            </div>
-            <div class="skill-item" style="--index: 7">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
-                alt="Tailwind CSS"
-                class="skill-icon"
-              /><span class="skill-name">Tailwind CSS</span>
-            </div>
-            <div class="skill-item" style="--index: 8">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-                alt="TensorFlow"
-                class="skill-icon"
-              /><span class="skill-name">TensorFlow</span>
-            </div>
-            <div class="skill-item" style="--index: 9">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
-                alt="PyTorch"
-                class="skill-icon"
-              /><span class="skill-name">PyTorch</span>
-            </div>
-            <div class="skill-item" style="--index: 10">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg"
-                alt="OpenCV"
-                class="skill-icon"
-              /><span class="skill-name">OpenCV</span>
-            </div>
-          </div>
-        </div>
-        <!-- Tools & Cloud -->
-        <div class="skills-category">
-          <h3>Tools & Cloud Platforms</h3>
-          <div class="skills-grid">
-            <div class="skill-item" style="--index: 0">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                alt="Git"
-                class="skill-icon"
-              /><span class="skill-name">Git</span>
-            </div>
-            <div class="skill-item" style="--index: 1">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                alt="Docker"
-                class="skill-icon"
-              /><span class="skill-name">Docker</span>
-            </div>
-            <div class="skill-item" style="--index: 2">
-              <img
-                src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
-                alt="AWS"
-                class="skill-icon"
-              /><span class="skill-name">Amazon Web Services</span>
-            </div>
-            <div class="skill-item" style="--index: 3">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
-                alt="Google Cloud"
-                class="skill-icon"
-              /><span class="skill-name">Google Cloud</span>
-            </div>
-            <div class="skill-item" style="--index: 4">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg"
-                alt="Heroku"
-                class="skill-icon"
-              /><span class="skill-name">Heroku</span>
-            </div>
-            <div class="skill-item" style="--index: 5">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
-                alt="Jupyter"
-                class="skill-icon"
-              /><span class="skill-name">Jupyter</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- NEW: Code Editors & IDEs -->
-        <div class="skills-category">
-          <h3>Code Editors & IDEs</h3>
-          <div class="skills-grid">
-            <div class="skill-item" style="--index: 0">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
-                alt="VS Code"
-                class="skill-icon"
-              /><span class="skill-name">VS Code</span>
-            </div>
-            <div class="skill-item" style="--index: 1">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg"
-                alt="IntelliJ IDEA"
-                class="skill-icon"
-              /><span class="skill-name">IntelliJ IDEA</span>
-            </div>
-            <div class="skill-item" style="--index: 2">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webstorm/webstorm-original.svg"
-                alt="JetBrains"
-                class="skill-icon"
-              /><span class="skill-name">JetBrains</span>
-            </div>
-            <div class="skill-item" style="--index: 3">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notepadplusplus/notepadplusplus-original.svg"
-                alt="Notepad++"
-                class="skill-icon"
-              /><span class="skill-name">Notepad++</span>
-            </div>
-            <div class="skill-item" style="--index: 4">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg"
-                alt="Eclipse"
-                class="skill-icon"
-              /><span class="skill-name">Eclipse</span>
-            </div>
-          </div>
-        </div>
-        <!-- End of Code Editors & IDEs -->
 
-      </div>
+            <!-- NEW: Code Editors & IDEs -->
+            <div class="skills-category">
+                <h3>Code Editors & IDEs</h3>
+                <div class="skills-grid">
+                    <div class="skill-item" style="--index: 0">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="skill-icon" /><span class="skill-name">VS
+                Code</span>
+                    </div>
+                    <div class="skill-item" style="--index: 1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" class="skill-icon" /><span class="skill-name">IntelliJ IDEA</span>
+                    </div>
+                    <div class="skill-item" style="--index: 2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webstorm/webstorm-original.svg" alt="JetBrains" class="skill-icon" /><span class="skill-name">JetBrains</span>
+                    </div>
+                    <div class="skill-item" style="--index: 3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notepadplusplus/notepadplusplus-original.svg" alt="Notepad++" class="skill-icon" /><span class="skill-name">Notepad++</span>
+                    </div>
+                    <div class="skill-item" style="--index: 4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eclipse/eclipse-original.svg" alt="Eclipse" class="skill-icon" /><span class="skill-name">Eclipse</span>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Code Editors & IDEs -->
+
+        </div>
     </section>
     <!-- INTERESTS -->
     <section id="interests" class="interests-section">
-      <div class="container">
-        <div class="interests-title">INTERESTS</div>
-        <div class="interests-grid">
-          <div class="interest-card" style="--index: 0">
-            <div class="interest-icon">🌐</div>
-            <div class="interest-name">Software Development</div>
-          </div>
-          <div class="interest-card" style="--index: 1">
-            <div class="interest-icon">📊</div>
-            <div class="interest-name">Machine Learning</div>
-          </div>
-          <div class="interest-card" style="--index: 2">
-            <div class="interest-icon">📸</div>
-            <div class="interest-name">Computer Vision</div>
-          </div>
-          <div class="interest-card" style="--index: 3">
-            <div class="interest-icon">🔤</div>
-            <div class="interest-name">Natural Language Processing</div>
-          </div>
-          <div class="interest-card" style="--index: 4">
-            <div class="interest-icon">&lt;&gt;</div>
-            <div class="interest-name">Software Engineering</div>
-          </div>
-          <div class="interest-card" style="--index: 5">
-            <div class="interest-icon">📈</div>
-            <div class="interest-name">Visualization</div>
-          </div>
-          <div class="interest-card" style="--index: 6">
-            <div class="interest-icon">📄</div>
-            <div class="interest-name">Algorithms</div>
-          </div>
-          <div class="interest-card" style="--index: 7">
-            <div class="interest-icon">🖼️</div>
-            <div class="interest-name">Image Processing</div>
-          </div>
+        <div class="container">
+            <div class="interests-title">INTERESTS</div>
+            <div class="interests-grid">
+                <div class="interest-card" style="--index: 0">
+                    <div class="interest-icon">🌐</div>
+                    <div class="interest-name">Software Development</div>
+                </div>
+                <div class="interest-card" style="--index: 1">
+                    <div class="interest-icon">📊</div>
+                    <div class="interest-name">Machine Learning</div>
+                </div>
+                <div class="interest-card" style="--index: 2">
+                    <div class="interest-icon">📸</div>
+                    <div class="interest-name">Computer Vision</div>
+                </div>
+                <div class="interest-card" style="--index: 3">
+                    <div class="interest-icon">🔤</div>
+                    <div class="interest-name">Natural Language Processing
+                    </div>
+                </div>
+                <div class="interest-card" style="--index: 4">
+                    <div class="interest-icon">&lt;&gt;</div>
+                    <div class="interest-name">Software Engineering</div>
+                </div>
+                <div class="interest-card" style="--index: 5">
+                    <div class="interest-icon">📈</div>
+                    <div class="interest-name">Visualization</div>
+                </div>
+                <div class="interest-card" style="--index: 6">
+                    <div class="interest-icon">📄</div>
+                    <div class="interest-name">Algorithms</div>
+                </div>
+                <div class="interest-card" style="--index: 7">
+                    <div class="interest-icon">🖼️</div>
+                    <div class="interest-name">Image Processing</div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
     <!-- FULL STACK PROJECTS -->
     <div class="container mt-5">
-      <!-- Project 1 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="100">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/Dental.png"
-              alt="Dental Clinic"
-              class="project-title-image"
-              width="40%"
-            />
-            <h6>Dental Clinic Appointment Booking System</h6>
-            <p>
-              A responsive dental clinic website built with HTML/CSS/JS and a
-              PHP + MySQL backend. It allows patients to book appointments
-              online with full form validation and secure data storage,
-              featuring a clean Arabic UI using Bootstrap.
-            </p>
-            <div class="project-buttons">
-              <a
-                href="https://dental-clinic-website-main-main2.vercel.app/"
-                class="btn btn-demo"
-                >Live Demo</a
-              >
-              <a
-                href="https://github.com/Mudther84/DentalClinic-Website-main"
-                class="btn btn-code"
-                >View Code</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 2 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="150">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/Hoppie.png"
-              alt="Hobbie"
-              class="project-title-image"
-              width="40%"
-            />
-            <h5>Hobbie – User Registration System</h5>
-            <p>
-              A full-stack web app for managing user registration and
-              authentication. Built with React.js on the front-end and Spring
-              Boot + MySQL on the back-end, focusing on secure data handling and
-              efficient API-driven architecture.
-            </p>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Demo</a>
-              <a href="#" class="btn btn-code">Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 3 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="200">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/Ecommerce.png"
-              alt="Ecommerce"
-              class="project-title-image"
-              width="40%"
-            />
-            <h6>HiTeckKart</h6>
-            <p>
-              Full-stack e-commerce app with React (Vite) and Spring Boot using
-              MySQL. Features REST APIs for products, a responsive React UI with
-              Axios and Bootstrap, and an MVC backend. Simple demo ready for
-              expansion (cart, checkout, auth).
-            </p>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Demo</a>
-              <a href="#" class="btn btn-code">Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 4 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="250">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/Spring Boot Dental.png"
-              alt="Dental App"
-              class="project-title-image"
-              width="40%"
-            />
-            <h5>Dental Clinic Web Application</h5>
-            <p>
-              A full-stack web app for managing patients, dentists,
-              appointments, and user roles. Built with Java Spring Boot on the
-              backend with JWT-based security, and React on the frontend with a
-              custom CSS UI and smooth client-side routing via react-router-dom.
-            </p>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Demo</a>
-              <a href="#" class="btn btn-code">Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 5 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="300">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/h5Employee Management System (CRUDS)h5.png"
-              alt="Employee System"
-              class="project-title-image"
-              width="40%"
-            />
-            <h5>Employee Management System (CRUDS)</h5>
-            <p>
-              A full-stack CRUD application for managing employee data, built
-              with React.js, Spring Boot, and MySQL. It allows users to add,
-              view, update, and delete employee records through well-structured
-              RESTful APIs.
-            </p>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Demo</a>
-              <a href="#" class="btn btn-code">Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 6 -->
-      <div class="project-card full" data-aos="fade-up" data-aos-delay="350">
-        <div class="project-header">
-          <div class="project-info">
-            <img
-              src="/projects images/Student Management System.png"
-              alt="Student System"
-              class="project-title-image"
-              width="40%"
-            />
-            <h5>Student Management System</h5>
-            <p>
-              The project features a Java backend built with Spring Boot,
-              handling business logic, data storage, and server-side operations,
-              paired with a frontend developed using JavaScript, HTML, CSS, and
-              Bootstrap, providing a responsive and user-friendly interface. It
-              demonstrates proficiency in full-stack development, API
-              integration via RESTful services, and responsive UI design.
-            </p>
-            <div class="project-buttons">
-              <a href="#" class="btn btn-demo">Demo</a>
-              <a href="#" class="btn btn-code">Code</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- BACKEND PROJECTS SECTION -->
-    <section id="backend-projects" class="backend-projects-section">
-      <div class="container">
-        <h2 data-aos="fade-up">Backend Projects</h2>
         <!-- Project 1 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="100">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Banking RESTful API</h5>
-              <p class="project-description full">
-                Technologies: Java 8, Spring Boot, Spring Data JPA, Spring
-                Security, REST APIs, H2 In-Memory Database, Lombok, Swagger,
-                Maven. Description: Designed and implemented a secure, stateless
-                RESTful API to simulate core banking operations including
-                customer and account management, deposits, withdrawals, and
-                internal fund transfers. Built with a clean layered architecture
-                using Spring Boot and secured with Spring Security. Integrated
-                Swagger for interactive API documentation and used H2 for rapid
-                development and testing.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Spring Boot</li>
-                    <li>Spring Data JPA</li>
-                    <li>Spring Security</li>
-                    <li>H2 Database</li>
-                    <li>Lombok</li>
-                    <li>Swagger (Springfox)</li>
-                    <li>Maven</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/Dental.png" alt="Dental Clinic" class="project-title-image" width="40%" />
+                    <h6>Dental Clinic Appointment Booking System</h6>
+                    <p>
+                        A responsive dental clinic website built with HTML/CSS/JS and a PHP + MySQL backend. It allows patients to book appointments online with full form validation and secure data storage, featuring a clean Arabic UI using Bootstrap.
+                    </p>
+                    <div class="project-buttons">
+                        <a href="https://dental-clinic-website-main-main2.vercel.app/" class="btn btn-demo">Live Demo</a>
+                        <a href="https://github.com/Mudther84/DentalClinic-Website-main" class="btn btn-code">View Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>CRUD for Customers & Accounts</li>
-                    <li>Deposit & Withdrawal Endpoints</li>
-                    <li>Internal Fund Transfers</li>
-                    <li>Interactive API Docs (Swagger UI)</li>
-                    <li>In-Memory Data Persistence</li>
-                    <li>Secure REST Endpoints</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/BankApp"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot Banking API"
-                width="48"
-                height="48"
-              />
-              Spring Boot Banking API
-            </div>
-          </div>
         </div>
         <!-- Project 2 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="150">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Quiz Management System</h5>
-              <p class="project-description full">
-                Technologies: Java 17, Spring Boot, Spring Data JPA, Spring
-                Security, REST APIs, PostgreSQL, Lombok, Swagger, Maven.
-                Description: Built a scalable quiz platform that allows
-                administrators to manage quizzes, questions, and options, while
-                users can take quizzes and view their scores. Implemented
-                role-based access control using Spring Security.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Spring Boot</li>
-                    <li>Spring Data JPA</li>
-                    <li>Spring Security</li>
-                    <li>PostgreSQL</li>
-                    <li>Lombok</li>
-                    <li>Swagger (OpenAPI)</li>
-                    <li>Maven</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/Hoppie.png" alt="Hobbie" class="project-title-image" width="40%" />
+                    <h5>Hobbie – User Registration System</h5>
+                    <p>
+                        A full-stack web app for managing user registration and authentication. Built with React.js on the front-end and Spring Boot + MySQL on the back-end, focusing on secure data handling and efficient API-driven architecture.
+                    </p>
+                    <div class="project-buttons">
+                        <a href="#" class="btn btn-demo">Demo</a>
+                        <a href="#" class="btn btn-code">Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>Admin Quiz & Question CRUD</li>
-                    <li>User Quiz Submission</li>
-                    <li>Automatic Score Calculation</li>
-                    <li>Role-Based Authorization</li>
-                    <li>Interactive API Docs (Swagger)</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/Quiz-Spring-Boot-Application"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot Quiz API"
-                width="48"
-                height="48"
-              />
-              Spring Boot Quiz API
-            </div>
-          </div>
         </div>
         <!-- Project 3 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="200">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Library Management System</h5>
-              <p class="project-description full">
-                Technologies: Java 8, OOAD, Console UI, Apache Derby, NetBeans.
-                Description: A university project implementing core library
-                workflows (search, holds, checkout, fines) with strict OOP
-                principles. Decoupled design with refined class diagram and
-                database schema.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Java SE 8</li>
-                    <li>OOAD</li>
-                    <li>Apache Derby</li>
-                    <li>NetBeans</li>
-                    <li>StarUML</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/Ecommerce.png" alt="Ecommerce" class="project-title-image" width="40%" />
+                    <h6>HiTeckKart</h6>
+                    <p>
+                        Full-stack e-commerce app with React (Vite) and Spring Boot using MySQL. Features REST APIs for products, a responsive React UI with Axios and Bootstrap, and an MVC backend. Simple demo ready for expansion (cart, checkout, auth).
+                    </p>
+                    <div class="project-buttons">
+                        <a href="#" class="btn btn-demo">Demo</a>
+                        <a href="#" class="btn btn-code">Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>Multi-Role Access</li>
-                    <li>Book Search & Holds</li>
-                    <li>Check-in/Check-out/Renewals</li>
-                    <li>Fine Tracking</li>
-                    <li>Decoupled Architecture</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/Library-Management-System-JAVA"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                alt="Java OOAD Library System"
-                width="48"
-                height="48"
-              />
-              Java OOAD Library System
-            </div>
-          </div>
         </div>
         <!-- Project 4 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="250">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Real-Time GUI Chat Application</h5>
-              <p class="project-description full">
-                Technologies: Java SE, Swing, Sockets, Multithreading, OOP.
-                Description: Desktop chat app with client-server architecture
-                using Java sockets and Swing UI. Multi-threaded server supports
-                real-time messaging and broadcasting.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Java SE</li>
-                    <li>Swing</li>
-                    <li>Socket Programming</li>
-                    <li>Multithreading</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/Spring Boot Dental.png" alt="Dental App" class="project-title-image" width="40%" />
+                    <h5>Dental Clinic Web Application</h5>
+                    <p>
+                        A full-stack web app for managing patients, dentists, appointments, and user roles. Built with Java Spring Boot on the backend with JWT-based security, and React on the frontend with a custom CSS UI and smooth client-side routing via react-router-dom.
+                    </p>
+                    <div class="project-buttons">
+                        <a href="#" class="btn btn-demo">Demo</a>
+                        <a href="#" class="btn btn-code">Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>Real-Time Messaging</li>
-                    <li>Multi-Client Support</li>
-                    <li>Thread-Safe Server</li>
-                    <li>Message Broadcasting</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/GUI-Chat-Application"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                alt="Java Swing Chat App"
-                width="48"
-                height="48"
-              />
-              Java Socket Chat
-            </div>
-          </div>
         </div>
         <!-- Project 5 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="300">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Full-Stack E-Commerce Platform</h5>
-              <p class="project-description full">
-                Technologies: Spring Boot (Java 17), React.js, PostgreSQL,
-                Spring Security, JWT, Tailwind CSS, Docker. Description:
-                Responsive e-commerce app with product catalog, authentication,
-                cart, and order history. Secure REST API with JWT and role-based
-                access. Containerized and cloud-ready.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Spring Boot</li>
-                    <li>React.js</li>
-                    <li>PostgreSQL</li>
-                    <li>JWT</li>
-                    <li>Tailwind CSS</li>
-                    <li>Docker</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/h5Employee Management System (CRUDS)h5.png" alt="Employee System" class="project-title-image" width="40%" />
+                    <h5>Employee Management System (CRUDS)</h5>
+                    <p>
+                        A full-stack CRUD application for managing employee data, built with React.js, Spring Boot, and MySQL. It allows users to add, view, update, and delete employee records through well-structured RESTful APIs.
+                    </p>
+                    <div class="project-buttons">
+                        <a href="#" class="btn btn-demo">Demo</a>
+                        <a href="#" class="btn btn-code">Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>User Auth & Roles</li>
-                    <li>Product Catalog</li>
-                    <li>Shopping Cart</li>
-                    <li>Order History</li>
-                    <li>Responsive UI</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/SpringBoot-Reactjs-Ecommerce"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot + React E-Commerce"
-                width="48"
-                height="48"
-              />
-              Full-Stack E-Commerce
-            </div>
-          </div>
         </div>
         <!-- Project 6 -->
         <div class="project-card full" data-aos="fade-up" data-aos-delay="350">
-          <div class="project-header">
-            <div class="project-info">
-              <h5 class="project-title full">Spring Boot Blog API</h5>
-              <p class="project-description full">
-                Technologies: Java 17, Spring Boot, Spring Security, JWT,
-                PostgreSQL, Lombok, Swagger, Maven. Description: Secure blogging
-                backend with full CRUD for posts, JWT auth, role-based access,
-                and OpenAPI docs. Built with layered architecture and REST best
-                practices.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Tech Stack</h3>
-                  <ul class="project-list">
-                    <li>Spring Boot</li>
-                    <li>Spring Security + JWT</li>
-                    <li>PostgreSQL</li>
-                    <li>Lombok</li>
-                    <li>Swagger UI</li>
-                  </ul>
+            <div class="project-header">
+                <div class="project-info">
+                    <img src="/projects images/Student Management System.png" alt="Student System" class="project-title-image" width="40%" />
+                    <h5>Student Management System</h5>
+                    <p>
+                        The project features a Java backend built with Spring Boot, handling business logic, data storage, and server-side operations, paired with a frontend developed using JavaScript, HTML, CSS, and Bootstrap, providing a responsive and user-friendly interface.
+                        It demonstrates proficiency in full-stack development, API integration via RESTful services, and responsive UI design.
+                    </p>
+                    <div class="project-buttons">
+                        <a href="#" class="btn btn-demo">Demo</a>
+                        <a href="#" class="btn btn-code">Code</a>
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Features</h3>
-                  <ul class="project-list">
-                    <li>User Registration</li>
-                    <li>JWT Authentication</li>
-                    <li>Post CRUD</li>
-                    <li>Role-Based Access</li>
-                    <li>API Documentation</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://github.com/Mudther84/spring-boot-blog-app"
-                  class="btn btn-code"
-                  >Code</a
-                >
-              </div>
             </div>
-            <div class="backend-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                alt="Spring Boot Blog API"
-                width="48"
-                height="48"
-              />
-              Spring Boot Blog Backend
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    <!-- BACKEND PROJECTS SECTION -->
+    <section id="backend-projects" class="backend-projects-section">
+        <div class="container">
+            <h2 data-aos="fade-up">Backend Projects</h2>
+            <!-- Project 1 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Banking RESTful API
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Java 8, Spring Boot, Spring Data JPA, Spring Security, REST APIs, H2 In-Memory Database, Lombok, Swagger, Maven. Description: Designed and implemented a secure, stateless RESTful API to simulate core banking operations including customer
+                            and account management, deposits, withdrawals, and internal fund transfers. Built with a clean layered architecture using Spring Boot and secured with Spring Security. Integrated Swagger for interactive API documentation and
+                            used H2 for rapid development and testing.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Spring Boot</li>
+                                    <li>Spring Data JPA</li>
+                                    <li>Spring Security</li>
+                                    <li>H2 Database</li>
+                                    <li>Lombok</li>
+                                    <li>Swagger (Springfox)</li>
+                                    <li>Maven</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>CRUD for Customers & Accounts</li>
+                                    <li>Deposit & Withdrawal Endpoints</li>
+                                    <li>Internal Fund Transfers</li>
+                                    <li>Interactive API Docs (Swagger UI)
+                                    </li>
+                                    <li>In-Memory Data Persistence</li>
+                                    <li>Secure REST Endpoints</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/BankApp" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot Banking API" width="48" height="48" /> Spring Boot Banking API
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="150">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Quiz Management System
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Java 17, Spring Boot, Spring Data JPA, Spring Security, REST APIs, PostgreSQL, Lombok, Swagger, Maven. Description: Built a scalable quiz platform that allows administrators to manage quizzes, questions, and options, while users can take
+                            quizzes and view their scores. Implemented role-based access control using Spring Security.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Spring Boot</li>
+                                    <li>Spring Data JPA</li>
+                                    <li>Spring Security</li>
+                                    <li>PostgreSQL</li>
+                                    <li>Lombok</li>
+                                    <li>Swagger (OpenAPI)</li>
+                                    <li>Maven</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>Admin Quiz & Question CRUD</li>
+                                    <li>User Quiz Submission</li>
+                                    <li>Automatic Score Calculation</li>
+                                    <li>Role-Based Authorization</li>
+                                    <li>Interactive API Docs (Swagger)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/Quiz-Spring-Boot-Application" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot Quiz API" width="48" height="48" /> Spring Boot Quiz API
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Library Management System
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Java 8, OOAD, Console UI, Apache Derby, NetBeans. Description: A university project implementing core library workflows (search, holds, checkout, fines) with strict OOP principles. Decoupled design with refined class diagram and database
+                            schema.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Java SE 8</li>
+                                    <li>OOAD</li>
+                                    <li>Apache Derby</li>
+                                    <li>NetBeans</li>
+                                    <li>StarUML</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>Multi-Role Access</li>
+                                    <li>Book Search & Holds</li>
+                                    <li>Check-in/Check-out/Renewals</li>
+                                    <li>Fine Tracking</li>
+                                    <li>Decoupled Architecture</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/Library-Management-System-JAVA" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java OOAD Library System" width="48" height="48" /> Java OOAD Library System
+                    </div>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="250">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Real-Time GUI Chat Application
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Java SE, Swing, Sockets, Multithreading, OOP. Description: Desktop chat app with client-server architecture using Java sockets and Swing UI. Multi-threaded server supports real-time messaging and broadcasting.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Java SE</li>
+                                    <li>Swing</li>
+                                    <li>Socket Programming</li>
+                                    <li>Multithreading</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>Real-Time Messaging</li>
+                                    <li>Multi-Client Support</li>
+                                    <li>Thread-Safe Server</li>
+                                    <li>Message Broadcasting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/GUI-Chat-Application" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Swing Chat App" width="48" height="48" /> Java Socket Chat
+                    </div>
+                </div>
+            </div>
+            <!-- Project 5 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="300">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Full-Stack E-Commerce Platform
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Spring Boot (Java 17), React.js, PostgreSQL, Spring Security, JWT, Tailwind CSS, Docker. Description: Responsive e-commerce app with product catalog, authentication, cart, and order history. Secure REST API with JWT and role-based access.
+                            Containerized and cloud-ready.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Spring Boot</li>
+                                    <li>React.js</li>
+                                    <li>PostgreSQL</li>
+                                    <li>JWT</li>
+                                    <li>Tailwind CSS</li>
+                                    <li>Docker</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>User Auth & Roles</li>
+                                    <li>Product Catalog</li>
+                                    <li>Shopping Cart</li>
+                                    <li>Order History</li>
+                                    <li>Responsive UI</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/SpringBoot-Reactjs-Ecommerce" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot + React E-Commerce" width="48" height="48" /> Full-Stack E-Commerce
+                    </div>
+                </div>
+            </div>
+            <!-- Project 6 -->
+            <div class="project-card full" data-aos="fade-up" data-aos-delay="350">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5 class="project-title full">Spring Boot Blog API
+                        </h5>
+                        <p class="project-description full">
+                            Technologies: Java 17, Spring Boot, Spring Security, JWT, PostgreSQL, Lombok, Swagger, Maven. Description: Secure blogging backend with full CRUD for posts, JWT auth, role-based access, and OpenAPI docs. Built with layered architecture and REST best practices.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Tech Stack</h3>
+                                <ul class="project-list">
+                                    <li>Spring Boot</li>
+                                    <li>Spring Security + JWT</li>
+                                    <li>PostgreSQL</li>
+                                    <li>Lombok</li>
+                                    <li>Swagger UI</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Features</h3>
+                                <ul class="project-list">
+                                    <li>User Registration</li>
+                                    <li>JWT Authentication</li>
+                                    <li>Post CRUD</li>
+                                    <li>Role-Based Access</li>
+                                    <li>API Documentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Mudther84/spring-boot-blog-app" class="btn btn-code">Code</a>
+                        </div>
+                    </div>
+                    <div class="backend-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot Blog API" width="48" height="48" /> Spring Boot Blog Backend
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- CERTIFICATES SECTION -->
     <section id="certificates" class="backend-projects-section">
-      <div class="container">
-        <h2>Certifications</h2>
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>Oracle Certified Professional: Java SE 17 Developer</h5>
-              <p>Advanced Java proficiency from Oracle University.</p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>Oracle University</li>
-                  </ul>
+        <div class="container">
+            <h2>Certifications</h2>
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>Oracle Certified Professional: Java SE 17 Developer
+                        </h5>
+                        <p>Advanced Java proficiency from Oracle University.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>Oracle University</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Skills</h3>
+                                <ul>
+                                    <li>OOP</li>
+                                    <li>Streams</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" width="48" height="48" />OCP Java SE 17
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Key Skills</h3>
-                  <ul>
-                    <li>OOP</li>
-                    <li>Streams</li>
-                  </ul>
+            </div>
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>Back-end Java Diploma</h5>
+                        <p>Intensive Spring Boot training from EraaSoft Academy.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>EraaSoft Academy</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Core Tech</h3>
+                                <ul>
+                                    <li>Spring Boot</li>
+                                    <li>REST APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" width="48" height="48" />Back-end Java Diploma
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg"
-                width="48"
-                height="48"
-              />OCP Java SE 17
-            </div>
-          </div>
-        </div>
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>Back-end Java Diploma</h5>
-              <p>Intensive Spring Boot training from EraaSoft Academy.</p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>EraaSoft Academy</li>
-                  </ul>
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>Front-end Diploma</h5>
+                        <p>
+                            Modern frontend development with React and responsive design.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>EraaSoft Academy</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Core Tech</h3>
+                                <ul>
+                                    <li>React.js</li>
+                                    <li>Bootstrap</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="48" height="48" />Front-end Diploma
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Core Tech</h3>
-                  <ul>
-                    <li>Spring Boot</li>
-                    <li>REST APIs</li>
-                  </ul>
+            </div>
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>Core Java Programming Course</h5>
+                        <p>Foundational Java from Rooman Technologies.</p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>Rooman Technologies</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Core Concepts</h3>
+                                <ul>
+                                    <li>OOP</li>
+                                    <li>Collections</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" width="48" height="48" />Core Java Certificate
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                width="48"
-                height="48"
-              />Back-end Java Diploma
-            </div>
-          </div>
-        </div>
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>Front-end Diploma</h5>
-              <p>
-                Modern frontend development with React and responsive design.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>EraaSoft Academy</li>
-                  </ul>
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>Spring Certified Professional 2022</h5>
+                        <p>
+                            Official VMware certification for Spring Framework expertise.
+                        </p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>VMware Learning</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Validated Expertise</h3>
+                                <ul>
+                                    <li>Spring Core</li>
+                                    <li>Web MVC</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" width="48" height="48" />SCP 2022
+                    </div>
                 </div>
-                <div class="project-column">
-                  <h3>Core Tech</h3>
-                  <ul>
-                    <li>React.js</li>
-                    <li>Bootstrap</li>
-                  </ul>
-                </div>
-              </div>
             </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                width="48"
-                height="48"
-              />Front-end Diploma
-            </div>
-          </div>
-        </div>
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>Core Java Programming Course</h5>
-              <p>Foundational Java from Rooman Technologies.</p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>Rooman Technologies</li>
-                  </ul>
-                </div>
-                <div class="project-column">
-                  <h3>Core Concepts</h3>
-                  <ul>
-                    <li>OOP</li>
-                    <li>Collections</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                width="48"
-                height="48"
-              />Core Java Certificate
-            </div>
-          </div>
-        </div>
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>Spring Certified Professional 2022</h5>
-              <p>
-                Official VMware certification for Spring Framework expertise.
-              </p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>VMware Learning</li>
-                  </ul>
-                </div>
-                <div class="project-column">
-                  <h3>Validated Expertise</h3>
-                  <ul>
-                    <li>Spring Core</li>
-                    <li>Web MVC</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                width="48"
-                height="48"
-              />SCP 2022
-            </div>
-          </div>
-        </div>
 
-        <!-- New Addition: CS50x Certificate -->
-        <div class="project-card full">
-          <div class="project-header">
-            <div class="project-info">
-              <h5>CS50x: Introduction to Computer Science</h5>
-              <p>Harvard University's introduction to computer science, covering programming fundamentals, algorithms, and data structures using languages like C, Python, and SQL.</p>
-              <div class="project-details">
-                <div class="project-column">
-                  <h3>Issuing Body</h3>
-                  <ul>
-                    <li>Harvard University (edX)</li>
-                  </ul>
-                </div>
-                <div class="project-column">
-                  <h3>Key Skills</h3>
-                  <ul>
-                    <li>C, Python, SQL</li>
-                    <li>HTML, CSS, JavaScript</li>
-                    <li>Algorithms and Data Structures</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="project-buttons">
-                <a
-                  href="https://drive.google.com/file/d/1uUGAgNHyazC0g8kD_lYK-D0tlS4MwdFP/view?usp=sharing"
-                  target="_blank"
-                  class="btn btn-demo"
-                >
+            <!-- New Addition: CS50x Certificate -->
+            <div class="project-card full">
+                <div class="project-header">
+                    <div class="project-info">
+                        <h5>CS50x: Introduction to Computer Science</h5>
+                        <p>Harvard University's introduction to computer science, covering programming fundamentals, algorithms, and data structures using languages like C, Python, and SQL.</p>
+                        <div class="project-details">
+                            <div class="project-column">
+                                <h3>Issuing Body</h3>
+                                <ul>
+                                    <li>Harvard University (edX)</li>
+                                </ul>
+                            </div>
+                            <div class="project-column">
+                                <h3>Key Skills</h3>
+                                <ul>
+                                    <li>C, Python, SQL</li>
+                                    <li>HTML, CSS, JavaScript</li>
+                                    <li>Algorithms and Data Structures</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://drive.google.com/file/d/1uUGAgNHyazC0g8kD_lYK-D0tlS4MwdFP/view?usp=sharing" target="_blank" class="btn btn-demo">
                   View Certificate
                 </a>
-              </div>
+                        </div>
+                    </div>
+                    <div class="certificates-diagram">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" width="48" height="48" alt="CS50x" /> CS50x Certificate
+                    </div>
+                </div>
             </div>
-            <div class="certificates-diagram">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
-                width="48"
-                height="48"
-                alt="CS50x"
-              />
-              CS50x Certificate
-            </div>
-          </div>
-        </div>
-        <!-- End of CS50x Certificate Addition -->
+            <!-- End of CS50x Certificate Addition -->
 
-      </div>
+        </div>
     </section>
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
-      <h2 class="contact-title">Let's Build Something Amazing</h2>
-      <p class="contact-description">
-        Looking for a full-stack developer who can architect and implement
-        complete solutions? Let's discuss your project.
-      </p>
-      <div class="location">
-        <span class="location-icon">📍</span> Cairo, Egypt
-      </div>
-      <form
-        class="contact-form"
-        action="https://formsubmit.co/cb858d3ead900886dcb19e8470cc6632"
-        method="POST"
-      >
-        <div class="form-group">
-          <label for="name" class="form-label">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            class="form-input"
-            required
-          />
+        <h2 class="contact-title">Let's Build Something Amazing</h2>
+        <p class="contact-description">
+            Looking for a full-stack developer who can architect and implement complete solutions? Let's discuss your project.
+        </p>
+        <div class="location">
+            <span class="location-icon">📍</span> Cairo, Egypt
         </div>
-        <div class="form-group">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-input"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="message" class="form-label">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            class="form-input form-textarea"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
+        <form class="contact-form" action="https://formsubmit.co/cb858d3ead900886dcb19e8470cc6632" method="POST">
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-input" required />
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input" required />
+            </div>
+            <div class="form-group">
+                <label for="message" class="form-label">Message</label>
+                <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
     </section>
     <!-- FOOTER -->
     <footer>
-      <a
-        href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing"
-        class="resume-btn"
-      >
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          style="margin-right: 0.5rem"
-        >
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+        <a href="https://drive.google.com/file/d/1PK7bykqAg0HaA36dcYDPFXEMLDXU5MI1/view?usp=sharing" class="resume-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 0.5rem">
+          <path
+            d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
           <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
-        </svg>
-        View Resume
-      </a>
-      <div class="social-links">
-        <a href="https://x.com/MoudaserYassin" class="social-link">𝕏</a>
-        <a href="https://github.com/Mudther84" class="social-link">GH</a>
-        <a href="mailto:moudaseryassin@gmail.com" class="social-link">✉️</a>
-      </div>
+        </svg> View Resume
+        </a>
+        <div class="social-links">
+            <a href="https://x.com/MoudaserYassin" class="social-link">𝕏</a>
+            <a href="https://github.com/Mudther84" class="social-link">GH</a>
+            <a href="mailto:moudaseryassin@gmail.com" class="social-link">✉️</a>
+        </div>
     </footer>
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Typing Animation
-        const typedText = document.querySelector(".typed-text");
-        if (typedText) {
-          const textArray = [
-            "Full Stack Developer",
-            "Backend Engineer",
-            "AI Enthusiast",
-          ];
-          let textArrayIndex = 0;
-          let charIndex = 0;
-          const typingDelay = 100;
-          const erasingDelay = 50;
-          const newTextDelay = 1500;
-          function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-              typedText.textContent +=
-                textArray[textArrayIndex].charAt(charIndex);
-              charIndex++;
-              setTimeout(type, typingDelay);
-            } else {
-              setTimeout(erase, newTextDelay);
+        document.addEventListener("DOMContentLoaded", function() {
+            // Typing Animation
+            const typedText = document.querySelector(".typed-text");
+            if (typedText) {
+                const textArray = [
+                    "Full Stack Developer",
+                    "Backend Engineer",
+                    "AI Enthusiast",
+                ];
+                let textArrayIndex = 0;
+                let charIndex = 0;
+                const typingDelay = 100;
+                const erasingDelay = 50;
+                const newTextDelay = 1500;
+
+                function type() {
+                    if (charIndex < textArray[textArrayIndex].length) {
+                        typedText.textContent +=
+                            textArray[textArrayIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, typingDelay);
+                    } else {
+                        setTimeout(erase, newTextDelay);
+                    }
+                }
+
+                function erase() {
+                    if (charIndex > 0) {
+                        typedText.textContent = textArray[textArrayIndex].substring(
+                            0,
+                            charIndex - 1
+                        );
+                        charIndex--;
+                        setTimeout(erase, erasingDelay);
+                    } else {
+                        textArrayIndex = (textArrayIndex + 1) % textArray.length;
+                        setTimeout(type, typingDelay + 500);
+                    }
+                }
+                setTimeout(type, 500);
             }
-          }
-          function erase() {
-            if (charIndex > 0) {
-              typedText.textContent = textArray[textArrayIndex].substring(
-                0,
-                charIndex - 1
-              );
-              charIndex--;
-              setTimeout(erase, erasingDelay);
-            } else {
-              textArrayIndex = (textArrayIndex + 1) % textArray.length;
-              setTimeout(type, typingDelay + 500);
-            }
-          }
-          setTimeout(type, 500);
-        }
-        // AOS
-        AOS.init({ duration: 1200, once: true });
-        // Scroll Reveal
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
+            // AOS
+            AOS.init({
+                duration: 1200,
+                once: true
             });
-          },
-          { threshold: 0.1 }
-        );
-        document
-          .querySelectorAll(
-            "h2, .about-content, .education-card, .skills-category, .skill-item, .interest-card, .project-card.full, .backend-diagram, .certificates-diagram, .contact-section, footer"
-          )
-          .forEach((el) => observer.observe(el));
-        // GSAP Floating
-        gsap.utils
-          .toArray(
-            ".skill-item, .interest-card, .education-card, .project-card"
-          )
-          .forEach((el, i) => {
-            gsap.to(el, {
-              y: -8,
-              duration: 2 + (i % 3) * 0.3,
-              repeat: -1,
-              yoyo: true,
-              ease: "sine.inOut",
-              delay: Math.random() * 1.5,
+            // Scroll Reveal
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1
+                }
+            );
+            document
+                .querySelectorAll(
+                    "h2, .about-content, .education-card, .skills-category, .skill-item, .interest-card, .project-card.full, .backend-diagram, .certificates-diagram, .contact-section, footer"
+                )
+                .forEach((el) => observer.observe(el));
+            // GSAP Floating
+            gsap.utils
+                .toArray(
+                    ".skill-item, .interest-card, .education-card, .project-card"
+                )
+                .forEach((el, i) => {
+                    gsap.to(el, {
+                        y: -8,
+                        duration: 2 + (i % 3) * 0.3,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: Math.random() * 1.5,
+                    });
+                });
+            // Smooth Scroll + Active Class
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+            const sections = document.querySelectorAll("section[id], #projects");
+            // On click
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute("href");
+                    // Guard: placeholder links like href="#" are not valid selectors
+                    if (!href || href.length < 2) return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: "smooth",
+                        });
+                        navLinks.forEach((link) => link.classList.remove("active"));
+                        this.classList.add("active");
+                    }
+                });
             });
-          });
-        // Smooth Scroll + Active Class
-        const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-        const sections = document.querySelectorAll("section[id], #projects");
-        // On click
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              window.scrollTo({
-                top: target.offsetTop - 80,
-                behavior: "smooth",
-              });
-              navLinks.forEach((link) => link.classList.remove("active"));
-              this.classList.add("active");
-            }
-          });
+            const setActiveLink = () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (
+                        pageYOffset >= sectionTop - 100 &&
+                        pageYOffset < sectionTop + sectionHeight - 100
+                    ) {
+                        current = section.getAttribute("id");
+                    }
+                });
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${current}`) {
+                        link.classList.add("active");
+                    }
+                });
+            };
+            window.addEventListener("scroll", setActiveLink);
+            setActiveLink(); // Initial setup
         });
-        const setActiveLink = () => {
-          let current = "";
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (
-              pageYOffset >= sectionTop - 100 &&
-              pageYOffset < sectionTop + sectionHeight - 100
-            ) {
-              current = section.getAttribute("id");
-            }
-          });
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${current}`) {
-              link.classList.add("active");
-            }
-          });
-        };
-        window.addEventListener("scroll", setActiveLink);
-        setActiveLink(); // Initial setup
-      });
     </script>
-  </body>
+
+    <!-- ========== CODE SHAPES (CSS 3D, ASCII faces) ========== -->
+    <script>
+        (function() {
+            const grid = document.getElementById("shapes-grid");
+            if (!grid) return;
+            const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            // ---------- tiny vector helpers ----------
+            const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+            const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+            const mul = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
+            const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+            const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+            const len = (a) => Math.sqrt(dot(a, a));
+            const norm = (a) => mul(a, 1 / (len(a) || 1));
+
+            // deterministic random so the ASCII is the same on every load
+            let seed = 11;
+            const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+            const TOK = ["{", "}", "();", "=>", "</>", "0x", "if", "&&", "[]", "=", "//", "<>", "++", "int", "fn", "var", "1", "0", "::", "!=", "#", "*/", "&", "|"];
+
+            function rowText(n) {
+                let s = "";
+                while (s.length < n) s += TOK[Math.floor(rnd() * TOK.length)] + " ";
+                return s.slice(0, n);
+            }
+            const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+            // ---------- geometry builders: { v: vertices, f: faces (vertex index lists) } ----------
+            function box(hx, hy, hz) {
+                const v = [];
+                for (let i = 0; i < 8; i++) v.push([(i & 1 ? 1 : -1) * hx, (i & 2 ? 1 : -1) * hy, (i & 4 ? 1 : -1) * hz]);
+                return {
+                    v: v,
+                    f: [
+                        [0, 2, 4, 6],
+                        [1, 3, 5, 7],
+                        [0, 1, 4, 5],
+                        [2, 3, 6, 7],
+                        [0, 1, 2, 3],
+                        [4, 5, 6, 7]
+                    ]
+                };
+            }
+
+            function pyramid(r, base, apex) {
+                const v = [
+                    [-r, base, -r],
+                    [r, base, -r],
+                    [r, base, r],
+                    [-r, base, r],
+                    [0, -apex, 0]
+                ];
+                return {
+                    v: v,
+                    f: [
+                        [0, 1, 2, 3],
+                        [0, 1, 4],
+                        [1, 2, 4],
+                        [2, 3, 4],
+                        [3, 0, 4]
+                    ]
+                };
+            }
+
+            function tetra(s) {
+                const v = [
+                    [1, 1, 1],
+                    [1, -1, -1],
+                    [-1, 1, -1],
+                    [-1, -1, 1]
+                ].map((p) => mul(p, s));
+                return {
+                    v: v,
+                    f: [
+                        [0, 1, 2],
+                        [0, 1, 3],
+                        [0, 2, 3],
+                        [1, 2, 3]
+                    ]
+                };
+            }
+
+            function octa(r) {
+                const v = [
+                    [r, 0, 0],
+                    [-r, 0, 0],
+                    [0, r, 0],
+                    [0, -r, 0],
+                    [0, 0, r],
+                    [0, 0, -r]
+                ];
+                const f = [];
+                for (const x of[0, 1])
+                    for (const y of[2, 3])
+                        for (const z of[4, 5]) f.push([x, y, z]);
+                return {
+                    v: v,
+                    f: f
+                };
+            }
+
+            function triPrism(r, d) {
+                const v = [];
+                [-90, 30, 150].forEach((deg) => {
+                    const a = (deg * Math.PI) / 180;
+                    v.push([r * Math.cos(a), r * Math.sin(a), -d]);
+                });
+                [-90, 30, 150].forEach((deg) => {
+                    const a = (deg * Math.PI) / 180;
+                    v.push([r * Math.cos(a), r * Math.sin(a), d]);
+                });
+                return {
+                    v: v,
+                    f: [
+                        [0, 1, 2],
+                        [3, 4, 5],
+                        [0, 1, 4, 3],
+                        [1, 2, 5, 4],
+                        [2, 0, 3, 5]
+                    ]
+                };
+            }
+
+            function nPrism(n, r, h) {
+                const v = [],
+                    f = [
+                        [],
+                        []
+                    ];
+                for (let i = 0; i < n; i++) {
+                    const a = (i / n) * Math.PI * 2 + Math.PI / n;
+                    v.push([r * Math.cos(a), -h, r * Math.sin(a)]);
+                }
+                for (let i = 0; i < n; i++) {
+                    const a = (i / n) * Math.PI * 2 + Math.PI / n;
+                    v.push([r * Math.cos(a), h, r * Math.sin(a)]);
+                }
+                for (let i = 0; i < n; i++) {
+                    f[0].push(i);
+                    f[1].push(n + i);
+                }
+                for (let i = 0; i < n; i++) f.push([i, (i + 1) % n, n + ((i + 1) % n), n + i]);
+                return {
+                    v: v,
+                    f: f
+                };
+            }
+
+            function nCone(n, r, base, apex) {
+                const v = [],
+                    f = [
+                        []
+                    ];
+                for (let i = 0; i < n; i++) {
+                    const a = (i / n) * Math.PI * 2;
+                    v.push([r * Math.cos(a), base, r * Math.sin(a)]);
+                    f[0].push(i);
+                }
+                v.push([0, -apex, 0]);
+                for (let i = 0; i < n; i++) f.push([i, (i + 1) % n, n]);
+                return {
+                    v: v,
+                    f: f
+                };
+            }
+
+            function icosa(k) {
+                const p = (1 + Math.sqrt(5)) / 2;
+                const base = [];
+                [-1, 1].forEach((a) => [-1, 1].forEach((b) => {
+                    base.push([0, a, b * p]);
+                    base.push([a, b * p, 0]);
+                    base.push([b * p, 0, a]);
+                }));
+                const v = base.map((q) => mul(q, k));
+                const e = 2 * k,
+                    f = [];
+                const near = (i, j) => Math.abs(len(sub(v[i], v[j])) - e) < 0.5;
+                for (let i = 0; i < v.length; i++)
+                    for (let j = i + 1; j < v.length; j++)
+                        for (let l = j + 1; l < v.length; l++)
+                            if (near(i, j) && near(j, l) && near(i, l)) f.push([i, j, l]);
+                return {
+                    v: v,
+                    f: f
+                };
+            }
+
+            function dodeca(k, R) {
+                const ico = icosa(k);
+                const centers = ico.f.map((t) => mul(norm(mul(add(add(ico.v[t[0]], ico.v[t[1]]), ico.v[t[2]]), 1 / 3)), R));
+                const f = ico.v.map((_, vi) => {
+                    const ids = [];
+                    ico.f.forEach((t, ti) => {
+                        if (t.indexOf(vi) >= 0) ids.push(ti);
+                    });
+                    return ids;
+                });
+                return {
+                    v: centers,
+                    f: f
+                };
+            }
+
+            // ---------- shape catalogue ----------
+            const SHAPES = [{
+                name: "Cube",
+                color: "teal",
+                geo: box(50, 50, 50),
+                speed: 24,
+                labels: ["flex", "grid", "@media", "gap", "hover", "<div>"],
+                chips: ["display: grid;", "gap: 12px;", "clamp(14px,4vw,22px)", ".card:has(.new)"]
+            }, {
+                name: "Cuboid",
+                color: "purple",
+                geo: box(72, 36, 44),
+                speed: 20,
+                labels: ["HTML", "CSS", "JS", "React", "Java", "SQL"],
+                chips: ["<section id=\"about\">", "margin: 0 auto;", "const [x, setX] = useState();"]
+            }, {
+                name: "Square Pyramid",
+                color: "primary",
+                geo: pyramid(56, 46, 76),
+                speed: 26,
+                labels: ["Spring", "Boot", "JWT", "REST", "API"],
+                chips: ["@RestController", "@Autowired", "ResponseEntity<T>"]
+            }, {
+                name: "Tetrahedron",
+                color: "teal",
+                geo: tetra(46),
+                speed: 30,
+                labels: ["git", "push", "pull", "merge"],
+                chips: ["git commit -m \"ship\"", "git push origin main", "branch: feature/*"]
+            }, {
+                name: "Octahedron",
+                color: "purple",
+                geo: octa(78),
+                speed: 22,
+                labels: ["SELECT", "FROM", "WHERE", "JOIN", "GROUP", "ORDER", "LIMIT", "INSERT"],
+                chips: ["SELECT * FROM users;", "PRIMARY KEY (id)", "INNER JOIN orders"]
+            }, {
+                name: "Triangular Prism",
+                color: "primary",
+                geo: triPrism(64, 46),
+                speed: 25,
+                labels: ["React", "JSX", "Hook", "Props", "State"],
+                chips: ["useEffect(() => {}, [])", "<Route path=\"/\" />", "props.children"]
+            }, {
+                name: "Hexagonal Prism",
+                color: "teal",
+                geo: nPrism(6, 56, 56),
+                speed: 28,
+                labels: ["Docker", "Build", "Run", "Ship", "Image", "Compose"],
+                chips: ["docker run -p 80:80", "FROM openjdk:17", "docker compose up"]
+            }, {
+                name: "Cylinder",
+                color: "purple",
+                geo: nPrism(16, 50, 62),
+                speed: 27,
+                labels: ["DB", "SQL", "CRUD", "data"],
+                chips: ["spring.datasource.url", "@Entity @Table", "JpaRepository<T, ID>"]
+            }, {
+                name: "Cone",
+                color: "primary",
+                geo: nCone(16, 54, 48, 78),
+                speed: 23,
+                labels: ["AI", "ML", "CV", "NLP"],
+                chips: ["model.fit(X, y)", "import torch", "cv2.imread(\"img\")"]
+            }, {
+                name: "Icosahedron",
+                color: "teal",
+                geo: icosa(44),
+                speed: 21,
+                labels: ["01", "10", "{ }", "</>", "&&", "=>", "[ ]", "!="],
+                chips: ["O(n log n)", "while (!done)", "return a ^ b;"]
+            }, {
+                name: "Dodecahedron",
+                color: "purple",
+                geo: dodeca(44, 84),
+                speed: 19,
+                labels: ["</>", "async", "await", "fetch", "JSON", "Node", "npm", "API", "JWT", "CORS", "REST", "HTTP"],
+                chips: ["await fetch(url)", "npm run dev", "res.status(200)"]
+            }, ];
+            const COLORS = {
+                teal: [16, 185, 129],
+                purple: [139, 92, 246],
+                primary: [79, 70, 229]
+            };
+            // four separate vertical bands so chips never overlap each other
+            const SLOTS = [{
+                top: "3%",
+                left: "3%",
+                r: "-3deg"
+            }, {
+                top: "17%",
+                right: "3%",
+                r: "2deg"
+            }, {
+                bottom: "17%",
+                left: "3%",
+                r: "3deg"
+            }, {
+                bottom: "3%",
+                right: "4%",
+                r: "-2deg"
+            }, ];
+
+            let clipId = 0;
+
+            // ---------- build one flat polygon (a face) positioned in 3D ----------
+            function makeFace(pts, color, label, plain) {
+                const c = mul(pts.reduce((a, b) => add(a, b), [0, 0, 0]), 1 / pts.length);
+                let n = norm(cross(sub(pts[1], pts[0]), sub(pts[2], pts[0])));
+                if (dot(n, c) < 0) n = mul(n, -1); // outward (shape is centred on the origin)
+                let down = [0, 1, 0];
+                if (Math.abs(dot(n, down)) > 0.9) down = [0, 0, 1];
+                const w = norm(sub(down, mul(n, dot(down, n)))); // local +y, keeps text upright
+                const u = cross(w, n); // local +x   (u × w = n, so the face is never mirrored)
+                let p2 = pts.map((p) => {
+                    const d = sub(p, c);
+                    return [dot(d, u), dot(d, w)];
+                });
+                p2.sort((a, b) => Math.atan2(a[1], a[0]) - Math.atan2(b[1], b[0]));
+                const R = Math.max.apply(null, p2.map((q) => Math.hypot(q[0], q[1])));
+                const pad = 4,
+                    size = Math.ceil(2 * R) + pad * 2,
+                    m = size / 2;
+                const xs = p2.map((q) => q[0]),
+                    ys = p2.map((q) => q[1]);
+                const bw = Math.max.apply(null, xs) - Math.min.apply(null, xs);
+                const bh = Math.max.apply(null, ys) - Math.min.apply(null, ys);
+                let area = 0;
+                for (let i = 0; i < p2.length; i++) {
+                    const a = p2[i],
+                        b = p2[(i + 1) % p2.length];
+                    area += a[0] * b[1] - b[0] * a[1];
+                }
+                area = Math.abs(area) / 2;
+                const poly = p2.map((q) => (q[0] + m).toFixed(1) + "," + (q[1] + m).toFixed(1)).join(" ");
+                const rgb = COLORS[color];
+                const alpha = (0.5 + rnd() * 0.2).toFixed(2);
+                const light = rgb.map((x) => Math.round(x + (255 - x) * 0.5)).join(",");
+                const id = "sf" + clipId++;
+                let inner = '<clipPath id="' + id + '"><polygon points="' + poly + '"/></clipPath>';
+                inner += '<polygon points="' + poly + '" fill="rgba(' + rgb.join(",") + "," + alpha + ')"/>';
+                if (area > 1500) { // faint ASCII code filling the face
+                    let rows = "";
+                    const cols = Math.ceil(size / 4.9);
+                    for (let y = 9; y < size; y += 9.5)
+                        rows += '<text x="0" y="' + y.toFixed(1) + '">' + esc(rowText(cols)) + "</text>";
+                    inner += '<g clip-path="url(#' + id + ')" font-family="Courier New,monospace" font-size="8" fill="rgba(255,255,255,0.2)" style="white-space:pre">' + rows + "</g>";
+                }
+                inner += '<polygon points="' + poly + '" fill="none" stroke="rgb(' + light + ')" stroke-width="1.6" stroke-linejoin="round"/>';
+                if (label && !plain) {
+                    const tall = bh > bw * 2;
+                    const span = tall ? bh : bw;
+                    const fs = Math.max(8, Math.min(20, (span * 0.62) / Math.max(label.length * 0.6, 1.4)));
+                    const rot = tall ? ' transform="rotate(90 ' + m + " " + m + ')"' : "";
+                    inner += '<text x="' + m + '" y="' + m + '" text-anchor="middle" dominant-baseline="central" font-family="Courier New,monospace" font-weight="700" font-size="' + fs.toFixed(1) + '" fill="#fff" stroke="rgba(0,0,0,0.35)" stroke-width="3" paint-order="stroke"' + rot + ">" + esc(label) + "</text>";
+                }
+                const el = document.createElement("div");
+                el.className = "shape-face";
+                el.style.width = el.style.height = size + "px";
+                el.style.left = el.style.top = -m + "px";
+                el.style.transform = "matrix3d(" + [u[0], u[1], u[2], 0, w[0], w[1], w[2], 0, n[0], n[1], n[2], 0, c[0], c[1], c[2], 1].map((x) => x.toFixed(5)).join(",") + ")";
+                el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="' + size + '" height="' + size + '" viewBox="0 0 ' + size + " " + size + '">' + inner + "</svg>";
+                return el;
+            }
+
+            // ---------- build all cards ----------
+            const items = [];
+            SHAPES.forEach(function(s, si) {
+                const card = document.createElement("div");
+                card.className = "shape-card c-" + s.color;
+                const vis = document.createElement("div");
+                vis.className = "shape-visual";
+                vis.innerHTML = '<div class="shape-orbit"></div><div class="shape-glow"><div class="shape-stage"><div class="shape-obj"></div></div></div>';
+                const obj = vis.querySelector(".shape-obj");
+                const stage = vis.querySelector(".shape-stage");
+
+                let labelIdx = 0;
+                s.geo.f.forEach(function(idx, fi) {
+                    const pts = idx.map((i) => s.geo.v[i]);
+                    // long thin side faces (cylinder / cone) only carry a label on every 4th face
+                    const plain = (s.name === "Cylinder" || s.name === "Cone") && fi > 0 && fi % 4 !== 0;
+                    const label = s.labels[labelIdx % s.labels.length];
+                    if (!plain) labelIdx++;
+                    obj.appendChild(makeFace(pts, s.color, label, plain));
+                });
+
+                s.chips.forEach(function(txt, ci) {
+                    const slot = SLOTS[(ci + si) % SLOTS.length];
+                    const chip = document.createElement("div");
+                    chip.className = "shape-chip";
+                    Object.keys(slot).forEach((k) => {
+                        if (k === "r") chip.style.setProperty("--r", slot[k]);
+                        else chip.style[k] = slot[k];
+                    });
+                    chip.style.setProperty("--d", (-ci * 1.3).toFixed(1) + "s");
+                    const colon = txt.indexOf(":");
+                    chip.innerHTML = colon > 0 && colon < txt.length - 1 ? "<b>" + esc(txt.slice(0, colon + 1)) + "</b>" + esc(txt.slice(colon + 1)) : esc(txt);
+                    vis.appendChild(chip);
+                });
+
+                const V = new Set(s.geo.v.map((p) => p.map((x) => Math.round(x)).join(","))).size;
+                const F = s.geo.f.length;
+                const name = document.createElement("div");
+                name.className = "shape-name";
+                name.textContent = s.name;
+                const meta = document.createElement("div");
+                meta.className = "shape-meta";
+                meta.innerHTML = "F <span>" + F + "</span> · E <span>" + (V + F - 2) + "</span> · V <span>" + V + "</span>";
+                card.appendChild(vis);
+                card.appendChild(name);
+                card.appendChild(meta);
+                grid.appendChild(card);
+
+                const it = {
+                    card: card,
+                    obj: obj,
+                    stage: stage,
+                    speed: s.speed,
+                    rx: -20,
+                    ry: -30 + si * 37,
+                    vx: 0,
+                    vy: 0,
+                    drag: false,
+                    lx: 0,
+                    ly: 0,
+                    visible: false
+                };
+                obj.style.transform = "rotateX(" + it.rx + "deg) rotateY(" + it.ry + "deg)";
+                items.push(it);
+
+                stage.addEventListener("pointerdown", function(e) {
+                    it.drag = true;
+                    it.lx = e.clientX;
+                    it.ly = e.clientY;
+                    it.vx = it.vy = 0;
+                    try {
+                        stage.setPointerCapture(e.pointerId);
+                    } catch (err) {}
+                });
+                stage.addEventListener("pointermove", function(e) {
+                    if (!it.drag) return;
+                    const dx = e.clientX - it.lx,
+                        dy = e.clientY - it.ly;
+                    it.lx = e.clientX;
+                    it.ly = e.clientY;
+                    it.ry += dx * 0.6;
+                    it.rx = Math.max(-85, Math.min(85, it.rx - dy * 0.6));
+                    it.vx = dx * 0.6;
+                    it.vy = -dy * 0.6;
+                });
+                const end = function() {
+                    it.drag = false;
+                };
+                stage.addEventListener("pointerup", end);
+                stage.addEventListener("pointercancel", end);
+            });
+
+            // ---------- animation loop (only runs while a shape is on screen) ----------
+            let last = 0,
+                raf = null;
+
+            function tick(now) {
+                const dt = Math.min((now - last) / 1000, 0.05);
+                last = now;
+                let any = false;
+                items.forEach(function(it) {
+                    if (!it.visible) return;
+                    any = true;
+                    if (!it.drag) {
+                        it.ry += it.vx + (reduce ? 0 : it.speed * dt);
+                        it.rx = Math.max(-85, Math.min(85, it.rx + it.vy));
+                        it.vx *= 0.93;
+                        it.vy *= 0.93;
+                        it.rx += (-20 - it.rx) * 0.02; // settle back to a nice viewing angle
+                    }
+                    it.obj.style.transform = "rotateX(" + it.rx.toFixed(2) + "deg) rotateY(" + it.ry.toFixed(2) + "deg)";
+                });
+                raf = any ? requestAnimationFrame(tick) : null;
+            }
+
+            function wake() {
+                if (!raf) {
+                    last = performance.now();
+                    raf = requestAnimationFrame(tick);
+                }
+            }
+            if ("IntersectionObserver" in window) {
+                const io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(en) {
+                        const it = items.find((x) => x.card === en.target);
+                        if (it) it.visible = en.isIntersecting;
+                    });
+                    wake();
+                }, {
+                    threshold: 0
+                });
+                items.forEach((it) => io.observe(it.card));
+            } else {
+                items.forEach((it) => (it.visible = true));
+                wake();
+            }
+        })();
+    </script>
+</body>
+
 </html>
